@@ -1,11 +1,11 @@
 [project]
 name = "bcra-sdk"
 version = "0.1.0"
-description = "Add your description here"
+description = "SDK no oficial para las APIs del BCRA"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 dependencies = [
-    "httpx2>=2.7.0",
+    "httpx>=0.28.1",
 ]
 
 [build-system]
