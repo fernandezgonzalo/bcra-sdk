@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write   # necesario para crear el Release y subir assets
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # hatch-vcs necesita el historial completo de tags
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Build (wheel + sdist)
+        run: uv build
+
+      - name: Verificar que la versión del tag coincide con el paquete
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          BUILT_VERSION=$(uv run python -c "import importlib.metadata as m; print(m.version('bcra-sdk'))" 2>/dev/null || \
+            ls dist/*.whl | sed -E 's/.*bcra_sdk-([0-9.]+(\.dev[0-9]+\+g[0-9a-f]+)?)-.*/\1/')
+          echo "Tag: $TAG_VERSION / Build: $BUILT_VERSION"
+
+      - name: Correr tests antes de publicar
+        run: uv run pytest
+
+      - name: Subir artifacts al workflow (debug/trazabilidad)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Crear GitHub Release con los paquetes
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') }}
