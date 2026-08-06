@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from typing import Self
+
 from ._transport import Transport
 from .deudores import Deudores
-
 
 _DEFAULT_BASE_URL = "https://api.bcra.gob.ar"
 
@@ -28,13 +29,13 @@ class BCRAClient:
     async def aclose(self) -> None:
         await self._transport.aclose()
 
-    def __enter__(self) -> "BCRAClient":
+    def __enter__(self) -> Self:
         return self
 
     def __exit__(self, *exc) -> None:
         self.close()
 
-    async def __aenter__(self) -> "BCRAClient":
+    async def __aenter__(self) -> Self:
         return self
 
     async def __aexit__(self, *exc) -> None:
