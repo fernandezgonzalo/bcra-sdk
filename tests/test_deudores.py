@@ -1,8 +1,8 @@
-import pytest
-from unittest.mock import MagicMock
 from typing import Any
+from unittest.mock import MagicMock
 
 import httpx
+import pytest
 
 from bcra_sdk.exceptions import BCRAHTTPError
 
