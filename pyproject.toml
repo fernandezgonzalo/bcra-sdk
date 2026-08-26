@@ -21,5 +21,7 @@ packages = ["src/bcra_sdk"]
 [dependency-groups]
 dev = [
     "ipython>=9.15.0",
+    "pre-commit>=4.6.2",
     "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
 ]

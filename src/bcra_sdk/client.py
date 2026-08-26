@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import logging
 from typing import Self
 
 from ._transport import Transport
 from .deudores import Deudores
+
+logger = logging.getLogger("bcra_sdk.client")
 
 _DEFAULT_BASE_URL = "https://api.bcra.gob.ar"
 
@@ -22,12 +25,15 @@ class BCRAClient:
     def __init__(self, base_url: str = _DEFAULT_BASE_URL, **httpx_kwargs):
         self._transport = Transport(base_url, **httpx_kwargs)
         self.deudores = Deudores(self._transport)
+        logger.debug("BCRAClient inicializado con base_url=%s", base_url)
 
     def close(self) -> None:
         self._transport.close()
+        logger.debug("BCRAClient cerrado")
 
     async def aclose(self) -> None:
         await self._transport.aclose()
+        logger.debug("BCRAClient async cerrado")
 
     def __enter__(self) -> Self:
         return self
