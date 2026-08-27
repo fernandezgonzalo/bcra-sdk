@@ -24,10 +24,29 @@ class Cheques(Resource):
         )
 
     def get_entidades(self, *, version: str | None = None) -> ResultGetEntidadesV1:
-        spec = self._resolve_version("get_entidades", version)
         logger.info("Consultando entidades bancarias")
-        r = self._t.request("GET", spec.path)
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_entidades",
+            version=version,
+            model=ResultGetEntidadesV1,
+        )
+        logger.debug(
+            "Entidades obtenidas: total=%d",
+            len(result.entidades),
+        )
+        return result
+
+    async def aget_entidades(
+        self, *, version: str | None = None
+    ) -> ResultGetEntidadesV1:
+        logger.info("Consultando entidades bancarias")
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_entidades",
+            version=version,
+            model=ResultGetEntidadesV1,
+        )
         logger.debug(
             "Entidades obtenidas: total=%d",
             len(result.entidades),
@@ -41,19 +60,51 @@ class Cheques(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetChequeDenunciadoV1:
-        spec = self._resolve_version("get_cheque_denunciado", version)
         logger.info(
             "Consultando cheque denunciado: entidad=%s, cheque=%s",
             codigo_entidad,
             numero_cheque,
         )
-        r = self._t.request(
-            "GET",
-            spec.path.format(
-                codigo_entidad=codigo_entidad, numero_cheque=numero_cheque
-            ),
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_cheque_denunciado",
+            version=version,
+            path_vars={
+                "codigo_entidad": codigo_entidad,
+                "numero_cheque": numero_cheque,
+            },
+            model=ResultGetChequeDenunciadoV1,
         )
-        result = spec.model.from_dict(r.json()["results"])
+        logger.debug(
+            "Cheque %s: denunciado=%s, detalles=%d",
+            result.numeroCheque,
+            result.denunciado,
+            len(result.detalles),
+        )
+        return result
+
+    async def aget_cheque_denunciado(
+        self,
+        codigo_entidad: int,
+        numero_cheque: int,
+        *,
+        version: str | None = None,
+    ) -> ResultGetChequeDenunciadoV1:
+        logger.info(
+            "Consultando cheque denunciado: entidad=%s, cheque=%s",
+            codigo_entidad,
+            numero_cheque,
+        )
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_cheque_denunciado",
+            version=version,
+            path_vars={
+                "codigo_entidad": codigo_entidad,
+                "numero_cheque": numero_cheque,
+            },
+            model=ResultGetChequeDenunciadoV1,
+        )
         logger.debug(
             "Cheque %s: denunciado=%s, detalles=%d",
             result.numeroCheque,

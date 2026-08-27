@@ -1,5 +1,6 @@
+import asyncio
 from typing import Any
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import httpx
 import pytest
@@ -215,4 +216,73 @@ def test_get_cheque_denunciado_500(client, monkeypatch):
 
     with pytest.raises(BCRAHTTPError) as exc_info:
         client.cheques.get_cheque_denunciado(codigo_entidad=11, numero_cheque=123)
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_entidades(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {"codigoEntidad": 11, "denominacion": "BANCO DE LA NACION ARGENTINA"},
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.cheques._t, "arequest", AsyncMock(return_value=mock_response)
+    )
+
+    async def run():
+        return await client.cheques.aget_entidades()
+
+    data = asyncio.run(run())
+
+    assert len(data.entidades) == 1
+    assert data.entidades[0].codigoEntidad == 11
+
+
+def test_aget_cheque_denunciado(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": {
+            "numeroCheque": 20377516,
+            "denunciado": True,
+            "fechaProcesamiento": "2026-08-26",
+            "denominacionEntidad": "BANCO DE LA NACION ARGENTINA",
+            "detalles": [
+                {
+                    "sucursal": 524,
+                    "numeroCuenta": 5240055962,
+                    "causal": "Denunciado por tercero",
+                }
+            ],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.cheques._t, "arequest", AsyncMock(return_value=mock_response)
+    )
+
+    async def run():
+        return await client.cheques.aget_cheque_denunciado(
+            codigo_entidad=11, numero_cheque=20377516
+        )
+
+    data = asyncio.run(run())
+
+    assert data.numeroCheque == 20377516
+    assert data.denunciado is True
+    assert len(data.detalles) == 1
+
+
+def test_aget_entidades_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Error al consultar Maestros.")
+
+    monkeypatch.setattr(client.cheques._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.cheques.aget_entidades()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
     assert exc_info.value.status_code == 500
