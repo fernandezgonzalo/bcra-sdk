@@ -3,7 +3,7 @@ import logging
 from ._base import Resource
 from .models.cotizaciones import ResultGetCotizacionesV1
 from .models.divisas import ResultGetDivisasV1
-from .models.evolucion import ResultGetEvolucionMonedaV1, Resultset
+from .models.evolucion import ResultGetEvolucionMonedaV1
 
 logger = logging.getLogger("bcra_sdk.estadisticas_cambiarias")
 
@@ -90,15 +90,10 @@ class EstadisticasCambiarias(Resource):
             spec.path.format(moneda=moneda),
             params=params or None,
         )
-        resultset = Resultset(**r.json()["metadata"]["resultset"])
-        cotizaciones = [
-            ResultGetCotizacionesV1.from_dict(c) for c in r.json()["results"]
-        ]
+        result = spec.model.from_dict(r.json())
         logger.debug(
             "Evolución obtenida: count=%d, cotizaciones=%d",
-            resultset.count,
-            len(cotizaciones),
+            result.resultset.count,
+            len(result.cotizaciones),
         )
-        return ResultGetEvolucionMonedaV1(
-            resultset=resultset, cotizaciones=cotizaciones
-        )
+        return result
