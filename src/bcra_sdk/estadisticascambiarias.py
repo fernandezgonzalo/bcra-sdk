@@ -31,10 +31,27 @@ class EstadisticasCambiarias(Resource):
         )
 
     def get_divisas(self, *, version: str | None = None) -> ResultGetDivisasV1:
-        spec = self._resolve_version("get_divisas", version)
         logger.info("Consultando divisas")
-        r = self._t.request("GET", spec.path)
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_divisas",
+            version=version,
+            model=ResultGetDivisasV1,
+        )
+        logger.debug(
+            "Divisas obtenidas: total=%d",
+            len(result.divisas),
+        )
+        return result
+
+    async def aget_divisas(self, *, version: str | None = None) -> ResultGetDivisasV1:
+        logger.info("Consultando divisas")
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_divisas",
+            version=version,
+            model=ResultGetDivisasV1,
+        )
         logger.debug(
             "Divisas obtenidas: total=%d",
             len(result.divisas),
@@ -44,11 +61,34 @@ class EstadisticasCambiarias(Resource):
     def get_cotizaciones(
         self, fecha: str | None = None, *, version: str | None = None
     ) -> ResultGetCotizacionesV1:
-        spec = self._resolve_version("get_cotizaciones", version)
         logger.info("Consultando cotizaciones (fecha=%s)", fecha)
         params = {"fecha": fecha} if fecha else None
-        r = self._t.request("GET", spec.path, params=params)
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_cotizaciones",
+            version=version,
+            params=params,
+            model=ResultGetCotizacionesV1,
+        )
+        logger.debug(
+            "Cotizaciones obtenidas: fecha=%s, detalle=%d",
+            result.fecha,
+            len(result.detalle),
+        )
+        return result
+
+    async def aget_cotizaciones(
+        self, fecha: str | None = None, *, version: str | None = None
+    ) -> ResultGetCotizacionesV1:
+        logger.info("Consultando cotizaciones (fecha=%s)", fecha)
+        params = {"fecha": fecha} if fecha else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_cotizaciones",
+            version=version,
+            params=params,
+            model=ResultGetCotizacionesV1,
+        )
         logger.debug(
             "Cotizaciones obtenidas: fecha=%s, detalle=%d",
             result.fecha,
@@ -66,7 +106,6 @@ class EstadisticasCambiarias(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetEvolucionMonedaV1:
-        spec = self._resolve_version("get_evolucion_moneda", version)
         logger.info(
             "Consultando evolución de %s (fechadesde=%s, fechahasta=%s, "
             "limit=%s, offset=%s)",
@@ -85,12 +124,59 @@ class EstadisticasCambiarias(Resource):
             params["limit"] = limit
         if offset is not None:
             params["offset"] = offset
-        r = self._t.request(
-            "GET",
-            spec.path.format(moneda=moneda),
-            params=params or None,
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_evolucion_moneda",
+            version=version,
+            params=params,
+            path_vars={"moneda": moneda},
+            model=ResultGetEvolucionMonedaV1,
+            results_key=None,
         )
-        result = spec.model.from_dict(r.json())
+        logger.debug(
+            "Evolución obtenida: count=%d, cotizaciones=%d",
+            result.resultset.count,
+            len(result.cotizaciones),
+        )
+        return result
+
+    async def aget_evolucion_moneda(
+        self,
+        moneda: str,
+        fechadesde: str | None = None,
+        fechahasta: str | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetEvolucionMonedaV1:
+        logger.info(
+            "Consultando evolución de %s (fechadesde=%s, fechahasta=%s, "
+            "limit=%s, offset=%s)",
+            moneda,
+            fechadesde,
+            fechahasta,
+            limit,
+            offset,
+        )
+        params: dict[str, object] = {}
+        if fechadesde:
+            params["fechadesde"] = fechadesde
+        if fechahasta:
+            params["fechahasta"] = fechahasta
+        if limit is not None:
+            params["limit"] = limit
+        if offset is not None:
+            params["offset"] = offset
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_evolucion_moneda",
+            version=version,
+            params=params,
+            path_vars={"moneda": moneda},
+            model=ResultGetEvolucionMonedaV1,
+            results_key=None,
+        )
         logger.debug(
             "Evolución obtenida: count=%d, cotizaciones=%d",
             result.resultset.count,

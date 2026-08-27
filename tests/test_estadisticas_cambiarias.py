@@ -1,5 +1,6 @@
+import asyncio
 from typing import Any
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import httpx
 import pytest
@@ -330,4 +331,110 @@ def test_get_evolucion_moneda_500(client, monkeypatch):
 
     with pytest.raises(BCRAHTTPError) as exc_info:
         client.estadisticas_cambiarias.get_evolucion_moneda(moneda="EUR")
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_divisas(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {"codigo": "ARS", "denominacion": "PESO"},
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.estadisticas_cambiarias._t,
+        "arequest",
+        AsyncMock(return_value=mock_response),
+    )
+
+    async def run():
+        return await client.estadisticas_cambiarias.aget_divisas()
+
+    data = asyncio.run(run())
+
+    assert len(data.divisas) == 1
+    assert data.divisas[0].codigo == "ARS"
+
+
+def test_aget_cotizaciones(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": {
+            "fecha": "2024-06-12",
+            "detalle": [],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.estadisticas_cambiarias.aget_cotizaciones(
+            fecha="2024-06-12"
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones",
+        params={"fecha": "2024-06-12"},
+    )
+    assert data.fecha == "2024-06-12"
+    assert data.detalle == []
+
+
+def test_aget_evolucion_moneda(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 1, "offset": 0, "limit": 1000}},
+        "results": [
+            {
+                "fecha": "2024-06-12",
+                "detalle": [
+                    {
+                        "codigoMoneda": "EUR",
+                        "descripcion": "EURO (UNIDAD MONETARIA EUROPE",
+                        "tipoPase": 1.12940000,
+                        "tipoCotizacion": 49.32089800,
+                    }
+                ],
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.estadisticas_cambiarias._t,
+        "arequest",
+        AsyncMock(return_value=mock_response),
+    )
+
+    async def run():
+        return await client.estadisticas_cambiarias.aget_evolucion_moneda(
+            moneda="EUR",
+            fechadesde="2024-06-12",
+            fechahasta="2024-06-14",
+            limit=100,
+            offset=10,
+        )
+
+    data = asyncio.run(run())
+
+    assert data.resultset.count == 1
+    assert data.cotizaciones[0].fecha == "2024-06-12"
+    assert data.cotizaciones[0].detalle[0].codigoMoneda == "EUR"
+
+
+def test_aget_divisas_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Error al consultar Divisas.")
+
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.estadisticas_cambiarias.aget_divisas()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
     assert exc_info.value.status_code == 500
