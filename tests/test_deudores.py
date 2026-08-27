@@ -9,7 +9,7 @@ from bcra_sdk.exceptions import BCRAHTTPError
 
 
 def test_get_deudas(client, monkeypatch):
-    cuit = "1234567890"
+    cuit = "20111111112"
     fake_data = {
         "status": 200,
         "results": {
@@ -297,7 +297,7 @@ def test_get_cheques_rechazados_500(client, monkeypatch):
 
 
 def test_aget_deudas(client, monkeypatch):
-    cuit = "1234567890"
+    cuit = "20111111112"
     fake_data = {
         "status": 200,
         "results": {
@@ -378,8 +378,51 @@ def test_aget_deudas_500(client, monkeypatch):
     monkeypatch.setattr(client.deudores._t, "arequest", mock_arequest)
 
     async def run():
-        await client.deudores.aget_deudas(cuit="1234567890")
+        await client.deudores.aget_deudas(cuit="20111111112")
 
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_deudas_normaliza_cuit_con_guiones(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": {
+            "identificacion": 20111111112,
+            "denominacion": "PEPE",
+            "periodos": [],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+    monkeypatch.setattr(client.deudores._t, "request", mock_request)
+
+    client.deudores.get_deudas(cuit="20-11111111-2")
+
+    mock_request.assert_called_once_with(
+        "GET", "/centraldedeudores/v1.0/Deudas/20111111112", params=None
+    )
+
+
+def test_get_deudas_cuit_invalido(client, monkeypatch):
+    mock_request = MagicMock()
+    monkeypatch.setattr(client.deudores._t, "request", mock_request)
+
+    with pytest.raises(ValueError, match="CUIT inválido"):
+        client.deudores.get_deudas(cuit="12345")
+
+    mock_request.assert_not_called()
+
+
+def test_aget_deudas_cuit_invalido(client, monkeypatch):
+    mock_arequest = AsyncMock()
+    monkeypatch.setattr(client.deudores._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.deudores.aget_deudas(cuit="una-cosa")
+
+    with pytest.raises(ValueError, match="CUIT inválido"):
+        asyncio.run(run())
+
+    mock_arequest.assert_not_awaited()

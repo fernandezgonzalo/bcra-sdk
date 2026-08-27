@@ -1,5 +1,26 @@
-from .client import BCRAClient
-from .exceptions import BCRAEndpointVersionError, BCRAError, BCRAHTTPError
+from importlib.metadata import PackageNotFoundError, version
 
-__all__ = ["BCRAClient", "BCRAEndpointVersionError", "BCRAError", "BCRAHTTPError"]
-__version__ = "0.1.0"
+from ._retry import RetryPolicy
+from .client import BCRAClient
+from .exceptions import (
+    BCRAConnectionError,
+    BCRAEndpointVersionError,
+    BCRAError,
+    BCRAHTTPError,
+    BCRATimeoutError,
+)
+
+try:
+    __version__ = version("bcra-sdk")
+except PackageNotFoundError:
+    __version__ = "0.0.0.dev"
+
+__all__ = [
+    "BCRAClient",
+    "BCRAConnectionError",
+    "BCRAEndpointVersionError",
+    "BCRAError",
+    "BCRAHTTPError",
+    "BCRATimeoutError",
+    "RetryPolicy",
+]

@@ -37,6 +37,7 @@ nav:
       - Cheques: endpoints/cheques.md
       - Estadísticas cambiarias: endpoints/estadisticas-cambiarias.md
   - Versionado de endpoints: versionado.md
+  - Reintentos: retry.md
   - Errores: errores.md
   - Logging: logging.md
   - Contribución: contribucion.md

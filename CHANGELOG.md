@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [Unreleased]
+
+### Added
+
+- Reintentos automáticos ante errores transitorios: `RetryPolicy` configurable vía `BCRAClient(retries=...)`, backoff exponencial, respeto del header `Retry-After` y retry de timeouts (sync y async)
+- Inputs tipados: fechas (`fecha`, `fechadesde`, `fechahasta`) aceptan `datetime.date` además de `str` ISO, con validación y normalización a `YYYY-MM-DD`
+- Validación de CUIT en `get_deudas`/`aget_deudas` (11 dígitos, guiones opcionales)
+
+### Changed
+
+- La versión del paquete (`__version__`) ahora se deriva de `importlib.metadata` en vez de estar hardcodeada
+- `BCRAHTTPError` expone `response` y `reason`; se agregaron `BCRAConnectionError` y `BCRATimeoutError` (subclase de la anterior) para errores de red, todos bajo `BCRAError`
+- Metadata de PyPI completa: `authors`, `license`, `keywords`, `classifiers` y `project.urls`
+- CI: nuevo job `pre-commit`, `concurrency` para cancelar runs viejos, verificación estricta de que el tag coincida con la versión del paquete y `twine check` en el release
+
 ## [0.0.7] - 2026-08-27
 
 ### Added

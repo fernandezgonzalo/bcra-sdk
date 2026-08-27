@@ -1,10 +1,21 @@
 import logging
+import re
 
 from ._base import Resource
 from .models.cheques import ResultGetChequesRechazadosV1
 from .models.deudores import ResultGetDeudasHistoricasV1, ResultGetDeudasV1
 
 logger = logging.getLogger("bcra_sdk.deudores")
+
+_CUIT_RE = re.compile(r"^\d{2}-?\d{8}-?\d$")
+
+
+def _normalize_cuit(cuit: str) -> str:
+    if not _CUIT_RE.fullmatch(cuit):
+        raise ValueError(
+            f"CUIT inválido: {cuit!r}. Debe contener 11 dígitos (ej. '20111111112')."
+        )
+    return cuit.replace("-", "")
 
 
 class Deudores(Resource):
@@ -30,6 +41,7 @@ class Deudores(Resource):
         )
 
     def get_deudas(self, cuit: str, *, version: str | None = None) -> ResultGetDeudasV1:
+        cuit = _normalize_cuit(cuit)
         logger.info("Consultando deudas para CUIT %s", cuit)
         result = self._fetch(
             self._t.request,
@@ -48,6 +60,7 @@ class Deudores(Resource):
     async def aget_deudas(
         self, cuit: str, *, version: str | None = None
     ) -> ResultGetDeudasV1:
+        cuit = _normalize_cuit(cuit)
         logger.info("Consultando deudas para CUIT %s", cuit)
         result = await self._fetch(
             self._t.arequest,

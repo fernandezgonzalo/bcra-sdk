@@ -1,4 +1,5 @@
 import asyncio
+from datetime import date
 from typing import Any
 from unittest.mock import AsyncMock, MagicMock
 
@@ -438,3 +439,103 @@ def test_aget_divisas_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_cotizaciones_con_date(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": {"fecha": "2024-06-12", "detalle": []},
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    client.estadisticas_cambiarias.get_cotizaciones(fecha=date(2024, 6, 12))
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones",
+        params={"fecha": "2024-06-12"},
+    )
+
+
+def test_aget_cotizaciones_con_date(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": {"fecha": "2024-06-12", "detalle": []},
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.estadisticas_cambiarias.aget_cotizaciones(
+            fecha=date(2024, 6, 12)
+        )
+
+    asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones",
+        params={"fecha": "2024-06-12"},
+    )
+
+
+def test_get_cotizaciones_fecha_invalida(client, monkeypatch):
+    mock_request = MagicMock()
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    with pytest.raises(ValueError, match="Fecha inválida"):
+        client.estadisticas_cambiarias.get_cotizaciones(fecha="12/06/2024")
+
+    mock_request.assert_not_called()
+
+
+def test_get_evolucion_moneda_con_dates(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 1, "offset": 0, "limit": 1000}},
+        "results": [],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    client.estadisticas_cambiarias.get_evolucion_moneda(
+        moneda="EUR",
+        fechadesde=date(2024, 6, 12),
+        fechahasta=date(2024, 6, 14),
+    )
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones/EUR",
+        params={"fechadesde": "2024-06-12", "fechahasta": "2024-06-14"},
+    )
+
+
+def test_aget_evolucion_moneda_con_dates(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 1, "offset": 0, "limit": 1000}},
+        "results": [],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.estadisticas_cambiarias.aget_evolucion_moneda(
+            moneda="EUR",
+            fechadesde=date(2024, 6, 12),
+            fechahasta=date(2024, 6, 14),
+        )
+
+    asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones/EUR",
+        params={"fechadesde": "2024-06-12", "fechahasta": "2024-06-14"},
+    )

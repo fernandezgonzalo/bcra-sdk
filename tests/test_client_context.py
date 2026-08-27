@@ -1,12 +1,18 @@
 import asyncio
 
-from bcra_sdk import BCRAClient
+from bcra_sdk import BCRAClient, RetryPolicy
 
 
 def test_sync_context_manager_closes():
     with BCRAClient() as client:
         assert isinstance(client, BCRAClient)
     assert client._transport._client is None
+
+
+def test_custom_retry_policy_passed_to_transport():
+    client = BCRAClient(retries=RetryPolicy(max_retries=0))
+    closed = client._transport._retries
+    assert closed.max_retries == 0
 
 
 def test_close():

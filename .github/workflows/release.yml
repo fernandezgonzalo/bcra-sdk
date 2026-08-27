@@ -5,6 +5,10 @@ on:
     tags:
       - "v*.*.*"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write   # necesario para crear el Release y subir assets
 
@@ -25,9 +29,16 @@ jobs:
       - name: Verificar que la versión del tag coincide con el paquete
         run: |
           TAG_VERSION="${GITHUB_REF_NAME#v}"
-          BUILT_VERSION=$(uv run python -c "import importlib.metadata as m; print(m.version('bcra-sdk'))" 2>/dev/null || \
-            ls dist/*.whl | sed -E 's/.*bcra_sdk-([0-9.]+(\.dev[0-9]+\+g[0-9a-f]+)?)-.*/\1/')
+          TAG_VERSION=$(echo "$TAG_VERSION" | sed -E 's/-//g; s/([a-z])\./\1/g')
+          BUILT_VERSION=$(unzip -p dist/*.whl '*/METADATA' | sed -n 's/^Version: //p' | head -1)
           echo "Tag: $TAG_VERSION / Build: $BUILT_VERSION"
+          if [ "$TAG_VERSION" != "$BUILT_VERSION" ]; then
+            echo "::error::El tag ($TAG_VERSION) no coincide con la versión del paquete ($BUILT_VERSION)"
+            exit 1
+          fi
+
+      - name: Validar artefactos (twine check)
+        run: uvx twine check dist/*
 
       - name: Correr tests antes de publicar
         run: uv run pytest

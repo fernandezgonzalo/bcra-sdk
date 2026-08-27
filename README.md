@@ -6,6 +6,13 @@ SDK no oficial e inmutado por `httpx` para las APIs públicas del Banco Central 
 y estructura las respuestas en dataclasses fuertemente tipadas. Los endpoints están versionados, resuelven por defecto
 la versión más reciente y permiten forzar una versión.
 
+Características:
+
+- Sync y async en la misma instancia (`with` / `async with`), con un par `aget_*` por endpoint.
+- Reintentos automáticos ante errores transitorios con backoff exponencial (configurables vía `RetryPolicy`).
+- Errores de red, timeout y HTTP unificados bajo `BCRAError`.
+- Inputs tipados: fechas como `str` ISO o `datetime.date`; validación de CUIT.
+
 ## Documentación
 
 Documentación completa en [`docs/`](docs/index.md):
@@ -13,6 +20,7 @@ Documentación completa en [`docs/`](docs/index.md):
 - [Guía rápida](docs/guia-rapida.md)
 - [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias
 - [Versionado de endpoints](docs/versionado.md)
+- [Reintentos](docs/retry.md)
 - [Errores](docs/errores.md)
 - [Logging](docs/logging.md)
 - [Contribución](docs/contribucion.md)

@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from typing import Self
 
+from ._retry import RetryPolicy
 from ._transport import Transport
 from .cheques import Cheques
 from .deudores import Deudores
@@ -27,8 +28,13 @@ class BCRAClient:
     client.estadisticas_cambiarias.versions("get_cotizaciones")
     """
 
-    def __init__(self, base_url: str = _DEFAULT_BASE_URL, **httpx_kwargs):
-        self._transport = Transport(base_url, **httpx_kwargs)
+    def __init__(
+        self,
+        base_url: str = _DEFAULT_BASE_URL,
+        retries: RetryPolicy | None = None,
+        **httpx_kwargs,
+    ):
+        self._transport = Transport(base_url, retries=retries, **httpx_kwargs)
         self.deudores = Deudores(self._transport)
         self.cheques = Cheques(self._transport)
         self.estadisticas_cambiarias = EstadisticasCambiarias(self._transport)

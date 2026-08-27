@@ -24,4 +24,6 @@ Niveles usados:
 - `INFO`: cada llamada a un endpoint (p. ej. "Consultando cotizaciones (fecha=...)").
 - `DEBUG`: comandos HTTP, resúmenes de respuestas (totales, cantidades) y errores al
   abrir/cerrar el client.
+- `WARNING`: cada reintento de una petición ante un error transitorio (con el tiempo de
+  espera). Ver [Reintentos](retry.md).
 - `ERROR`: respuestas HTTP con error (código y body).

@@ -1,6 +1,8 @@
 import logging
+from datetime import date
 
 from ._base import Resource
+from ._dates import _coerce_date
 from .models.cotizaciones import ResultGetCotizacionesV1
 from .models.divisas import ResultGetDivisasV1
 from .models.evolucion import ResultGetEvolucionMonedaV1
@@ -59,10 +61,13 @@ class EstadisticasCambiarias(Resource):
         return result
 
     def get_cotizaciones(
-        self, fecha: str | None = None, *, version: str | None = None
+        self,
+        fecha: str | date | None = None,
+        *,
+        version: str | None = None,
     ) -> ResultGetCotizacionesV1:
         logger.info("Consultando cotizaciones (fecha=%s)", fecha)
-        params = {"fecha": fecha} if fecha else None
+        params = {"fecha": _coerce_date(fecha)} if fecha else None
         result = self._fetch(
             self._t.request,
             endpoint="get_cotizaciones",
@@ -78,10 +83,13 @@ class EstadisticasCambiarias(Resource):
         return result
 
     async def aget_cotizaciones(
-        self, fecha: str | None = None, *, version: str | None = None
+        self,
+        fecha: str | date | None = None,
+        *,
+        version: str | None = None,
     ) -> ResultGetCotizacionesV1:
         logger.info("Consultando cotizaciones (fecha=%s)", fecha)
-        params = {"fecha": fecha} if fecha else None
+        params = {"fecha": _coerce_date(fecha)} if fecha else None
         result = await self._fetch(
             self._t.arequest,
             endpoint="get_cotizaciones",
@@ -99,8 +107,8 @@ class EstadisticasCambiarias(Resource):
     def get_evolucion_moneda(
         self,
         moneda: str,
-        fechadesde: str | None = None,
-        fechahasta: str | None = None,
+        fechadesde: str | date | None = None,
+        fechahasta: str | date | None = None,
         limit: int | None = None,
         offset: int | None = None,
         *,
@@ -117,9 +125,9 @@ class EstadisticasCambiarias(Resource):
         )
         params: dict[str, object] = {}
         if fechadesde:
-            params["fechadesde"] = fechadesde
+            params["fechadesde"] = _coerce_date(fechadesde)
         if fechahasta:
-            params["fechahasta"] = fechahasta
+            params["fechahasta"] = _coerce_date(fechahasta)
         if limit is not None:
             params["limit"] = limit
         if offset is not None:
@@ -143,8 +151,8 @@ class EstadisticasCambiarias(Resource):
     async def aget_evolucion_moneda(
         self,
         moneda: str,
-        fechadesde: str | None = None,
-        fechahasta: str | None = None,
+        fechadesde: str | date | None = None,
+        fechahasta: str | date | None = None,
         limit: int | None = None,
         offset: int | None = None,
         *,
@@ -161,9 +169,9 @@ class EstadisticasCambiarias(Resource):
         )
         params: dict[str, object] = {}
         if fechadesde:
-            params["fechadesde"] = fechadesde
+            params["fechadesde"] = _coerce_date(fechadesde)
         if fechahasta:
-            params["fechahasta"] = fechahasta
+            params["fechahasta"] = _coerce_date(fechahasta)
         if limit is not None:
             params["limit"] = limit
         if offset is not None:
