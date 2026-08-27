@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.0.5] - 2026-08-27
+
+### Changed
+
+- Replaced the metaclass/descriptor versioning system with explicit typed public methods, restoring correct IDE autocompletion and type checking on endpoint signatures
+- `Resource` now exposes `versions(endpoint)` to inspect available versions and their deprecation status
+- Version resolution (`version=` escape hatch) now validates against registered versions, emits `DeprecationWarning` for deprecated ones, and raises `BCRAEndpointVersionError` listing available versions
+- Each resource registers its endpoint version specs (`_register_version`) with path and response model
+- Rewrote `README.md` to reflect the actual architecture, usage, endpoints, versioning, and logging
+
+### Added
+
+- Unit tests for `Resource` versioning (`versions`, explicit/default resolution, unknown version, deprecation warning)
+
 ## [0.0.4] - 2026-08-27
 
 ### Added

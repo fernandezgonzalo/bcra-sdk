@@ -15,13 +15,16 @@ _DEFAULT_BASE_URL = "https://api.bcra.gob.ar"
 
 class BCRAClient:
     """Cliente unico, sync y async, conviven en la misma instancia.
-    Cada endpoint resulve su propia version mas reciente de forma independiente
+    Cada endpoint resuelve su propia version mas reciente de forma independiente
     de los demas endpoints del mismo resource.
 
     client = BCRAClient()
     client.deudores.get_deudas(cuit="123")
-    client.deudores.get_deudas(cuit="123", version="1.0)
-    await client.deudores.aget_deudas(cuit)
+    client.estadisticas_cambiarias.get_cotizaciones(fecha="2024-06-12")
+    await client.estadisticas_cambiarias.aget_cotizaciones(fecha="2024-06-12")
+
+    # Consultar versiones disponibles de un endpoint
+    client.estadisticas_cambiarias.versions("get_cotizaciones")
     """
 
     def __init__(self, base_url: str = _DEFAULT_BASE_URL, **httpx_kwargs):
