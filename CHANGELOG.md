@@ -13,8 +13,11 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - `Divisa` and `ResultGetDivisasV1` dataclasses for currency list serialization
 - `get_cotizaciones` endpoint (`GET /estadisticascambiarias/v1.0/Cotizaciones`) with optional `fecha` query param
 - `Cotizacion` and `ResultGetCotizacionesV1` dataclasses for exchange rates serialization
+- `get_evolucion_moneda` endpoint (`GET /estadisticascambiarias/v1.0/Cotizaciones/{moneda}`) with optional `fechadesde`, `fechahasta`, `limit`, and `offset` query params
+- `Resultset` and `ResultGetEvolucionMonedaV1` dataclasses for exchange rate evolution serialization
 - Unit tests for `get_divisas` (happy path, empty, 500)
 - Unit tests for `get_cotizaciones` (with/without fecha, empty, 400, 500)
+- Unit tests for `get_evolucion_moneda` (basic, with params, empty, 400, 500)
 
 ## [0.0.3] - 2026-08-26
 

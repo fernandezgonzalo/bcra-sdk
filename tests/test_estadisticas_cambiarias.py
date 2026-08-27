@@ -191,3 +191,143 @@ def test_get_cotizaciones_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         client.estadisticas_cambiarias.get_cotizaciones()
     assert exc_info.value.status_code == 500
+
+
+def test_get_evolucion_moneda_basico(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 1, "offset": 0, "limit": 1000}},
+        "results": [
+            {
+                "fecha": "2024-06-12",
+                "detalle": [
+                    {
+                        "codigoMoneda": "EUR",
+                        "descripcion": "EURO (UNIDAD MONETARIA EUROPE",
+                        "tipoPase": 1.12940000,
+                        "tipoCotizacion": 49.32089800,
+                    }
+                ],
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    data = client.estadisticas_cambiarias.get_evolucion_moneda(moneda="EUR")
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones/EUR",
+        params=None,
+    )
+    assert data.resultset.count == 1
+    assert data.resultset.offset == 0
+    assert data.resultset.limit == 1000
+    assert len(data.cotizaciones) == 1
+    assert data.cotizaciones[0].fecha == "2024-06-12"
+    assert data.cotizaciones[0].detalle[0].codigoMoneda == "EUR"
+    assert data.cotizaciones[0].detalle[0].tipoCotizacion == 49.32089800
+
+
+def test_get_evolucion_moneda_con_params(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 1, "offset": 10, "limit": 100}},
+        "results": [
+            {
+                "fecha": "2024-06-12",
+                "detalle": [
+                    {
+                        "codigoMoneda": "EUR",
+                        "descripcion": "EURO (UNIDAD MONETARIA EUROPE",
+                        "tipoPase": 1.12940000,
+                        "tipoCotizacion": 49.32089800,
+                    }
+                ],
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    data = client.estadisticas_cambiarias.get_evolucion_moneda(
+        moneda="EUR",
+        fechadesde="2024-06-12",
+        fechahasta="2024-06-14",
+        limit=100,
+        offset=10,
+    )
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/estadisticascambiarias/v1.0/Cotizaciones/EUR",
+        params={
+            "fechadesde": "2024-06-12",
+            "fechahasta": "2024-06-14",
+            "limit": 100,
+            "offset": 10,
+        },
+    )
+    assert data.resultset.limit == 100
+    assert data.resultset.offset == 10
+
+
+def test_get_evolucion_moneda_vacio(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "metadata": {"resultset": {"count": 0, "offset": 0, "limit": 1000}},
+        "results": [],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.estadisticas_cambiarias._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.estadisticas_cambiarias.get_evolucion_moneda(moneda="EUR")
+
+    assert data.resultset.count == 0
+    assert data.cotizaciones == []
+
+
+def test_get_evolucion_moneda_400(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 400,
+        "errorMessages": [
+            "Parámetro erróneo: La fecha desde no puede ser mayor a la fecha hasta."
+        ],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(400, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.estadisticas_cambiarias.get_evolucion_moneda(
+            moneda="EUR", fechadesde="2024-06-14", fechahasta="2024-06-12"
+        )
+    assert exc_info.value.status_code == 400
+
+
+def test_get_evolucion_moneda_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Error al consultar Evolución."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.estadisticas_cambiarias._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.estadisticas_cambiarias.get_evolucion_moneda(moneda="EUR")
+    assert exc_info.value.status_code == 500
