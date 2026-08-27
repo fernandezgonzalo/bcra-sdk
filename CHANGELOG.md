@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.0.7] - 2026-08-27
+
+### Added
+
+- Async endpoint methods (`aget_*`) across all resources, mirroring every sync method with the same signature and return model
+- `Resource._fetch` shared dispatch so sync and async methods share endpoint resolution, HTTP call and model parsing
+- Async unit tests for every endpoint (happy path and error propagation)
+
 ## [0.0.6] - 2026-08-27
 
 ### Added

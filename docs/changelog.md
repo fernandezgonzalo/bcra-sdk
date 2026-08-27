@@ -5,7 +5,17 @@ Todas las novedades del proyecto se registran en
 (el formato sigue [Keep a Changelog](https://keepachangelog.com/) y los cambios
 [Conventional Commits](https://www.conventionalcommits.org/)).
 
-Última versión publicada: **0.0.6** (2026-08-27).
+Última versión publicada: **0.0.7** (2026-08-27).
+
+## [0.0.7] - 2026-08-27
+
+### Added
+
+- Métodos asíncronos de endpoints (`aget_*`) en todos los resources, espejando cada
+  método síncrono con la misma firma y modelo de retorno.
+- Dispatch compartido en `Resource._fetch` para que las versiones sync y async
+  compartan resolución de versión, llamada HTTP y parseo del modelo.
+- Tests asíncronos para cada endpoint (caso feliz y propagación de errores).
 
 ## [0.0.6] - 2026-08-27
 
