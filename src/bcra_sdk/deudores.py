@@ -30,10 +30,32 @@ class Deudores(Resource):
         )
 
     def get_deudas(self, cuit: str, *, version: str | None = None) -> ResultGetDeudasV1:
-        spec = self._resolve_version("get_deudas", version)
         logger.info("Consultando deudas para CUIT %s", cuit)
-        r = self._t.request("GET", spec.path.format(cuit=cuit))
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_deudas",
+            version=version,
+            path_vars={"cuit": cuit},
+            model=ResultGetDeudasV1,
+        )
+        logger.debug(
+            "Deudas obtenidas: identificacion=%s, periodos=%d",
+            result.identificacion,
+            len(result.periodos),
+        )
+        return result
+
+    async def aget_deudas(
+        self, cuit: str, *, version: str | None = None
+    ) -> ResultGetDeudasV1:
+        logger.info("Consultando deudas para CUIT %s", cuit)
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_deudas",
+            version=version,
+            path_vars={"cuit": cuit},
+            model=ResultGetDeudasV1,
+        )
         logger.debug(
             "Deudas obtenidas: identificacion=%s, periodos=%d",
             result.identificacion,
@@ -44,12 +66,36 @@ class Deudores(Resource):
     def get_deudas_historicas(
         self, identification: str, *, version: str | None = None
     ) -> ResultGetDeudasHistoricasV1:
-        spec = self._resolve_version("get_deudas_historicas", version)
         logger.info(
             "Consultando deudas históricas para identificación %s", identification
         )
-        r = self._t.request("GET", spec.path.format(identification=identification))
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_deudas_historicas",
+            version=version,
+            path_vars={"identification": identification},
+            model=ResultGetDeudasHistoricasV1,
+        )
+        logger.debug(
+            "Deudas históricas obtenidas: identificacion=%s, periodos=%d",
+            result.identificacion,
+            len(result.periodos),
+        )
+        return result
+
+    async def aget_deudas_historicas(
+        self, identification: str, *, version: str | None = None
+    ) -> ResultGetDeudasHistoricasV1:
+        logger.info(
+            "Consultando deudas históricas para identificación %s", identification
+        )
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_deudas_historicas",
+            version=version,
+            path_vars={"identification": identification},
+            model=ResultGetDeudasHistoricasV1,
+        )
         logger.debug(
             "Deudas históricas obtenidas: identificacion=%s, periodos=%d",
             result.identificacion,
@@ -60,10 +106,32 @@ class Deudores(Resource):
     def get_cheques_rechazados(
         self, identification: str, *, version: str | None = None
     ) -> ResultGetChequesRechazadosV1:
-        spec = self._resolve_version("get_cheques_rechazados", version)
         logger.info("Consultando cheques rechazados para %s", identification)
-        r = self._t.request("GET", spec.path.format(identification=identification))
-        result = spec.model.from_dict(r.json()["results"])
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_cheques_rechazados",
+            version=version,
+            path_vars={"identification": identification},
+            model=ResultGetChequesRechazadosV1,
+        )
+        logger.debug(
+            "Cheques rechazados obtenidos: identificacion=%s, causales=%d",
+            result.identificacion,
+            len(result.causales),
+        )
+        return result
+
+    async def aget_cheques_rechazados(
+        self, identification: str, *, version: str | None = None
+    ) -> ResultGetChequesRechazadosV1:
+        logger.info("Consultando cheques rechazados para %s", identification)
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_cheques_rechazados",
+            version=version,
+            path_vars={"identification": identification},
+            model=ResultGetChequesRechazadosV1,
+        )
         logger.debug(
             "Cheques rechazados obtenidos: identificacion=%s, causales=%d",
             result.identificacion,

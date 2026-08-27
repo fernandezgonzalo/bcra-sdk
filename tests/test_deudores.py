@@ -1,5 +1,6 @@
+import asyncio
 from typing import Any
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import httpx
 import pytest
@@ -292,4 +293,93 @@ def test_get_cheques_rechazados_500(client, monkeypatch):
 
     with pytest.raises(BCRAHTTPError) as exc_info:
         client.deudores.get_cheques_rechazados(identification="20111111112")
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_deudas(client, monkeypatch):
+    cuit = "1234567890"
+    fake_data = {
+        "status": 200,
+        "results": {
+            "identificacion": int(cuit),
+            "denominacion": "PEPE",
+            "periodos": [],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.deudores._t, "arequest", AsyncMock(return_value=mock_response)
+    )
+
+    async def run():
+        return await client.deudores.aget_deudas(cuit=cuit)
+
+    data = asyncio.run(run())
+
+    assert str(data.identificacion) == cuit
+    assert data.periodos == []
+
+
+def test_aget_deudas_historicas(client, monkeypatch):
+    identification = "20234567891"
+    fake_data = {
+        "status": 200,
+        "results": {
+            "identificacion": "20234567891",
+            "denominacion": "PEPE",
+            "periodos": [],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.deudores._t, "arequest", AsyncMock(return_value=mock_response)
+    )
+
+    async def run():
+        return await client.deudores.aget_deudas_historicas(
+            identification=identification
+        )
+
+    data = asyncio.run(run())
+
+    assert data.identificacion == "20234567891"
+    assert data.periodos == []
+
+
+def test_aget_cheques_rechazados(client, monkeypatch):
+    identification = "20111111112"
+    fake_data = {
+        "status": 200,
+        "results": {
+            "identificacion": 20111111112,
+            "causales": [],
+        },
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    monkeypatch.setattr(
+        client.deudores._t, "arequest", AsyncMock(return_value=mock_response)
+    )
+
+    async def run():
+        return await client.deudores.aget_cheques_rechazados(
+            identification=identification
+        )
+
+    data = asyncio.run(run())
+
+    assert data.identificacion == 20111111112
+    assert data.causales == []
+
+
+def test_aget_deudas_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Se produjo un error al ejecutar la acción.")
+
+    monkeypatch.setattr(client.deudores._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.deudores.aget_deudas(cuit="1234567890")
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
     assert exc_info.value.status_code == 500
