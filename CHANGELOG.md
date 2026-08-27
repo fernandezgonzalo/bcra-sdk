@@ -11,7 +11,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 - Cheques resource with `get_entidades` endpoint (`GET /cheques/v1.0/entidades`)
 - `EntidadBancaria` and `ResultGetEntidadesV1` dataclasses for entity list serialization
+- `get_cheque_denunciado` endpoint (`GET /cheques/v1.0/denunciados/{codigo_entidad}/{numero_cheque}`)
+- `DetalleDenuncia` and `ResultGetChequeDenunciadoV1` dataclasses for reported check serialization
 - Unit tests for `get_entidades` (happy path, empty, 500)
+- Unit tests for `get_cheque_denunciado` (single detail, multiple details, not reported, 400, 404, 500)
 
 ## [0.0.2] - 2026-08-26
 
