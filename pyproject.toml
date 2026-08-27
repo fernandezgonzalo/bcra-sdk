@@ -27,6 +27,10 @@ dev = [
     "tox>=4.44",
     "tox-uv>=1.33",
 ]
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.4",
+]
 
 [tool.ruff]
 include = ["*.py", "*.pyi"]

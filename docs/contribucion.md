@@ -25,6 +25,25 @@ uv run pre-commit run --all-files
 uv run pytest --cov-report=term-missing
 ```
 
+## Documentación
+
+La documentación vive en `docs/` y se compila con [MkDocs](https://www.mkdocs.org/) (theme
+Material), que en CI/RTD se instala vía el grupo `docs` de `pyproject.toml`. Para levantarla
+localmente:
+
+```bash
+uv run --group docs mkdocs serve
+```
+
+Y para validar un build de producción:
+
+```bash
+uv run --group docs mkdocs build --clean --strict
+```
+
+La publicación se hace desde ReadTheDocs: `.readthedocs.yaml` instala `uv`, sincroniza el
+grupo `docs` y ejecuta `mkdocs build` hacia `$READTHEDOCS_OUTPUT`.
+
 ## Tests
 
 ```bash

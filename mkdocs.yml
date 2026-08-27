@@ -1,0 +1,43 @@
+site_name: BCRA-SDK
+site_description: SDK no oficial para las APIs públicas del BCRA
+repo_url: https://github.com/fernandezgonzalo/bcra-sdk
+edit_uri: tree/main/docs
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Inicio: index.md
+  - Instalación: instalacion.md
+  - Guía rápida: guia-rapida.md
+  - Endpoints:
+      - Deudores: endpoints/deudores.md
+      - Cheques: endpoints/cheques.md
+      - Estadísticas cambiarias: endpoints/estadisticas-cambiarias.md
+  - Versionado de endpoints: versionado.md
+  - Errores: errores.md
+  - Logging: logging.md
+  - Contribución: contribucion.md
+  - Changelog: changelog.md
