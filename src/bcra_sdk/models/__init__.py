@@ -5,6 +5,7 @@ from .deudores import (
     ResultGetDeudasHistoricasV1,
     ResultGetDeudasV1,
 )
+from .entidades import ResultGetEntidadesV1
 
 __all__ = [
     "EntidadHistorica",
@@ -12,4 +13,5 @@ __all__ = [
     "ResultGetChequesRechazadosV1",
     "ResultGetDeudasHistoricasV1",
     "ResultGetDeudasV1",
+    "ResultGetEntidadesV1",
 ]

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.0.3] - 2026-08-26
+
+### Added
+
+- Cheques resource with `get_entidades` endpoint (`GET /cheques/v1.0/entidades`)
+- `EntidadBancaria` and `ResultGetEntidadesV1` dataclasses for entity list serialization
+- Unit tests for `get_entidades` (happy path, empty, 500)
+
 ## [0.0.2] - 2026-08-26
 
 ### Added
