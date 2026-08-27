@@ -128,6 +128,12 @@ uv run tox -e py311
 
 `uv` descarga la versión de Python indicada si no está instalada. En CI, el job `test` del workflow `lint.yml` repite la misma matrix llamando a `tox -e py3XX` por job (en paralelo).
 
+Cada ejecución de test valida cobertura: debe ser **100%** (`fail_under = 100`). Se verifica localmente (`uv run pytest` / `uv run tox`), en pre-commit (hook `coverage`) y en CI. Para ver el detalle de líneas sin cubrir:
+
+```bash
+uv run pytest --cov-report=term-missing
+```
+
 ## Licencia
 
 MIT
