@@ -24,7 +24,26 @@ dev = [
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
+    "tox>=4.44",
+    "tox-uv>=1.33",
 ]
 
 [tool.ruff]
 include = ["*.py", "*.pyi"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+env_list = py311, py312, py313, py314, py315
+requires =
+    tox>=4.44
+    tox-uv>=1.33
+
+[testenv]
+description = correr los tests con pytest
+package = editable
+deps =
+    pytest
+commands =
+    pytest {posargs}
+"""

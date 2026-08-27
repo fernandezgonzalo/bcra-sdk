@@ -114,6 +114,20 @@ uv run pytest
 uv run pre-commit run --all-files
 ```
 
+El SDK soporta Python 3.11 hasta 3.15. Para correr los tests en todas las versiones con tox (usando `uv` como instalador via el plugin `tox-uv`):
+
+```bash
+uv run tox
+```
+
+tox define los envs `py311`...`py315` en `pyproject.toml` (sección `[tool.tox]`) como única fuente de verdad de las versiones soportadas. También se puede correr una sola version:
+
+```bash
+uv run tox -e py311
+```
+
+`uv` descarga la versión de Python indicada si no está instalada. En CI, el job `test` del workflow `lint.yml` repite la misma matrix llamando a `tox -e py3XX` por job (en paralelo).
+
 ## Licencia
 
 MIT
