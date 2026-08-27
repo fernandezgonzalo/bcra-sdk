@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import inspect
 import warnings
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Any, Protocol
+
+import httpx
 
 from .exceptions import BCRAEndpointVersionError
 
@@ -25,6 +29,20 @@ class VersionSpec:
 
 def _parse_version(version: str) -> tuple[int, ...]:
     return tuple(int(p) for p in version.split("."))
+
+
+def _extract(
+    model: type[Model], resp: httpx.Response, results_key: str | None
+) -> Model:
+    data = resp.json()[results_key] if results_key else resp.json()
+    return model.from_dict(data)
+
+
+async def _extract_async(
+    call: Awaitable[httpx.Response], model: type[Model], results_key: str | None
+) -> Model:
+    resp = await call
+    return _extract(model, resp, results_key)
 
 
 class Resource:
@@ -57,6 +75,25 @@ class Resource:
         self._t = transport
         self._version_specs: dict[str, dict[str, VersionSpec]] = {}
         # {"get_cotizaciones": {"1.0": VersionSpec("/Cotizaciones", Model)}}
+
+    def _fetch(
+        self,
+        call: Callable[..., Any],
+        *,
+        endpoint: str,
+        version: str | None = None,
+        params: dict[str, Any] | None = None,
+        path_vars: dict[str, Any] | None = None,
+        model: type[Model],
+        results_key: str | None = "results",
+    ) -> Any:
+        """Ejecuta un endpoint contra el transporte sync o async segun ``call``."""
+        spec = self._resolve_version(endpoint, version)
+        path = spec.path.format(**(path_vars or {}))
+        response = call("GET", path, params=params or None)
+        if inspect.isawaitable(response):
+            return _extract_async(response, model, results_key)
+        return _extract(model, response, results_key)
 
     def _register_version(
         self,
