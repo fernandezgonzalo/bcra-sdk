@@ -16,3 +16,12 @@ repos:
     rev: v0.0.75
     hooks:
       - id: ty
+  - repo: local
+    hooks:
+      - id: coverage
+        name: coverage
+        description: falla si la cobertura es menor a 100%
+        entry: uv run pytest --cov=bcra_sdk --cov-fail-under=100
+        language: system
+        pass_filenames: false
+        always_run: true
