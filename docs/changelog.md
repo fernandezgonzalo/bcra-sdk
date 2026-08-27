@@ -5,7 +5,20 @@ Todas las novedades del proyecto se registran en
 (el formato sigue [Keep a Changelog](https://keepachangelog.com/) y los cambios
 [Conventional Commits](https://www.conventionalcommits.org/)).
 
-Última versión publicada: **0.0.5** (2026-08-27).
+Última versión publicada: **0.0.6** (2026-08-27).
+
+## [0.0.6] - 2026-08-27
+
+### Added
+
+- Documentación en Markdown bajo `docs/` (instalación, guía rápida, endpoints, versionado, errores, logging, contribución, changelog).
+- Sitio compilado con MkDocs y tema Material, publicado en ReadTheDocs.
+- Grupo `docs` en `pyproject.toml` (`mkdocs`, `mkdocs-material`).
+- Configuración de build de RTD (`.readthedocs.yaml`) usando `uv`.
+
+### Fixed
+
+- El build de ReadTheDocs ahora publica la salida de MkDocs en `$READTHEDOCS_OUTPUT/html`.
 
 ## [0.0.5] - 2026-08-27
 

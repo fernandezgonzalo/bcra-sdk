@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.0.6] - 2026-08-27
+
+### Added
+
+- Markdown documentation under `docs/` (installation, quickstart, endpoints, versioning, errors, logging, contribution, changelog)
+- MkDocs site with the Material theme, prepared to be published on ReadTheDocs
+- `docs` dependency group in `pyproject.toml` (`mkdocs`, `mkdocs-material`)
+- `.readthedocs.yaml` build configuration using `uv`
+
+### Fixed
+
+- ReadTheDocs build now publishes the MkDocs output to `$READTHEDOCS_OUTPUT/html`
+
 ## [0.0.5] - 2026-08-27
 
 ### Changed
