@@ -43,6 +43,22 @@ with BCRAClient() as bcra:
         print(c.codigoMoneda, c.tipoCotizacion)
 ```
 
+Uso asíncrono: cada endpoint tiene su par `aget_*`.
+
+```python
+import asyncio
+
+from bcra_sdk import BCRAClient
+
+async def main():
+    async with BCRAClient() as bcra:
+        reporte = await bcra.deudores.aget_deudas(cuit="20111111112")
+        for periodo in reporte.periodos:
+            print(periodo.periodo)
+
+asyncio.run(main())
+```
+
 ## Tests
 
 ```bash

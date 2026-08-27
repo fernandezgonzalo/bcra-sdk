@@ -89,3 +89,6 @@ with BCRAClient() as bcra:
 
 Todos los métodos aceptan además el escape hatch `version=` para forzar una versión
 específica (ver [Versionado de endpoints](../versionado.md)).
+
+Cada método tiene su par asíncrono con prefijo `a` (por ejemplo
+`get_deudas` → `await bcra.deudores.aget_deudas(cuit="20111111112")`).

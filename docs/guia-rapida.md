@@ -18,18 +18,20 @@ with BCRAClient() as bcra:
 
 ## Asíncrono
 
-`BCRAClient` se puede abrir con `async with` (se cierra el pool asíncrono), pero los
-métodos de los endpoints (por ejemplo `get_cotizaciones`) son actualmente **síncronos**:
-la capa asíncrona (`arequest`, `aclose`) ya existe en el transporte, pero aún no hay
-métodos `aget_*` expuestos por los resources.
+`BCRAClient` se abre y cierra con `async with`, y cada endpoint tiene su par asíncrono
+con prefijo `a` (por ejemplo `aget_cotizaciones`), con la misma firma y devolviendo el
+mismo modelo que su versión síncrona.
 
 ```python
 from bcra_sdk import BCRAClient
 
 async def main():
     async with BCRAClient() as bcra:
-        # El pool async se gestiona con aclose() al salir del contexto.
-        await bcra.aclose()
+        cotizaciones = await bcra.estadisticas_cambiarias.aget_cotizaciones("2024-06-12")
+        for c in cotizaciones.detalle:
+            print(c.codigoMoneda, c.tipoCotizacion)
+        reporte = await bcra.deudores.aget_deudas(cuit="20111111112")
+        print(reporte.denominacion)
 
 if __name__ == "__main__":
     import asyncio
