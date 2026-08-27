@@ -31,6 +31,18 @@ dev = [
 [tool.ruff]
 include = ["*.py", "*.pyi"]
 
+[tool.pytest.ini_options]
+addopts = "--cov=bcra_sdk --cov-report=term-missing"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore:Module bcra_sdk was previously imported:coverage.misc.CoverageWarning",
+]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+skip_covered = true
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
@@ -40,10 +52,11 @@ requires =
     tox-uv>=1.33
 
 [testenv]
-description = correr los tests con pytest
+description = correr los tests con pytest y coverage
 package = editable
 deps =
     pytest
+    pytest-cov
 commands =
     pytest {posargs}
 """
