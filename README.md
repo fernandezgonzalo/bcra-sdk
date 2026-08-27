@@ -83,6 +83,16 @@ uv run tox
 
 Cada ejecución de test valida cobertura: debe ser **100%** (`fail_under = 100`).
 
+Los tests usan respuestas reales del BCRA grabadas como cassettes (`tests/cassettes/`), por
+lo que no requieren red. Para smoke tests en vivo contra la API (la suite `integration`,
+deseleccionada por defecto):
+
+```bash
+uv run pytest -m integration --no-cov
+```
+
+Detalles en [`docs/testing.md`](docs/testing.md).
+
 ## Licencia
 
 MIT

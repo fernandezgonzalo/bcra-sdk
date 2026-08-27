@@ -40,5 +40,6 @@ nav:
   - Reintentos: retry.md
   - Errores: errores.md
   - Logging: logging.md
+  - Testing (cassettes e integración): testing.md
   - Contribución: contribucion.md
   - Changelog: changelog.md

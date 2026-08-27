@@ -1,0 +1,249 @@
+{
+  "path": "/estadisticascambiarias/v1.0/Cotizaciones",
+  "params": {
+    "fecha": "2024-06-12"
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "results": {
+      "fecha": "2024-06-12",
+      "detalle": [
+        {
+          "codigoMoneda": "ARS",
+          "descripcion": "PESO",
+          "tipoPase": 0.001109,
+          "tipoCotizacion": 0.0
+        },
+        {
+          "codigoMoneda": "AUD",
+          "descripcion": "DOLAR AUSTRALIA",
+          "tipoPase": 0.6686,
+          "tipoCotizacion": 602.7429
+        },
+        {
+          "codigoMoneda": "AWG",
+          "descripcion": "FLORIN (ANTILLAS HOLANDESAS)",
+          "tipoPase": 0.558659,
+          "tipoCotizacion": 503.631285
+        },
+        {
+          "codigoMoneda": "BOB",
+          "descripcion": "BOLIVIANOS",
+          "tipoPase": 0.145054,
+          "tipoCotizacion": 130.765883
+        },
+        {
+          "codigoMoneda": "BRL",
+          "descripcion": "REAL",
+          "tipoPase": 0.185915,
+          "tipoCotizacion": 167.602439
+        },
+        {
+          "codigoMoneda": "CAD",
+          "descripcion": "DOLAR CANADIEN.",
+          "tipoPase": 0.729395,
+          "tipoCotizacion": 657.549234
+        },
+        {
+          "codigoMoneda": "CHF",
+          "descripcion": "FRANCO SUIZO",
+          "tipoPase": 1.120072,
+          "tipoCotizacion": 1009.744624
+        },
+        {
+          "codigoMoneda": "CLP",
+          "descripcion": "PESO CHILENO",
+          "tipoPase": 0.00109,
+          "tipoCotizacion": 0.983054
+        },
+        {
+          "codigoMoneda": "CNH",
+          "descripcion": "YUAN CNH RENMINBI OFF SHORE",
+          "tipoPase": 0.137845,
+          "tipoCotizacion": 124.267696
+        },
+        {
+          "codigoMoneda": "CNY",
+          "descripcion": "YUAN CNY RENMINBI",
+          "tipoPase": 0.138125,
+          "tipoCotizacion": 124.520014
+        },
+        {
+          "codigoMoneda": "COP",
+          "descripcion": "COLOMBIANOS",
+          "tipoPase": 0.000248,
+          "tipoCotizacion": 0.223784
+        },
+        {
+          "codigoMoneda": "CZK",
+          "descripcion": "CORONAS CHECAS",
+          "tipoPase": 0.043942,
+          "tipoCotizacion": 39.613314
+        },
+        {
+          "codigoMoneda": "DKK",
+          "descripcion": "CORONAS DANESAS",
+          "tipoPase": 0.145191,
+          "tipoCotizacion": 130.889292
+        },
+        {
+          "codigoMoneda": "EUR",
+          "descripcion": "EURO",
+          "tipoPase": 1.083,
+          "tipoCotizacion": 976.3245
+        },
+        {
+          "codigoMoneda": "GBP",
+          "descripcion": "LIBRA ESTERLINA",
+          "tipoPase": 1.2829,
+          "tipoCotizacion": 1156.53435
+        },
+        {
+          "codigoMoneda": "HKD",
+          "descripcion": "DOLAR HONG KONG",
+          "tipoPase": 0.128064,
+          "tipoCotizacion": 115.449632
+        },
+        {
+          "codigoMoneda": "ILS",
+          "descripcion": "LIBRA ISRAELI",
+          "tipoPase": 0.270819,
+          "tipoCotizacion": 244.143534
+        },
+        {
+          "codigoMoneda": "INR",
+          "descripcion": "RUPIA (INDIA)",
+          "tipoPase": 0.011969,
+          "tipoCotizacion": 10.790269
+        },
+        {
+          "codigoMoneda": "JPY",
+          "descripcion": "YENS",
+          "tipoPase": 0.006407,
+          "tipoCotizacion": 5.775884
+        },
+        {
+          "codigoMoneda": "MXP",
+          "descripcion": "PESO MEXICANO",
+          "tipoPase": 0.053507,
+          "tipoCotizacion": 48.236673
+        },
+        {
+          "codigoMoneda": "NIO",
+          "descripcion": "CORDOBA NICARAGUENSE",
+          "tipoPase": 0.027152,
+          "tipoCotizacion": 24.477461
+        },
+        {
+          "codigoMoneda": "NOK",
+          "descripcion": "CORONAS NORUEGA",
+          "tipoPase": 0.09499,
+          "tipoCotizacion": 85.63368
+        },
+        {
+          "codigoMoneda": "NZD",
+          "descripcion": "DOLAR NEOZELANDES",
+          "tipoPase": 0.6204,
+          "tipoCotizacion": 559.2906
+        },
+        {
+          "codigoMoneda": "PEN",
+          "descripcion": "SOLES",
+          "tipoPase": 0.264389,
+          "tipoCotizacion": 238.347038
+        },
+        {
+          "codigoMoneda": "PYG",
+          "descripcion": "GUARANIES",
+          "tipoPase": 0.000133,
+          "tipoCotizacion": 0.119876
+        },
+        {
+          "codigoMoneda": "REF",
+          "descripcion": "DOLAR REFERENCIA COM 3500",
+          "tipoPase": 0.0,
+          "tipoCotizacion": 902.25
+        },
+        {
+          "codigoMoneda": "RSD",
+          "descripcion": "DINAR SERBIA",
+          "tipoPase": 0.009255,
+          "tipoCotizacion": 8.343313
+        },
+        {
+          "codigoMoneda": "RUB",
+          "descripcion": "RUSIA",
+          "tipoPase": 0.011233,
+          "tipoCotizacion": 10.126756
+        },
+        {
+          "codigoMoneda": "SEK",
+          "descripcion": "CORONAS SUECAS",
+          "tipoPase": 0.096819,
+          "tipoCotizacion": 87.282761
+        },
+        {
+          "codigoMoneda": "SGD",
+          "descripcion": "DOLAR DE SINGAPUR",
+          "tipoPase": 0.743439,
+          "tipoCotizacion": 670.210393
+        },
+        {
+          "codigoMoneda": "TRY",
+          "descripcion": "LIRA TURCA",
+          "tipoPase": 0.030976,
+          "tipoCotizacion": 27.924828
+        },
+        {
+          "codigoMoneda": "USD",
+          "descripcion": "DOLAR E.E.U.U.",
+          "tipoPase": 0.0,
+          "tipoCotizacion": 901.5
+        },
+        {
+          "codigoMoneda": "UYU",
+          "descripcion": "PESO URUGUAYO",
+          "tipoPase": 0.025537,
+          "tipoCotizacion": 23.021351
+        },
+        {
+          "codigoMoneda": "VEB",
+          "descripcion": "BOLIVARES",
+          "tipoPase": 0.02741175,
+          "tipoCotizacion": 24.71169687
+        },
+        {
+          "codigoMoneda": "VND",
+          "descripcion": "DONG VIETNAM (C/1.000 UNIDADES)",
+          "tipoPase": 0.039304,
+          "tipoCotizacion": 35.432142
+        },
+        {
+          "codigoMoneda": "XAG",
+          "descripcion": "PLATA - ONZA TROY",
+          "tipoPase": 29.8806,
+          "tipoCotizacion": 0.0
+        },
+        {
+          "codigoMoneda": "XAU",
+          "descripcion": "ORO FINO (1 ONZA)",
+          "tipoPase": 2330.41,
+          "tipoCotizacion": 0.0
+        },
+        {
+          "codigoMoneda": "XDR",
+          "descripcion": "DEG",
+          "tipoPase": 1.32019,
+          "tipoCotizacion": 1190.151285
+        },
+        {
+          "codigoMoneda": "ZAR",
+          "descripcion": "RAND SUD",
+          "tipoPase": 0.054525,
+          "tipoCotizacion": 49.154317
+        }
+      ]
+    }
+  }
+}

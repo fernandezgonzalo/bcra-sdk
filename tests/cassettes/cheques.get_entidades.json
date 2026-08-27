@@ -1,0 +1,246 @@
+{
+  "path": "/cheques/v1.0/entidades",
+  "params": null,
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "results": [
+      {
+        "codigoEntidad": 297,
+        "denominacion": "BANCO BANEX S.A."
+      },
+      {
+        "codigoEntidad": 17,
+        "denominacion": "BANCO BBVA ARGENTINA S.A."
+      },
+      {
+        "codigoEntidad": 426,
+        "denominacion": "BANCO BICA S.A."
+      },
+      {
+        "codigoEntidad": 259,
+        "denominacion": "BANCO BMA S.A.U."
+      },
+      {
+        "codigoEntidad": 336,
+        "denominacion": "BANCO BRADESCO ARGENTINA S.A.U."
+      },
+      {
+        "codigoEntidad": 319,
+        "denominacion": "BANCO CMF S.A."
+      },
+      {
+        "codigoEntidad": 431,
+        "denominacion": "BANCO COINAG S.A."
+      },
+      {
+        "codigoEntidad": 389,
+        "denominacion": "BANCO COLUMBIA S.A."
+      },
+      {
+        "codigoEntidad": 299,
+        "denominacion": "BANCO COMAFI SOCIEDAD ANONIMA"
+      },
+      {
+        "codigoEntidad": 191,
+        "denominacion": "BANCO CREDICOOP COOPERATIVO LIMITADO"
+      },
+      {
+        "codigoEntidad": 432,
+        "denominacion": "BANCO DE COMERCIO S.A."
+      },
+      {
+        "codigoEntidad": 94,
+        "denominacion": "BANCO DE CORRIENTES S.A."
+      },
+      {
+        "codigoEntidad": 315,
+        "denominacion": "BANCO DE FORMOSA S.A."
+      },
+      {
+        "codigoEntidad": 7,
+        "denominacion": "BANCO DE GALICIA Y BUENOS AIRES S.A."
+      },
+      {
+        "codigoEntidad": 29,
+        "denominacion": "BANCO DE LA CIUDAD DE BUENOS AIRES"
+      },
+      {
+        "codigoEntidad": 11,
+        "denominacion": "BANCO DE LA NACION ARGENTINA"
+      },
+      {
+        "codigoEntidad": 14,
+        "denominacion": "BANCO DE LA PROVINCIA DE BUENOS AIRES"
+      },
+      {
+        "codigoEntidad": 20,
+        "denominacion": "BANCO DE LA PROVINCIA DE CORDOBA S.A."
+      },
+      {
+        "codigoEntidad": 45,
+        "denominacion": "BANCO DE SAN JUAN S.A."
+      },
+      {
+        "codigoEntidad": 86,
+        "denominacion": "BANCO DE SANTA CRUZ S.A."
+      },
+      {
+        "codigoEntidad": 321,
+        "denominacion": "BANCO DE SANTIAGO DEL ESTERO S.A."
+      },
+      {
+        "codigoEntidad": 338,
+        "denominacion": "BANCO DE SERVICIOS Y TRANSACCIONES SAU"
+      },
+      {
+        "codigoEntidad": 198,
+        "denominacion": "BANCO DE VALORES S.A."
+      },
+      {
+        "codigoEntidad": 83,
+        "denominacion": "BANCO DEL CHUBUT S.A."
+      },
+      {
+        "codigoEntidad": 310,
+        "denominacion": "BANCO DEL SOL S.A."
+      },
+      {
+        "codigoEntidad": 60,
+        "denominacion": "BANCO DEL TUCUMAN S.A."
+      },
+      {
+        "codigoEntidad": 448,
+        "denominacion": "BANCO DINO S.A."
+      },
+      {
+        "codigoEntidad": 303,
+        "denominacion": "BANCO FINANSUR S.A."
+      },
+      {
+        "codigoEntidad": 150,
+        "denominacion": "Banco GGAL SA"
+      },
+      {
+        "codigoEntidad": 44,
+        "denominacion": "BANCO HIPOTECARIO S.A."
+      },
+      {
+        "codigoEntidad": 322,
+        "denominacion": "BANCO INDUSTRIAL"
+      },
+      {
+        "codigoEntidad": 305,
+        "denominacion": "BANCO JULIO SOCIEDAD ANONIMA"
+      },
+      {
+        "codigoEntidad": 285,
+        "denominacion": "BANCO MACRO S.A."
+      },
+      {
+        "codigoEntidad": 254,
+        "denominacion": "BANCO MARIVA S.A."
+      },
+      {
+        "codigoEntidad": 341,
+        "denominacion": "BANCO MASVENTAS S.A."
+      },
+      {
+        "codigoEntidad": 281,
+        "denominacion": "BANCO MERIDIAN S.A."
+      },
+      {
+        "codigoEntidad": 65,
+        "denominacion": "BANCO MUNICIPAL DE ROSARIO"
+      },
+      {
+        "codigoEntidad": 34,
+        "denominacion": "BANCO PATAGONIA  S.A."
+      },
+      {
+        "codigoEntidad": 301,
+        "denominacion": "BANCO PIANO S.A."
+      },
+      {
+        "codigoEntidad": 306,
+        "denominacion": "BANCO PRIVADO DE INVERSIONES S.A."
+      },
+      {
+        "codigoEntidad": 268,
+        "denominacion": "BANCO PROVINCIA DE TIERRA DEL FUEGO"
+      },
+      {
+        "codigoEntidad": 97,
+        "denominacion": "BANCO PROVINCIA DEL NEUQUEN S.A."
+      },
+      {
+        "codigoEntidad": 79,
+        "denominacion": "BANCO REGIONAL DE CUYO S.A."
+      },
+      {
+        "codigoEntidad": 309,
+        "denominacion": "BANCO RIOJA SOCIEDAD ANÓNIMA UNIPERSONAL"
+      },
+      {
+        "codigoEntidad": 247,
+        "denominacion": "BANCO ROELA S.A."
+      },
+      {
+        "codigoEntidad": 277,
+        "denominacion": "BANCO SAENZ S.A."
+      },
+      {
+        "codigoEntidad": 72,
+        "denominacion": "BANCO SANTANDER ARGENTINA S.A."
+      },
+      {
+        "codigoEntidad": 435,
+        "denominacion": "BANCO SUCREDITO REGIONAL S.A.U."
+      },
+      {
+        "codigoEntidad": 27,
+        "denominacion": "BANCO SUPERVIELLE S.A."
+      },
+      {
+        "codigoEntidad": 147,
+        "denominacion": "BIBANK S.A."
+      },
+      {
+        "codigoEntidad": 266,
+        "denominacion": "BNP PARIBAS"
+      },
+      {
+        "codigoEntidad": 16,
+        "denominacion": "CITIBANK N.A."
+      },
+      {
+        "codigoEntidad": 15,
+        "denominacion": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA"
+      },
+      {
+        "codigoEntidad": 93,
+        "denominacion": "LA PAMPA SA"
+      },
+      {
+        "codigoEntidad": 18,
+        "denominacion": "MUFG BANK, LTD"
+      },
+      {
+        "codigoEntidad": 386,
+        "denominacion": "NUEVO BANCO DE ENTRE RÍOS S.A."
+      },
+      {
+        "codigoEntidad": 330,
+        "denominacion": "NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA"
+      },
+      {
+        "codigoEntidad": 311,
+        "denominacion": "NUEVO BANCO DEL CHACO S. A."
+      },
+      {
+        "codigoEntidad": 5,
+        "denominacion": "The Royal Bank of Scotland N.V."
+      }
+    ]
+  }
+}

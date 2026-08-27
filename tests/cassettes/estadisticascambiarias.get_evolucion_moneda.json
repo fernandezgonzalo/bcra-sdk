@@ -1,0 +1,54 @@
+{
+  "path": "/estadisticascambiarias/v1.0/Cotizaciones/EUR",
+  "params": {
+    "fechadesde": "2024-06-10",
+    "fechahasta": "2024-06-12",
+    "limit": 10
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "metadata": {
+      "resultset": {
+        "count": 3,
+        "offset": 0,
+        "limit": 10
+      }
+    },
+    "results": [
+      {
+        "fecha": "2024-06-12",
+        "detalle": [
+          {
+            "codigoMoneda": "EUR",
+            "descripcion": "EURO",
+            "tipoPase": 1.083,
+            "tipoCotizacion": 976.3245
+          }
+        ]
+      },
+      {
+        "fecha": "2024-06-11",
+        "detalle": [
+          {
+            "codigoMoneda": "EUR",
+            "descripcion": "EURO",
+            "tipoPase": 1.0742,
+            "tipoCotizacion": 968.9284
+          }
+        ]
+      },
+      {
+        "fecha": "2024-06-10",
+        "detalle": [
+          {
+            "codigoMoneda": "EUR",
+            "descripcion": "EURO",
+            "tipoPase": 1.076,
+            "tipoCotizacion": 970.552
+          }
+        ]
+      }
+    ]
+  }
+}

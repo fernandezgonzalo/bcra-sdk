@@ -12,6 +12,8 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - Reintentos automáticos ante errores transitorios: `RetryPolicy` configurable vía `BCRAClient(retries=...)`, backoff exponencial, respeto del header `Retry-After` y retry de timeouts (sync y async)
 - Inputs tipados: fechas (`fecha`, `fechadesde`, `fechahasta`) aceptan `datetime.date` además de `str` ISO, con validación y normalización a `YYYY-MM-DD`
 - Validación de CUIT en `get_deudas`/`aget_deudas` (11 dígitos, guiones opcionales)
+- Golden tests deterministas con cassettes: respuestas reales del BCRA grabadas en `tests/cassettes/`, regrabables con `uv run python scripts/record_cassettes.py`, que verifican que los modelos parseados espejen 1:1 la API
+- Suite de integración en vivo (`tests/test_integration.py`, marker `integration`): deseleccionada por defecto, se corre con `uv run pytest -m integration --no-cov` y en un workflow manual de CI (`workflow_dispatch`); docs en `docs/testing.md`
 
 ### Changed
 

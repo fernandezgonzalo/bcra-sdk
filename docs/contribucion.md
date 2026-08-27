@@ -51,6 +51,14 @@ uv run pytest                    # test suite + cobertura
 uv run pytest tests/test_foo.py  # un archivo puntual
 ```
 
+La suite default es determinista: usa respuestas reales del BCRA grabadas como cassettes en
+`tests/cassettes/` (ver [`docs/testing.md`](testing.md)). Si la API cambia un contrato,
+regrabalos con `uv run python scripts/record_cassettes.py`. Para los smoke tests en vivo:
+
+```bash
+uv run pytest -m integration --no-cov
+```
+
 El proyecto soporta Python 3.11 hasta 3.15. La fuente de verdad de las versiones es
 `env_list` en la sección `[tool.tox]` de `pyproject.toml`. Para correr la suite en todas
 las versiones (descarga los intérpretes con `uv` via el plugin `tox-uv`):

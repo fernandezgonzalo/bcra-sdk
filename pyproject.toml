@@ -73,8 +73,11 @@ docs = [
 include = ["*.py", "*.pyi"]
 
 [tool.pytest.ini_options]
-addopts = "--cov=bcra_sdk --cov-report=term-missing"
+addopts = "--cov=bcra_sdk --cov-report=term-missing -m 'not integration'"
 testpaths = ["tests"]
+markers = [
+    "integration: tests en vivo contra la API del BCRA (requieren red). Correr con: uv run pytest -m integration --no-cov",
+]
 filterwarnings = [
     "ignore:Module bcra_sdk was previously imported:coverage.misc.CoverageWarning",
 ]
