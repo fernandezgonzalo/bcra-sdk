@@ -6,6 +6,7 @@ from typing import Self
 from ._transport import Transport
 from .cheques import Cheques
 from .deudores import Deudores
+from .estadisticascambiarias import EstadisticasCambiarias
 
 logger = logging.getLogger("bcra_sdk.client")
 
@@ -27,6 +28,7 @@ class BCRAClient:
         self._transport = Transport(base_url, **httpx_kwargs)
         self.deudores = Deudores(self._transport)
         self.cheques = Cheques(self._transport)
+        self.estadisticas_cambiarias = EstadisticasCambiarias(self._transport)
         logger.debug("BCRAClient inicializado con base_url=%s", base_url)
 
     def close(self) -> None:

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.0.4] - 2026-08-27
+
+### Added
+
+- EstadisticasCambiarias resource with `get_divisas` endpoint (`GET /estadisticascambiarias/v1.0/Maestros/Divisas`)
+- `Divisa` and `ResultGetDivisasV1` dataclasses for currency list serialization
+- Unit tests for `get_divisas` (happy path, empty, 500)
+
 ## [0.0.3] - 2026-08-26
 
 ### Added
