@@ -7,4 +7,4 @@ build:
   commands:
     - pip install uv
     - uv sync --group docs --no-dev
-    - uv run --group docs mkdocs build --clean --site-dir "$READTHEDOCS_OUTPUT"
+    - uv run --group docs mkdocs build --clean --site-dir "$READTHEDOCS_OUTPUT/html"
