@@ -3,12 +3,16 @@ from dataclasses import dataclass
 
 @dataclass
 class Divisa:
+    """Una divisa del maestro de monedas del BCRA."""
+
     codigo: str
     denominacion: str
 
 
 @dataclass
 class ResultGetDivisasV1:
+    """Respuesta de ``get_divisas``: listado de `Divisa`."""
+
     divisas: list[Divisa]
 
     @classmethod

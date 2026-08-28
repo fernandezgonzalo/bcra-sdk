@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class DetalleDenuncia:
+    """Detalle de una denuncia de cheque sin pagar."""
+
     sucursal: int
     numeroCuenta: int
     causal: str
@@ -10,6 +12,12 @@ class DetalleDenuncia:
 
 @dataclass
 class ResultGetChequeDenunciadoV1:
+    """Respuesta de ``get_cheque_denunciado``.
+
+    Incluye si el cheque figura como denunciado y el detalle de las
+    denuncias asociadas (puede estar vacío).
+    """
+
     numeroCheque: int
     denunciado: bool
     fechaProcesamiento: str

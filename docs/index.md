@@ -24,6 +24,11 @@ dataclasses fuertemente tipadas.
     - [Deudores](endpoints/deudores.md)
     - [Cheques](endpoints/cheques.md)
     - [Estadísticas cambiarias](endpoints/estadisticas-cambiarias.md)
+- API Reference
+    - [Cliente y configuración](api/cliente.md)
+    - [Recursos](api/recursos.md)
+    - [Modelos](api/modelos.md)
+    - [Errores](api/errores.md)
 - [Versionado de endpoints](versionado.md)
 - [Errores](errores.md)
 - [Logging](logging.md)

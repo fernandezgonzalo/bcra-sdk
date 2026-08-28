@@ -19,6 +19,7 @@ Documentación completa en [`docs/`](docs/index.md):
 
 - [Guía rápida](docs/guia-rapida.md)
 - [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias
+- [API Reference](docs/api/cliente.md): cliente, recursos, modelos y errores
 - [Versionado de endpoints](docs/versionado.md)
 - [Reintentos](docs/retry.md)
 - [Errores](docs/errores.md)

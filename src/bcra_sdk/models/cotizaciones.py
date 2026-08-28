@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Cotizacion:
+    """Cotización de una moneda para una fecha determinada."""
+
     codigoMoneda: str
     descripcion: str
     tipoPase: float
@@ -11,6 +13,12 @@ class Cotizacion:
 
 @dataclass
 class ResultGetCotizacionesV1:
+    """Respuesta de ``get_cotizaciones``: cotizaciones del día por moneda.
+
+    ``fecha`` puede ser ``None`` cuando la API devuelve la cotización más
+    reciente sin fecha asociada en el nivel raíz.
+    """
+
     fecha: str | None
     detalle: list[Cotizacion]
 

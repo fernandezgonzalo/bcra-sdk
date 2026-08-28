@@ -67,6 +67,8 @@ dev = [
 docs = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.4",
+    "mkdocstrings>=0.29",
+    "mkdocstrings-python>=1.16",
 ]
 
 [tool.ruff]

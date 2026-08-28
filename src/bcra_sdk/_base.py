@@ -12,7 +12,11 @@ from .exceptions import BCRAEndpointVersionError
 
 
 class Model(Protocol):
-    """Protocolo para los modelos de respuesta: una clase con ``from_dict``."""
+    """Protocolo de los modelos de respuesta: toda clase con ``from_dict``.
+
+    ``from_dict`` recibe el JSON deserializado (dict o list, según el
+    endpoint) y devuelve una instancia del modelo.
+    """
 
     @classmethod
     def from_dict(cls, data): ...
@@ -20,7 +24,14 @@ class Model(Protocol):
 
 @dataclass
 class VersionSpec:
-    """Especificacion de una version de un endpoint."""
+    """Especificación de una versión de un endpoint.
+
+    Args:
+        path: Plantilla de path con placeholders (``{cuit}``, etc.).
+        model: Modelo que deserializa la respuesta de esta versión.
+        deprecated: Si la versión está deprecada (emite
+            ``DeprecationWarning`` al usarse).
+    """
 
     path: str
     model: type[Model]
@@ -146,9 +157,14 @@ class Resource:
         return spec
 
     def versions(self, endpoint: str) -> dict[str, dict[str, bool]]:
-        """Devuelve las versiones disponibles de un endpoint y su deprecacion.
+        """Devuelve las versiones disponibles de un endpoint y su deprecación.
 
-        Ejemplo: {"1.0": {"deprecated": True}, "2.0": {"deprecated": False}}
+        Args:
+            endpoint: Nombre del método del endpoint (ej. ``get_cotizaciones``).
+
+        Returns:
+            dict[str, dict[str, bool]]: mapeo de versión a su estado, por
+                ejemplo ``{"1.0": {"deprecated": True}, "2.0": {"deprecated": False}}``.
         """
         return {
             v: {"deprecated": spec.deprecated}

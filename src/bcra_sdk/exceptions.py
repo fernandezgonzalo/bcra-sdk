@@ -2,10 +2,18 @@ import httpx
 
 
 class BCRAError(Exception):
-    """Error base del SDK."""
+    """Error base del SDK. Todas las excepciones heredan de esta clase."""
 
 
 class BCRAHTTPError(BCRAError):
+    """La API respondió con un estado HTTP de error (4xx o 5xx).
+
+    Args:
+        status_code: Código de estado HTTP de la respuesta.
+        message: Mensaje de error (el cuerpo de la respuesta).
+        response: La respuesta HTTP original, si está disponible.
+    """
+
     def __init__(
         self,
         status_code: int,
@@ -20,7 +28,7 @@ class BCRAHTTPError(BCRAError):
 
 
 class BCRAConnectionError(BCRAError):
-    """Error de red o conexión al proveer de servicios."""
+    """Error de red o de conexión al contactar el servicio."""
 
 
 class BCRATimeoutError(BCRAConnectionError):
@@ -28,4 +36,4 @@ class BCRATimeoutError(BCRAConnectionError):
 
 
 class BCRAEndpointVersionError(BCRAError):
-    """Se pidio una version de un endpoint que no existe"""
+    """Se solicitó una versión de endpoint que no existe."""

@@ -11,6 +11,12 @@ logger = logging.getLogger("bcra_sdk.estadisticas_cambiarias")
 
 
 class EstadisticasCambiarias(Resource):
+    """Endpoints de estadísticas cambiarias del BCRA.
+
+    Expuesto como ``client.estadisticas_cambiarias``. Incluye el maestro de
+    divisas, las cotizaciones por fecha y la evolución de una moneda.
+    """
+
     def __init__(self, transport):
         super().__init__(transport)
         self._register_version(
@@ -33,6 +39,16 @@ class EstadisticasCambiarias(Resource):
         )
 
     def get_divisas(self, *, version: str | None = None) -> ResultGetDivisasV1:
+        """Devuelve el maestro de divisas del BCRA.
+
+        Args:
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con
+                `Resource.versions`.
+
+        Returns:
+            ResultGetDivisasV1: listado de `Divisa`.
+        """
         logger.info("Consultando divisas")
         result = self._fetch(
             self._t.request,
@@ -47,6 +63,7 @@ class EstadisticasCambiarias(Resource):
         return result
 
     async def aget_divisas(self, *, version: str | None = None) -> ResultGetDivisasV1:
+        """Versión asíncrona de `get_divisas`."""
         logger.info("Consultando divisas")
         result = await self._fetch(
             self._t.arequest,
@@ -66,6 +83,19 @@ class EstadisticasCambiarias(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetCotizacionesV1:
+        """Devuelve las cotizaciones de todas las monedas para una fecha.
+
+        Args:
+            fecha: Fecha de la cotización, como ``str`` ISO (``YYYY-MM-DD``)
+                o ``datetime.date``. Si se omite, la API devuelve la
+                cotización más reciente.
+            version: Versión del endpoint a usar. El default es la más
+                reciente.
+
+        Returns:
+            ResultGetCotizacionesV1: cotizaciones de la fecha, con el
+                detalle por `Cotizacion`.
+        """
         logger.info("Consultando cotizaciones (fecha=%s)", fecha)
         params = {"fecha": _coerce_date(fecha)} if fecha else None
         result = self._fetch(
@@ -88,6 +118,7 @@ class EstadisticasCambiarias(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetCotizacionesV1:
+        """Versión asíncrona de `get_cotizaciones`."""
         logger.info("Consultando cotizaciones (fecha=%s)", fecha)
         params = {"fecha": _coerce_date(fecha)} if fecha else None
         result = await self._fetch(
@@ -114,6 +145,24 @@ class EstadisticasCambiarias(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetEvolucionMonedaV1:
+        """Devuelve la evolución de cotizaciones de una moneda.
+
+        Args:
+            moneda: Código de la moneda (``ARS``, ``EUR``, ``USD``, etc.).
+            fechadesde: Límite inferior del período, como ``str`` ISO o
+                ``datetime.date``.
+            fechahasta: Límite superior del período, como ``str`` ISO o
+                ``datetime.date``.
+            limit: Cantidad máxima de resultados (la API exige valores entre
+                10 y 1000).
+            offset: Cantidad de resultados a saltear.
+            version: Versión del endpoint a usar. El default es la más
+                reciente.
+
+        Returns:
+            ResultGetEvolucionMonedaV1: metadatos del paginado via
+                `Resultset` y la serie de `ResultGetCotizacionesV1`.
+        """
         logger.info(
             "Consultando evolución de %s (fechadesde=%s, fechahasta=%s, "
             "limit=%s, offset=%s)",
@@ -158,6 +207,7 @@ class EstadisticasCambiarias(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetEvolucionMonedaV1:
+        """Versión asíncrona de `get_evolucion_moneda`."""
         logger.info(
             "Consultando evolución de %s (fechadesde=%s, fechahasta=%s, "
             "limit=%s, offset=%s)",

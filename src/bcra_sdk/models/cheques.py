@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class DetalleCheque:
+    """Detalle de un rechazo de cheque para una entidad."""
+
     nroCheque: int
     fechaRechazo: str
     monto: float
@@ -17,6 +19,8 @@ class DetalleCheque:
 
 @dataclass
 class EntidadCheque:
+    """Entidad en la que un cheque resultó rechazado junto a sus detalles."""
+
     entidad: int
     detalle: list[DetalleCheque]
 
@@ -30,6 +34,8 @@ class EntidadCheque:
 
 @dataclass
 class Causal:
+    """Un causal de rechazo con las entidades involucradas."""
+
     causal: str
     entidades: list[EntidadCheque]
 
@@ -43,6 +49,8 @@ class Causal:
 
 @dataclass
 class ResultGetChequesRechazadosV1:
+    """Respuesta de ``get_cheques_rechazados`` de la Central de Deudores."""
+
     identificacion: int
     causales: list[Causal]
 

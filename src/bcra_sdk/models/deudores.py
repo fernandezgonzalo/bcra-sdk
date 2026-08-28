@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Entidad:
+    """Situación de un deudor en una entidad financiera para un período."""
+
     entidad: str
     situacion: str
     fechaSit1: str
@@ -18,6 +20,8 @@ class Entidad:
 
 @dataclass
 class Periodo:
+    """Un período mensual de la situación de deudas con sus entidades."""
+
     periodo: str
     entidades: list[Entidad]
 
@@ -31,6 +35,8 @@ class Periodo:
 
 @dataclass
 class ResultGetDeudasV1:
+    """Respuesta de ``get_deudas``: situación de deudas por CUIT."""
+
     identificacion: int
     denominacion: str
     periodos: list[Periodo]
@@ -46,6 +52,8 @@ class ResultGetDeudasV1:
 
 @dataclass
 class EntidadHistorica:
+    """Situación histórica de un deudor en una entidad para un período."""
+
     entidad: str
     situacion: int
     monto: float
@@ -55,6 +63,8 @@ class EntidadHistorica:
 
 @dataclass
 class PeriodoHistorica:
+    """Un período del histórico de deudas con sus entidades."""
+
     periodo: str
     entidades: list[EntidadHistorica]
 
@@ -68,6 +78,8 @@ class PeriodoHistorica:
 
 @dataclass
 class ResultGetDeudasHistoricasV1:
+    """Respuesta de ``get_deudas_historicas``: histórico de deudas."""
+
     identificacion: str
     denominacion: str
     periodos: list[PeriodoHistorica]

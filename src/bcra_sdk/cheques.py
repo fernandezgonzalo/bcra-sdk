@@ -8,6 +8,12 @@ logger = logging.getLogger("bcra_sdk.cheques")
 
 
 class Cheques(Resource):
+    """Endpoints del sistema de cheques del BCRA.
+
+    Expuesto como ``client.cheques``. Incluye el maestro de entidades
+    bancarias y la consulta de cheques denunciados.
+    """
+
     def __init__(self, transport):
         super().__init__(transport)
         self._register_version(
@@ -24,6 +30,16 @@ class Cheques(Resource):
         )
 
     def get_entidades(self, *, version: str | None = None) -> ResultGetEntidadesV1:
+        """Devuelve el listado de entidades bancarias vigente.
+
+        Args:
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con
+                `Resource.versions`.
+
+        Returns:
+            ResultGetEntidadesV1: listado de `EntidadBancaria`.
+        """
         logger.info("Consultando entidades bancarias")
         result = self._fetch(
             self._t.request,
@@ -40,6 +56,7 @@ class Cheques(Resource):
     async def aget_entidades(
         self, *, version: str | None = None
     ) -> ResultGetEntidadesV1:
+        """Versión asíncrona de `get_entidades`."""
         logger.info("Consultando entidades bancarias")
         result = await self._fetch(
             self._t.arequest,
@@ -60,6 +77,19 @@ class Cheques(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetChequeDenunciadoV1:
+        """Consulta el estado de denuncia de un cheque.
+
+        Args:
+            codigo_entidad: Código de la entidad bancaria (ver
+                `get_entidades`).
+            numero_cheque: Número del cheque a consultar.
+            version: Versión del endpoint a usar. El default es la más
+                reciente.
+
+        Returns:
+            ResultGetChequeDenunciadoV1: datos del cheque, incluyendo si
+                figura como denunciado y sus detalles.
+        """
         logger.info(
             "Consultando cheque denunciado: entidad=%s, cheque=%s",
             codigo_entidad,
@@ -90,6 +120,7 @@ class Cheques(Resource):
         *,
         version: str | None = None,
     ) -> ResultGetChequeDenunciadoV1:
+        """Versión asíncrona de `get_cheque_denunciado`."""
         logger.info(
             "Consultando cheque denunciado: entidad=%s, cheque=%s",
             codigo_entidad,

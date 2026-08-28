@@ -5,6 +5,8 @@ from .cotizaciones import ResultGetCotizacionesV1
 
 @dataclass
 class Resultset:
+    """Metadatos de paginado de la evolución de una moneda."""
+
     count: int
     offset: int
     limit: int
@@ -12,6 +14,11 @@ class Resultset:
 
 @dataclass
 class ResultGetEvolucionMonedaV1:
+    """Respuesta de ``get_evolucion_moneda``.
+
+    Agrupa el `Resultset` con la serie de cotizaciones diarias.
+    """
+
     resultset: Resultset
     cotizaciones: list[ResultGetCotizacionesV1]
 

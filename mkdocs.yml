@@ -28,6 +28,20 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
 
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_root_heading: true
+            show_symbol_type_heading: true
+            show_source: false
+            show_signature_annotations: true
+            members_order: source
+
 nav:
   - Inicio: index.md
   - Instalación: instalacion.md
@@ -36,6 +50,11 @@ nav:
       - Deudores: endpoints/deudores.md
       - Cheques: endpoints/cheques.md
       - Estadísticas cambiarias: endpoints/estadisticas-cambiarias.md
+  - API Reference:
+      - Cliente y configuración: api/cliente.md
+      - Recursos: api/recursos.md
+      - Modelos: api/modelos.md
+      - Errores: api/errores.md
   - Versionado de endpoints: versionado.md
   - Reintentos: retry.md
   - Errores: errores.md
