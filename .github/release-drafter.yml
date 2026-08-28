@@ -1,0 +1,69 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+change-title-escapes: '\<*_&'
+template: |
+  ## Cambios
+
+  $CHANGES
+
+  ## Notas
+
+  El changelog autoritativo se mantiene en [CHANGELOG.md](https://github.com/fernandezgonzalo/bcra-sdk/blob/main/CHANGELOG.md).
+
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feat'
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '📝 Documentación'
+    labels:
+      - 'docs'
+      - 'documentation'
+  - title: '🧪 Tests'
+    labels:
+      - 'test'
+      - 'tests'
+  - title: '🧱 Mantenimiento'
+    labels:
+      - 'chore'
+      - 'refactor'
+      - 'ci'
+      - 'build'
+      - 'dependencies'
+  - type: 'version-resolver'
+    semver-increment: 'major'
+    when:
+      label: 'major'
+  - type: 'version-resolver'
+    semver-increment: 'minor'
+    when:
+      labels: ['minor', 'feat', 'feature', 'enhancement']
+  - type: 'version-resolver'
+    semver-increment: 'patch'
+
+autolabeler:
+  - label: 'feat'
+    title:
+      - '/^feat(\(.*\))?:/'
+  - label: 'fix'
+    title:
+      - '/^fix(\(.*\))?:/'
+  - label: 'docs'
+    title:
+      - '/^docs(\(.*\))?:/'
+  - label: 'test'
+    title:
+      - '/^test(\(.*\))?:/'
+  - label: 'chore'
+    title:
+      - '/^(chore|build|ci|refactor)(\(.*\))?:/'
+
+include-pre-releases: false
+prerelease: false

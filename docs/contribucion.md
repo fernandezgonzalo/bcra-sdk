@@ -25,6 +25,14 @@ uv run pre-commit run --all-files
 uv run pytest --cov-report=term-missing
 ```
 
+- **CHANGELOG**: cualquier PR que toque `src/**` debe actualizar `CHANGELOG.md` bajo
+  `## [Unreleased]`. El formato (Keep a Changelog + secciones) y la actualización se
+  validan automáticamente en pre-commit y en CI:
+
+```bash
+uv run python scripts/check_changelog.py --staged
+```
+
 ## Documentación
 
 La documentación vive en `docs/` y se compila con [MkDocs](https://www.mkdocs.org/) (theme
@@ -80,7 +88,7 @@ El CI (`.github/workflows/lint.yml`) repite la misma matrix: un job de `test` po
 
 - **Commits**: [Conventional Commits](https://www.conventionalcommits.org/), con scope,
   por ejemplo `feat(deudores): ...`, `fix(client): ...`.
-- **PRs**: hacia `develop`, squash and merge.
+- **PRs**: hacia `main`, squash and merge.
 - **Tests**: mockear `client.{namespace}._t.request` con `monkeypatch`. Para tests de
   error, el mock debe lanzar `BCRAHTTPError` directamente (no mockear una `httpx.Response`
   de error, porque `_raise_for_status` quedaría bypassed).

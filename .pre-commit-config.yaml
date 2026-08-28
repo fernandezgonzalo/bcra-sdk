@@ -25,3 +25,10 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: changelog
+        name: changelog
+        description: valida el formato del CHANGELOG y que los cambios de src/ se reflejen
+        entry: uv run python scripts/check_changelog.py --staged
+        language: system
+        pass_filenames: false
+        always_run: true

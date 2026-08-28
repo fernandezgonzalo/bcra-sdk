@@ -16,6 +16,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - Suite de integración en vivo (`tests/test_integration.py`, marker `integration`): deseleccionada por defecto, se corre con `uv run pytest -m integration --no-cov` y en un workflow manual de CI (`workflow_dispatch`); docs en `docs/testing.md`
 - Docstrings públicos (style Google, en español) en cliente, recursos, `RetryPolicy`, excepciones y todos los modelos
 - Sección **API Reference** en la documentación generada con `mkdocstrings`/`mkdocstrings-python` (cliente, recursos, modelos y errores)
+- Gate de CHANGELOG: `scripts/check_changelog.py` valida el formato (Keep a Changelog + secciones) y que todo PR que toque `src/**` actualice `CHANGELOG.md` bajo `## [Unreleased]`; corre en pre-commit (hook `changelog`) y en un job de CI en PRs (`--pr-base`)
+- Job de CI `docs` que compila el sitio con `mkdocs build --clean --strict` en cada PR/push, para detectar índices rotos y refs de mkdocstrings antes de publicar
+- Job de CI `package` que construye wheel + sdist y corre `twine check` en cada PR/push, adelantando errores de empaquetado que antes solo se veían en el release
+- **Release Drafter**: `.github/release-drafter.yml` + workflow que mantiene un draft de release categorizado por tipo de cambio (Conventional Commits) y autolabela los PRs desde el título
 
 ### Changed
 
@@ -23,6 +27,7 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - `BCRAHTTPError` expone `response` y `reason`; se agregaron `BCRAConnectionError` y `BCRATimeoutError` (subclase de la anterior) para errores de red, todos bajo `BCRAError`
 - Metadata de PyPI completa: `authors`, `license`, `keywords`, `classifiers` y `project.urls`
 - CI: nuevo job `pre-commit`, `concurrency` para cancelar runs viejos, verificación estricta de que el tag coincida con la versión del paquete y `twine check` en el release
+- Corregida la rama objetivo de los PRs en `AGENTS.md` y `docs/contribucion.md` (`develop` -> `main`), que era el único branch de trabajo real
 
 ## [0.0.7] - 2026-08-27
 

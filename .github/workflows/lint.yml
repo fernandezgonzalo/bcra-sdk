@@ -46,3 +46,32 @@ jobs:
       - uses: astral-sh/setup-uv@v3
       - run: uv tool install tox --with tox-uv
       - run: tox -e ${{ matrix.tox-env }}
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --group docs
+      - run: uv run --group docs mkdocs build --clean --strict
+
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - run: python scripts/check_changelog.py
+      - name: Verificar que el PR actualizó el CHANGELOG
+        if: github.event_name == 'pull_request'
+        run: python scripts/check_changelog.py --pr-base "origin/${{ github.base_ref || 'main' }}"
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0   # hatch-vcs necesita el historial completo de tags
+      - uses: astral-sh/setup-uv@v7
+      - run: uv build
+      - run: uvx twine check dist/*
