@@ -11,8 +11,11 @@ from .divisas import ResultGetDivisasV1
 from .entidades import ResultGetEntidadesV1
 from .evolucion import ResultGetEvolucionMonedaV1
 from .monetarias import (
+    Metodologia,
     PuntoSerie,
     ResultGetEvolucionVariableV1,
+    ResultGetMetodologiaV1,
+    ResultGetMetodologiasV1,
     ResultGetMonetariasV1,
     SerieMonetaria,
     VariableMonetaria,
@@ -20,6 +23,7 @@ from .monetarias import (
 
 __all__ = [
     "EntidadHistorica",
+    "Metodologia",
     "PeriodoHistorica",
     "ResultGetChequeDenunciadoV1",
     "ResultGetChequesRechazadosV1",
@@ -30,6 +34,8 @@ __all__ = [
     "ResultGetEntidadesV1",
     "ResultGetEvolucionMonedaV1",
     "ResultGetEvolucionVariableV1",
+    "ResultGetMetodologiaV1",
+    "ResultGetMetodologiasV1",
     "ResultGetMonetariasV1",
     "PuntoSerie",
     "SerieMonetaria",

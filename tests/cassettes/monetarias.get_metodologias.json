@@ -1,0 +1,1017 @@
+{
+  "path": "/estadisticas/v4.0/metodologia",
+  "params": null,
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "metadata": {
+      "resultset": {
+        "count": 1610,
+        "offset": 0,
+        "limit": 250
+      }
+    },
+    "results": [
+      {
+        "id": 1,
+        "detalle": "Información diaria del saldo de reservas internacionales que se publica mediante Comunicación “C” (Ref. Reservas Internacionales). El saldo de las Reservas Internacionales del último día hábil de cada año calendario incorpora los ajustes que se efectúan al cierre del Balance General, con información hasta el día 31 de diciembre. Por esta razón puede diferir del dato publicado en el comunicado diario correspondiente al último día hábil del año. Excluye las asignaciones de Derechos Especiales de Giro del año 2009."
+      },
+      {
+        "id": 4,
+        "detalle": "Corresponde al tipo de cambio peso por dólar estadounidense remitido dada la Comunicación B 9791"
+      },
+      {
+        "id": 5,
+        "detalle": "Corresponde al tipo de cambio peso por dólar estadounidense  calculado por el BCRA , según Comunicación A 3500 y Comunicaicón A 8359. Esta variable se publica mediante Comunicación C sobre “Tipo de Cambio de Referencia\"."
+      },
+      {
+        "id": 7,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de un millón de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 8,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de veinte millones de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 11,
+        "detalle": "Es la tasa de interés promedio ponderada por monto correspondiente a préstamos entre entidades bancarias privadas por operaciones de préstamos de efectivo hasta 15 días de plazo, a tasa de interés fija distinta de cero"
+      },
+      {
+        "id": 12,
+        "detalle": "Tasa de interés promedio ponderada por montos operados del total de entidades informantes en SISCEN-0002 en el segmento de operaciones de plazo fijo  de 30 días en moneda nacional, informados en las cuentas SISCEN 149 y 152  (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 13,
+        "detalle": "Tasa de interés promedio ponderada por saldos pactada por el otorgamiento de préstamos a empresas del sector privado, no prestadoras de servicios financieros ni PyMEs, bajo la forma de adelantos en cuenta corriente con acuerdo, de 1 a 7 días de plazo, y de diez millones de pesos o más, en moneda nacional, según lo informado por la totalidad de entidades financieras a través del requerimiento informativo SISCEN-0018 en la cuenta SISCEN 44 (adelantos en cuenta corriente)."
+      },
+      {
+        "id": 14,
+        "detalle": "Tasa de interés promedio ponderada por montos otorgados de préstamos personales en pesos a tasa de interés fija o repactable, considerando los datos informados por las entidades financieras, a través del SISCEN -0018 en la cuenta SISCEN 51 (préstamos personales)."
+      },
+      {
+        "id": 15,
+        "detalle": "Es la suma de la circulación monetaria total  y los depósitos en cuenta corriente en pesos de las entidades financieras en el BCRA. Es difundida diariamente por el BCRA mediante Comunicación C."
+      },
+      {
+        "id": 16,
+        "detalle": "Billetes y monedas emitidos por el BCRA y puestos en circulación y cheques cancelatorios en pesos. Se difunde diariamente mediante Comunicación C del BCRA."
+      },
+      {
+        "id": 17,
+        "detalle": "Circulación monetaria que no está en poder de las entidades financieras. Se obtiene calculando la diferencia entre la circulación monetaria total difundida diariamente por el BCRA mediante Comunicación “C” y el efectivo en pesos en poder de las entidades financieras"
+      },
+      {
+        "id": 18,
+        "detalle": "Saldo de efectivo en billetes y monedas que las entidades financieras mantienen en sus cajas y cajeros automáticos para atender las operaciones diarias con sus clientes. Se expresa en millones de pesos y se publica diariamente con dos días hábiles de rezago."
+      },
+      {
+        "id": 19,
+        "detalle": "Depósitos en cuenta corriente en pesos en el BCRA que forman parte de la base monetaria, difundido diariamente mediante Comunicación “C”."
+      },
+      {
+        "id": 21,
+        "detalle": "Depósitos en efectivo del total sectores constituidos en las entidades financieras, en moneda nacional y extranjera."
+      },
+      {
+        "id": 22,
+        "detalle": "Depósitos de efectivo constituidos por el total de sectores en las entidades financieras bajo la forma de cuenta corriente bancaria, en moneda nacional y extranjera, neto de la Utilización de Fondos Unificados de Cuentas Oficiales."
+      },
+      {
+        "id": 23,
+        "detalle": "Depósitos de efectivo constituidos bajo el sistema de caja de ahorros. Incluye depósitos de efectivo en cuentas de ahorro vinculado a préstamos, en cuentas especiales para círculos cerrados, en la cuenta Fondo de desempleo en cuentas abiertas bajo el sistema de usuras pupilares, en cuentas especiales para la acreditación de remuneraciones, en cuentas corrientes especiales para personas jurídicas y en las Cuentas especiales a las que se refiere la Ley 27.260 - Régimen de 27.260 - Régimen de sinceramiento fiscal – LIBRO II - Título I – Artículo 38, inciso c), Art. 41 y Art. 42, incisos b) y c) y Art. 41 y Art. 44 y Ley 27.613."
+      },
+      {
+        "id": 24,
+        "detalle": "Depósitos de efectivo constituidos por el total de sectores en las entidades financieras a plazo fijo (transferibles e intransferibles, con retribución fija y variable, de Unidades de Valor Adquisitivo actualizables por “CER” – Ley 25.827 -UVA- y de Unidades de Vivienda actualizables por “ICC” – Ley 27.271 -UVI-). Incluye las inversiones a plazo con retribución variable y las realizadas con cláusula que contemple la posibilidad de cancelación anticipada."
+      },
+      {
+        "id": 25,
+        "detalle": "El M2 privado comprende circulante en poder del público más depósitos a la vista en pesos del sector privado no financiero. Se calcula como la suma entre billetes y monedas en poder del público, cheques cancelatorios en pesos y cuentas corrientes y cajas de ahorros en pesos del sector privado no financiero."
+      },
+      {
+        "id": 26,
+        "detalle": "Préstamos de efectivo, en moneda nacional y extranjera, otorgados por las entidades financieras al sector privado no financiero."
+      },
+      {
+        "id": 27,
+        "detalle": "Variación mensual del índice de precios al consumidor informado por INDEC. En el período comprendido entre noviembre 2015 y abril 2016 se incluyen los valores considerados en el cálculo del Coeficiente de Estabilización de Referencia. Entre noviembre 2015 y enero 2016 corresponde a la variación del IPC de Ciudad de Buenos Aires. Entre febrero y abril de 2016 corresponde a variación del IPC de San Luis."
+      },
+      {
+        "id": 28,
+        "detalle": "Variación interanual del índice de precios al consumidor informado por INDEC. En el período comprendido entre noviembre 2015 y abril 2016 se incluyen los valores implícitos en el cálculo del Coeficiente de Estabilización de Referencia. Entre noviembre 2015 y enero 2016 se considera el IPC de Ciudad de Buenos Aires. Entre febrero y abril de 2016 corresponde a variación del IPC de San Luis."
+      },
+      {
+        "id": 29,
+        "detalle": "Datos del Relevamiento de Expectativas de Mercado del Banco Central de la República Argentina (BCRA) que recopila los pronósticos macroeconómicos de corto y mediano plazo realizados por analistas especializados"
+      },
+      {
+        "id": 30,
+        "detalle": "El CER es un índice base 02/02/2002=1. Se construye en base a la tasa media geométrica calculada sobre la variación del Índice de Precios al Consumidor (IPC). Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 31,
+        "detalle": "El valor inicial de la UVA al 31/03/2016 representa el costo de la construcción de un milésimo de metro cuadrado de la vivienda a esa fecha. Su valor se actualiza según la variación del Coeficiente de Estabilización de Referencia. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 32,
+        "detalle": "El valor inicial en pesos de una UVI es una medida que equivale a la milésima parte del costo de la construcción de un metro cuadrado de vivienda. El mismo se ajusta por la evolución del índice de Costo de la Construcción (CAICC).  Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 35,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de un millón de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 40,
+        "detalle": "Indicador diario que elabora el BCRA en base a la variación mensual del Índice de Precios al Consumidor (IPC) publicado por el Instituto de Estadísticas y Censos (INDEC) y de la Remuneración Imponible Promedio de los Trabajadores Estables (RIPTE), publicada por la Secretaría de Seguridad Social. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 43,
+        "detalle": "Serie estadística de tasa de interés en base a las tasas de caja de ahorros y de plazo fijo  (Comunicado 14290). Refleja diariamente la capitalización de la tasa diaria equivalente a la tasa de interés efectiva mensual promedio ponderada de los depósitos en caja de ahorros y a plazo fijo en pesos correspondiente al segundo día hábil anterior a la fecha informada, según la encuesta SISCEN-0002 que diariamente realiza el BCRA. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 44,
+        "detalle": "Tasa de interés promedio ponderada por montos operados, correspondiente a depósitos a plazo fijo mayoristas en pesos, de 30 a 35 días de plazo, constituidos en todas las entidades bancarias privadas del país. En 2025 abarcó las operaciones de 1.000 millones de pesos y más. A partir de 2026, una vez al año, se actualiza el estrato de monto de las operaciones incluidas, según la variación del Índice de Precios al Consumidor. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 45,
+        "detalle": "Tasa de interés promedio ponderada por montos operados, correspondiente a depósitos a plazo fijo mayoristas en pesos, de 30 a 35 días de plazo, constituidos en todas las entidades bancarias privadas del país. En 2025 abarcó las operaciones de 1.000 millones de pesos y más. A partir de 2026, una vez al año, se actualiza el estrato de monto de las operaciones incluidas, según la variación del Índice de Precios al Consumidor. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 46,
+        "detalle": "Corresponde a la suma de los efectos monetarios correspondientes a compras netas de divisas al sector privado y otros , compras netas de divisas al tesoro nacional, e los adelantos transitorios al tesoro nacional , adelantos transitorios al tesoro nacional, transferencia de utilidades al tesoro nacional, del resto de operaciones con el tesoro nacional, de las operaciones de pases , de las LELIQ y NOTALQ, de los redescuentos y adelantos, de los intereses, primas y remuneración de cuentas corrientes asociados a op. de pases, LELIQ, NOTALQ, redescuentos y adelantos, de las operaciones con letras fiscales de liquidez y de otros operaciones."
+      },
+      {
+        "id": 47,
+        "detalle": "Efecto monetario de las compras y ventas de divisas del BCRA en el mercado de cambios, con excepción de las realizadas directamente al Tesoro Nacional."
+      },
+      {
+        "id": 48,
+        "detalle": "Efecto monetario de las compras y ventas de divisas del BCRA al Tesoro Nacional."
+      },
+      {
+        "id": 49,
+        "detalle": "Variación del stock de adelantos transitorios otorgados por el BCRA al Gobierno Nacional según lo contemplado en el artículo 20 de la Carta Orgánica del BCRA"
+      },
+      {
+        "id": 50,
+        "detalle": "Transferencia de utilidades que realiza el BCRA al Gobierno Nacional en el marco de lo dispuesto en el artículo 38 de la Carta Orgánica del BCRA."
+      },
+      {
+        "id": 51,
+        "detalle": "Variación de la cuenta en moneda nacional del Gobierno Nacional en el BCRA y aportes del BCRA al Tesoro Nacional. También incluye movimientos de la cuenta ANSES Obligaciones de Pago Previsional y el efecto monetario de los cobros de servicios de títulos públicos en cartera del BCRA."
+      },
+      {
+        "id": 52,
+        "detalle": "Efecto monetario de las operaciones de pases que realizó el BCRA hasta el 14 de julio de 2025. Se muestra con signo negativo el efecto contractivo por el aumento del saldo de pases pasivos para el BCRA y la caída del saldo de pases activos para esta institución."
+      },
+      {
+        "id": 53,
+        "detalle": "Incluye el efecto monetario asociado a las operaciones con Letras de Liquidez5 y Notas de Liquidez a tasa variable6 (NOTALIQ) del BCRA. Se muestra con signo negativo la contracción asociada al aumento del saldo de LELIQ y/o NOTALIQ y con signo positivo la disminución de los stocks de estos títulos. Excluye la expansión vinculada al pago de intereses."
+      },
+      {
+        "id": 54,
+        "detalle": "Financiamiento otorgado por el BCRA a entidades financieras mediante redescuentos o adelantos."
+      },
+      {
+        "id": 55,
+        "detalle": "Cobro de intereses por parte del BCRA asociados a las operaciones de redescuentos y adelantos, del pago neto de primas de operaciones de pases que realizó el BCRA hasta el 14 de julio de 2025, del pago de intereses de LELIQ y NOTALIQ, y del pago de remuneración de las cuentas corrientes de las entidades financieras en el BCRA (incluye los reintegros realizados por la conversión a pesos de las cuentas corrientes en moneda extranjera en el marco de la Comunicación A 4043 y complementarias). Los cobros del BCRA implican contracción monetaria y los pagos que realiza se traducen en expansión monetaria."
+      },
+      {
+        "id": 56,
+        "detalle": "Compra (expansión) y venta (contracción) de Letras del BCRA (LEBAC) y Notas del BCRA (NOBAC), tanto en el mercado primario como en el secundario. Incluye el efecto monetario expansivo de los pagos de cupones de NOBAC."
+      },
+      {
+        "id": 57,
+        "detalle": "Asociada al Programa de Unificación Monetaria (Decreto 743 /2003), cuyo objeto fue retirar los títulos provinciales conocidos como \"cuasimonedas\" y reemplazarlos por moneda nacional de curso legal (corresponde a cambio del valor residual del stock de cuasimonedas). Vigencia en los años 2003 y 2004."
+      },
+      {
+        "id": 58,
+        "detalle": "asociada a operaciones con Letras Fiscales de Liquidez."
+      },
+      {
+        "id": 59,
+        "detalle": "Variación de la base monetaria asociada a cualquier otro factor no incluido en otros rubros. Entre ellos, se incluyen las operaciones de compra y venta de títulos públicos, las operaciones del Sistema de pago en Monedas Locales, efecto monetario de las operaciones de BOPREAL, los gastos generales y el efecto monetario de las operaciones de futuros de divisas, operaciones simultáneas y otras operaciones de corto plazo realizadas por el BCRA a partir del 15 de julio de 2025."
+      },
+      {
+        "id": 60,
+        "detalle": "Circulación monetaria que no está en poder de las entidades financieras. Se obtiene calculando la diferencia entre la circulación monetaria total difundida diariamente por el BCRA mediante Comunicación “C” y el efectivo en pesos en poder de las entidades financieras."
+      },
+      {
+        "id": 61,
+        "detalle": "Efectivo en pesos en poder de las entidades financieras."
+      },
+      {
+        "id": 62,
+        "detalle": "Cheques cancelatorios en pesos (medio de pago según lo establecido en la Comunicación A 5130). El sado de esta variable es difundido diariamente por el BCRA mediante Comunicación “C”9"
+      },
+      {
+        "id": 63,
+        "detalle": "Depósitos en cuenta corriente en pesos en el BCRA que forman parte de la base monetaria, difundido diariamente mediante Comunicación “C”"
+      },
+      {
+        "id": 64,
+        "detalle": "Dinero legal en circulación (billetes y monedas), más cheques cancelatorios en pesos, más los depósitos en pesos de las entidades financieras en el BCRA"
+      },
+      {
+        "id": 65,
+        "detalle": "Valor nominal estimado de las \"cuasimonedas\" (Vigencia en años 2003 y 2004)"
+      },
+      {
+        "id": 66,
+        "detalle": "Dinero legal en circulación (billetes y monedas) ,más cheques cancelatorios en pesos, más los depósitos en pesos de las entidades financieras en el BCRA, más las cuasimonedas en circulación."
+      },
+      {
+        "id": 67,
+        "detalle": "Circulación monetaria que no está en poder de las entidades financieras."
+      },
+      {
+        "id": 68,
+        "detalle": "Efectivo en pesos en poder de las entidades financieras."
+      },
+      {
+        "id": 69,
+        "detalle": "Cheques cancelatorios en pesos (medio de pago según lo establecido en la Comunicación A 5130)."
+      },
+      {
+        "id": 70,
+        "detalle": "Depósitos en cuenta corriente en pesos en el BCRA que forman parte de la base monetaria"
+      },
+      {
+        "id": 71,
+        "detalle": "Dinero legal en circulación (billetes y monedas), más cheques cancelatorios en pesos, más los depósitos en pesos de las entidades financieras en el BCRA"
+      },
+      {
+        "id": 72,
+        "detalle": "Valor nominal estimado de las \"cuasimonedas\" (Vigencia en años 2003 y 2004)"
+      },
+      {
+        "id": 73,
+        "detalle": "Dinero legal en circulación (billetes y monedas) más los depósitos en pesos de las entidades financieras en el BCRA (incluida las cuasimonedas)"
+      },
+      {
+        "id": 74,
+        "detalle": "Información diaria del saldo de reservas internacionales que se publica mediante Comunicación “C” (Ref. Reservas Internacionales). El saldo de las Reservas Internacionales del último día hábil de cada año calendario incorpora los ajustes que se efectúan al cierre del Balance General, con información hasta el día 31 de diciembre. Por esta razón puede diferir del dato publicado en el comunicado diario correspondiente al último día hábil del año. Excluye las asignaciones de Derechos Especiales de Giro del año 2009."
+      },
+      {
+        "id": 75,
+        "detalle": "Saldo informado bajo el mismo concepto diariamente mediante Comunicación “C” (Ref. Reservas Internacionales). En la serie se excluyen las divisas correspondientes al pase pasivo en dólares estadounidenses con el exterior realizado en el transcurso del año 2016, informado separadamente. En 2025, Incluye operación de REPO concertada con bancos internacionales y garantizada con BOPREAL"
+      },
+      {
+        "id": 76,
+        "detalle": "Incluye las divisas correspondientes al pase pasivo en dólares estadounidenses con el exterior realizado en el transcurso del año 2016. De acuerdo con los establecido en el punto 10 de la Resolución de Directorio N°296 del 22/07/2016, el monto de la línea \" Divisas - Pase Pasivo en dólares con el Exterior”, no podrá ser considerado como Reservas Excedentes según normado en el artículo 6 de la Ley N° 23.928 y sus modificatorias"
+      },
+      {
+        "id": 77,
+        "detalle": "Variación diaria del stock total de reservas internacionales del BCRA."
+      },
+      {
+        "id": 78,
+        "detalle": "Compras y ventas de divisas del BCRA en el mercado de cambios, con excepción de las realizadas directamente al Tesoro Nacional."
+      },
+      {
+        "id": 79,
+        "detalle": "Incluye los ingresos y pagos asociados a operaciones del Tesoro Nacional con el Banco Interamericano de Desarrollo (BID), Banco Interamericano de Reconstrucción y Fomento (BIRF) y Fondo Monetario International (FMI)."
+      },
+      {
+        "id": 80,
+        "detalle": "Otros ingresos y pagos que se cursan a través de las cuentas en moneda extranjera del Tesoro Nacional en el BCRA y que no están incluidos en \"organismos internacionales\"."
+      },
+      {
+        "id": 81,
+        "detalle": "Movimientos de las cuentas corrientes en moneda extranjera de las entidades financieras en el Banco Central."
+      },
+      {
+        "id": 82,
+        "detalle": "Resto de los factores que implican variación del saldo de las reservas internacionales del BCRA y que no se muestran en ninguno de los demás conceptos. Entre ellos, se encuentran: el resultado por la variación de la cotización del dólar estadounidense respecto a otras divisas que componen las reservas internacionales, los intereses ganados por el uso de las reservas internacionales, las operaciones del BCRA con títulos públicos concertadas en moneda extranjera, las operaciones en el marco del Sistema de Pago en Monedas Locales (SML), la caída de reservas internacionales del BCRA asociada a la suscripción de Letras Intransferibles al Gobierno Nacional."
+      },
+      {
+        "id": 83,
+        "detalle": "Saldo de las asignaciones de Derechos Especiales de Giro recibida en 2009."
+      },
+      {
+        "id": 84,
+        "detalle": "Corresponde al tipo de cambio peso por dólar estadounidense utilizado en la conversión de las partidas pertinentes entre las variables que explican la variación de las reservas internacionales. Entre el 2/2/2003 y 26/03/2004 es el tipo de cambio de referencia del día hábil anterior. A partir del 29/3/2004, corresponde al tipo de cambio de referencia del día en cuestión (el cual es calculado por el BCRA , según Com. A 3500 y 8359). Esta variable se publica mediante Comunicación C sobre “Tipo de Cambio de Referencia\"."
+      },
+      {
+        "id": 85,
+        "detalle": "Depósitos de efectivo constituidos bajo la forma de cuenta corriente bancaria. Saldo neto de Utilización de Fondos Unificados de Cuentas Oficiales."
+      },
+      {
+        "id": 86,
+        "detalle": "Depósitos de efectivo constituidos bajo el sistema de caja de ahorros. Incluye depósitos de efectivo en cuentas de ahorro vinculado a préstamos, en cuentas especiales para círculos cerrados, en la cuenta Fondo de desempleo, en cuentas abiertas bajo el sistema de usuras pupilares, en cuentas especiales para la acreditación de remuneraciones, en cuentas corrientes especiales para personas jurídicas y en las Cuentas especiales a las que se refiere la Ley 27.260 - Régimen de 27.260 - Régimen de sinceramiento fiscal – LIBRO II - Título I – Artículo 38, inciso c), Art. 41 y Art. 42, incisos b) y c) y Art. 41 y Art. 44 y Ley 27.613."
+      },
+      {
+        "id": 87,
+        "detalle": "Plazo fijo totales + Inversiones a plazo constante + Inv. con opción de cancelación anticipada + Inv. con renovación por plazo determinado -Depositos CEDROS- Plazo fijo con clausula Cer (UVA)- Inv. UVA con opción de cancelación anticipada UVA sector público - Inv.UVA con opción de canc anticipada Sector privado"
+      },
+      {
+        "id": 88,
+        "detalle": "Plazo fijo con clausula CER/UVI Uvas e Inversiones UVA con opción anticipada del sector privado"
+      },
+      {
+        "id": 89,
+        "detalle": "Depósitos de efectivo en entidades financieras no incluidos en otros rubros. "
+      },
+      {
+        "id": 90,
+        "detalle": "Certificados de depósitos reprogramados (Según regímen de reprogramación de depósitos implementado en el año 2002. Ver Com A 3426 y modificatorias)"
+      },
+      {
+        "id": 91,
+        "detalle": "Suma de total depósitos en efectivo (incluye Certificados de depósitos reprogramados), neto del Uso de Fondo Unificado de Cuentas Oficiales."
+      },
+      {
+        "id": 92,
+        "detalle": "Información de Bonos del Gob. Nacional canjeados por depósitos en el año 2002"
+      },
+      {
+        "id": 93,
+        "detalle": "Suma de total depósitos en efectivo, los Certificados de depósitos reprogramados y los Bonos del Gob. Nacional canjeados por depósitos en el año 2002, neto del Uso de Fondo Unificado de Cuentas Oficiales."
+      },
+      {
+        "id": 94,
+        "detalle": "Depósitos de efectivo constituidos bajo la forma de cuenta corriente bancaria."
+      },
+      {
+        "id": 95,
+        "detalle": "Depósitos de efectivo constituidos bajo el sistema de caja de ahorros. Incluye depósitos de efectivo en cuentas de ahorro vinculado a préstamos, en cuentas especiales para círculos cerrados, en la cuenta Fondo de desempleo, en cuentas abiertas bajo el sistema de usuras pupilares, en cuentas especiales para la acreditación de remuneraciones, en cuentas corrientes especiales para personas jurídicas y en las Cuentas especiales a las que se refiere la Ley 27.260 - Régimen de 27.260 - Régimen de sinceramiento fiscal – LIBRO II - Título I – Artículo 38, inciso c), Art. 41 y Art. 42, incisos b) y c) y Art. 41 y Art. 44 y Ley 27.613."
+      },
+      {
+        "id": 96,
+        "detalle": "Plazo fijo totales + Inversiones a plazo constante + Inv. con opción de cancelación anticipada + Inv. con renovación por plazo determinado -Depositos CEDROS- Plazo fijo con clausula Cer (UVA)- Inv. UVA con opción de cancelación anticipada UVA sector público - Inv.UVA con opción de canc anticipada Sector privado"
+      },
+      {
+        "id": 97,
+        "detalle": "Plazo fijo con clausula CER/UVI Uvas e Inversiones UVA con opción anticipada del sector privado"
+      },
+      {
+        "id": 98,
+        "detalle": "Depósitos de efectivo del sector privado no financiero en entidades financieras no incluidos en otros rubros. "
+      },
+      {
+        "id": 99,
+        "detalle": "Certificados de depósitos reprogramados (Según regímen de reprogramación de depósitos implementado en el año 2002. Ver Com A 3426 y modificatorias)"
+      },
+      {
+        "id": 100,
+        "detalle": "Suma de total depósitos en efectivo (incluye Certificados de depósitos reprogramados) del sector privado no financiero en entidades financieras."
+      },
+      {
+        "id": 101,
+        "detalle": "Información de Bonos del Gob. Nacional canjeados por depósitos en el año 2002"
+      },
+      {
+        "id": 102,
+        "detalle": "Suma de total depósitos en efectivo del sector privado no financiero y los Bonos del Gob. Nacional canjeados por depósitos en el año 2002"
+      },
+      {
+        "id": 103,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 104,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 105,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 106,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 107,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 108,
+        "detalle": "Cta. Cte+Caja de Ahorro+Plazo Fijo+Inv. A plazo constante+Inv. con opción de canc. ant.+Inv. a plazo determinado+Saldo inmobilizado+Cuenta a la vista+Ordenes de Pago+Dep. en garantia+Dep. vinc. Con op. Cambiarias+Otros depositos"
+      },
+      {
+        "id": 109,
+        "detalle": "Circulacion monetaria total - Efectivo en bancos en pesos+Cuentas corrientes en pesos de los sectores privado y público+ Cajas de ahorro en pesos de los sectores privado y público."
+      },
+      {
+        "id": 110,
+        "detalle": "Cuentas corrientes abiertas en la entidad que arrojen saldo deudor."
+      },
+      {
+        "id": 111,
+        "detalle": "Préstamos de efectivo a suscriptores de letras, pagarés, debentures u otros documentos. Incluye préstamos para la prefinanciación y financiación de exportaciones."
+      },
+      {
+        "id": 112,
+        "detalle": "Préstamos de efectivo garantizados con hipoteca en primer grado. Incluye los préstamos instrumentados de acuerdo con el \"Manual de originación y administración de préstamos inmobiliarios - Estandarización de préstamos hipotecarios sobre la vivienda\""
+      },
+      {
+        "id": 113,
+        "detalle": "Préstamos de efectivo garantizados con prenda con registro o desplazamiento -inclusive la recibida por endoso-. Incluye los préstamos instrumentados de acuerdo con el \"Manual de originación y administración de préstamos prendarios sobre automotores - Estandarización de préstamos prendarios sobre automotores\"."
+      },
+      {
+        "id": 114,
+        "detalle": "Préstamos de efectivo acordados a personas físicas sin garantía hipotecaria o prendaria. No incluye los derivados de adelantos en cuenta (corriente u otras a la vista) o de la compra de documentos, ni los instrumentados bajo la modalidad de documentos a sola firma, o documentos descontados o créditos documentarios, ni los saldos deudores por el uso de tarjetas de crédito."
+      },
+      {
+        "id": 115,
+        "detalle": "Cuentas del sistema de tarjetas de crédito que arrojen saldo deudor."
+      },
+      {
+        "id": 116,
+        "detalle": "Préstamos de efectivo no comprendidos en las definiciones de las cuentas: adelantos en cuenta corriente, otros adelantos, documentos a sola firma, documentos descontados, documentos comprados, hipotecarios, prendarios, personales, o a titulares del sistema de tarjetas de crédito. Incluye créditos documentarios. Neto de intereses documentados."
+      },
+      {
+        "id": 117,
+        "detalle": "Suma del total de préstamos en efectivo otorgados al sector privado no financiero por las entidades financieras, neto de intereses documentados."
+      },
+      {
+        "id": 118,
+        "detalle": "Cuentas corrientes abiertas en la entidad que arrojen saldo deudor."
+      },
+      {
+        "id": 119,
+        "detalle": "Préstamos de efectivo a suscriptores de letras, pagarés, debentures u otros documentos. Incluye préstamos para la prefinanciación y financiación de exportaciones."
+      },
+      {
+        "id": 120,
+        "detalle": "Préstamos de efectivo garantizados con hipoteca en primer grado. Incluye los préstamos instrumentados de acuerdo con el \"Manual de originación y administración de préstamos inmobiliarios - Estandarización de préstamos hipotecarios sobre la vivienda\""
+      },
+      {
+        "id": 121,
+        "detalle": "Préstamos de efectivo garantizados con prenda con registro o desplazamiento -inclusive la recibida por endoso-. Incluye los préstamos instrumentados de acuerdo con el \"Manual de originación y administración de préstamos prendarios sobre automotores - Estandarización de préstamos prendarios sobre automotores\"."
+      },
+      {
+        "id": 122,
+        "detalle": "Préstamos de efectivo acordados a personas físicas sin garantía hipotecaria o prendaria. No incluye los derivados de adelantos en cuenta (corriente u otras a la vista) o de la compra de documentos, ni los instrumentados bajo la modalidad de documentos a sola firma, o documentos descontados o créditos documentarios, ni los saldos deudores por el uso de tarjetas de crédito."
+      },
+      {
+        "id": 123,
+        "detalle": "Cuentas del sistema de tarjetas de crédito que arrojen saldo deudor."
+      },
+      {
+        "id": 124,
+        "detalle": "Préstamos de efectivo no comprendidos en las definiciones de las cuentas: adelantos en cuenta corriente, otros adelantos, documentos a sola firma, documentos descontados, documentos comprados, hipotecarios, prendarios, personales, o a titulares del sistema de tarjetas de crédito. Incluye créditos documentarios. Neto de intereses documentados."
+      },
+      {
+        "id": 125,
+        "detalle": "Suma del total de préstamos en efectivo otorgados al sector privado no financiero por las entidades financieras, neto de intereses documentados."
+      },
+      {
+        "id": 126,
+        "detalle": "Suma del total de préstamos en efectivo otorgados al sector privado no financiero por las entidades financieras, neto de intereses documentados."
+      },
+      {
+        "id": 127,
+        "detalle": "Suma del total de préstamos en efectivo otorgados al sector privado no financiero por las entidades financieras, neto de intereses documentados."
+      },
+      {
+        "id": 135,
+        "detalle": "Tasa de interés promedio ponderada por montos operados, correspondiente a depósitos a plazo fijo mayoristas en pesos, de 30 a 35 días de plazo, constituidos en todas las entidades bancarias del país. En 2025 abarcó las operaciones de 1.000 millones de pesos y más. A partir de 2026, una vez al año, se actualiza el estrato de monto de las operaciones incluidas, según la variación del Índice de Precios al Consumidor. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 136,
+        "detalle": "Tasa de interés promedio ponderada por montos operados, correspondiente a depósitos a plazo fijo mayoristas en pesos, de 30 a 35 días de plazo, constituidos en todas las entidades bancarias privadas del país. En 2025 abarcó las operaciones de 1.000 millones de pesos y más. A partir de 2026, una vez al año, se actualiza el estrato de monto de las operaciones incluidas, según la variación del Índice de Precios al Consumidor. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 137,
+        "detalle": "Tasa de interés promedio ponderada por montos operados, correspondiente a depósitos a plazo fijo mayoristas en pesos, de 30 a 35 días de plazo, constituidos en todas las entidades bancarias privadas del país. En 2025 abarcó las operaciones de 1.000 millones de pesos y más. A partir de 2026, una vez al año, se actualiza el estrato de monto de las operaciones incluidas, según la variación del Índice de Precios al Consumidor. Los detalles metodológicos se pueden consultar en el siguiente vínculo: https://www.bcra.gob.ar/archivos//Pdfs/PublicacionesEstadisticas/tasmet.pdf "
+      },
+      {
+        "id": 138,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de un millón de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos públicos y privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 139,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de un millón de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 140,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de un millón de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 141,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de veinte millones de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos públicos y privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 142,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de veinte millones de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 143,
+        "detalle": "Tasa de interés promedio ponderada por montos operados de los depósitos a plazo fijo de veinte millones de pesos o más, de 30 hasta 35 días de plazo, según lo informado por los bancos privados a través del SISCEN-0002, en las cuentas SISCEN 149 y 152 (plazos fijos transferibles e intransferibles con retribución fija)."
+      },
+      {
+        "id": 144,
+        "detalle": "Promedio ponderada por montos otorgados de préstamos personales en pesos al sector privado no financiero a tasa de interés fija o repactable, considerando los datos informados por la totalidad de entidades financieras de todo el país, a través del SISCEN -0018 en la cuenta SISCEN 51"
+      },
+      {
+        "id": 145,
+        "detalle": "Tasa de interés promedio ponderada por saldos pactada por el otorgamiento de préstamos a empresas del sector privado, no prestadoras de servicios financieros ni PyMEs, bajo la forma de adelantos en cuenta corriente con acuerdo, de 1 a 7 días de plazo, y de diez millones de pesos o más, en moneda nacional, según lo informado por la totalidad de entidades financieras a través del requerimiento informativo SISCEN-0018 en la cuenta SISCEN 44 (adelantos en cuenta corriente)."
+      },
+      {
+        "id": 146,
+        "detalle": "Tasa de interés promedio ponderada por monto correspondiente a préstamos entre entidades bancarias privadas por operaciones de préstamos de efectivo de hasta 15 días de plazo, a tasa de interés fija distinta de cero."
+      },
+      {
+        "id": 147,
+        "detalle": "Monto operado de préstamos entre entidades bancarias privadas por operaciones de préstamos de efectivo hasta 15 días de plazo, a tasa de interés fija distinta de cero."
+      },
+      {
+        "id": 148,
+        "detalle": "Promedio ponderada por montos operados de préstamos entre total de entidades financieras, relevados mediante la cuenta SISCEN 43. Corresponde a las operaciones a tasa de interés fija en moneda nacional y de hasta 15 días de plazo."
+      },
+      {
+        "id": 149,
+        "detalle": "Concertados entre el total de entidades financieras, a tasa fija en moneda nacional y por hasta 15 días de plazos, relevados mediante la cuenta SISCEN 43"
+      },
+      {
+        "id": 150,
+        "detalle": "Corresponde a la tasa de interés denominada “RIX”. Se calcula como la tasa de interés promedio ponderada por monto de las operaciones en la rueda REPO entre agentes del Mercado Abierto Electrónico (MAE), de 1 día hábil, excluyendo aquellas en las que el BCRA es contraparte y las concertadas a tasa cero"
+      },
+      {
+        "id": 151,
+        "detalle": "Monto negociado de operaciones de pases en la rueda REPO del MAE, en las que el BCRA no es contraparte"
+      },
+      {
+        "id": 152,
+        "detalle": "Stock de pases concertados por el BCRA hasta el 14 de julio de 2025."
+      },
+      {
+        "id": 153,
+        "detalle": "Stock de pases pasivos para el BCRA, en los que los Fondos Comunes de Inversión son contraparte."
+      },
+      {
+        "id": 154,
+        "detalle": "Stock de pases concertados por el BCRA hasta el 14 de julio de 2025."
+      },
+      {
+        "id": 155,
+        "detalle": "Saldo total en circulación. No incluye las emitidas como contrapartida de operaciones de pases con el BCRA. A partir de noviembre de 2018 se dejaron de emitir LEBAC y NOBAC"
+      },
+      {
+        "id": 156,
+        "detalle": "Stock de LEBAC en valor nominal, stock de LEGAR y LEMIN expresado en pesos según el Tipo de Cambio de Referencia)"
+      },
+      {
+        "id": 157,
+        "detalle": "Saldo en poder de las entidades financieras. Información disponible con periodicidad semanal a partir de julio de 2008 y diaria entre el 30 de junio de 2017 y diciembre de 2018."
+      },
+      {
+        "id": 158,
+        "detalle": "Stock de títulos denominados en dólares emitidos por el BCRA. A partir del 05/01/2024 se incluye el stock de BOPREAL, expresado en valor nominal residual. No se incluyen los BOPREAL emitidos como garantía de los pases acordados con bancos internacionales en 2025."
+      },
+      {
+        "id": 159,
+        "detalle": "Stock de Notas de Compensación de Efectivo emitido por el BCRA"
+      },
+      {
+        "id": 160,
+        "detalle": "Hasta el 31 de diciembre de 2016 corresponde a la tasa de interés de la LEBAC a 35 días de plazo. A partir del 2 de enero de 2017 corresponde al centro del corredor de tasas de interés de los pases a 7 días de plazo. A partir del 8 de agosto de 2018, la tasa de referencia de la política monetaria es la de Letras de Liquidez (LELIQ). A partir del 21 de enero de 2020, corresponde a la tasa promedio ponderada de la LELIQ de menor plazo subastada en la última licitación adjudicada, la cual mantendrá su vigencia hasta el siguiente proceso de subasta. A partir del 6 de enero de 2022 es la tasa de interés anunciada por el BCRA para la LELIQ de 28 días. A partir del 18 de diciembre de 2023 es la tasa de interés de los pases pasivos a un día de plazo. A partir del 22 de julio de 2024 es la tasa de interés anunciada por el BCRA y devengada por las Letras Fiscales de Liquidez (LEFI).  A partir del 11 de julio de 2025 el BCRA dejó de anunciar una tasa de política monetaria."
+      },
+      {
+        "id": 161,
+        "detalle": "Hasta el 31/12/16 corresponde a la tasa de interés de la LEBAC a 35 días de plazo. A partir del 2/1/17 corresponde al centro del corredor de tasas de interés de los pases a 7 días de plazo. A partir del 8/8/18, la tasa de referencia de la política monetaria es la de Letras de Liquidez (LELIQ). A partir del 21/1/20, corresponde a la tasa promedio ponderada de la LELIQ de menor plazo subastada en la última licitación adjudicada, la cual mantendrá su vigencia hasta el siguiente proceso de subasta. A partir del 6/1/22 y hasta el 22/7/24 es la tasa de interés anunciada por el BCRA mediante Comunicación “C” con referencia “Tasa de política monetaria”. A partir del 22/7/24 es la tasa de interés anunciada por el BCRA y devengada por las Letras Fiscales de Liquidez (LEFI)."
+      },
+      {
+        "id": 162,
+        "detalle": "Corresponde a las tasas de interés vigentes para las operaciones con tasas de interés preanunciadas en las que participa el BCRA, con contrapartida de entidades financieras. Se difunden mediante Comunicación “C” con referencia “Tasas de pases activos y pasivos\"."
+      },
+      {
+        "id": 163,
+        "detalle": "Corresponde a las tasas de interés vigentes para las operaciones con tasas de interés preanunciadas en las que participa el BCRA, con contrapartida de entidades financieras. Se difunden mediante Comunicación “C” con referencia “Tasas de pases activos y pasivos\"."
+      },
+      {
+        "id": 164,
+        "detalle": "Corresponde a las tasas de interés vigentes para las operaciones con tasas de interés preanunciadas en las que participa el BCRA, con contrapartida de entidades financieras. Se difunden mediante Comunicación “C” con referencia “Tasas de pases activos y pasivos\"."
+      },
+      {
+        "id": 165,
+        "detalle": "Corresponde a las tasas de interés vigentes para las operaciones con tasas de interés preanunciadas en las que participa el BCRA, con contrapartida de entidades financieras. Se difunden mediante Comunicación “C” con referencia “Tasas de pases activos y pasivos\"."
+      },
+      {
+        "id": 166,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC hasta el 20 de noviembre de 2018, cuando dejaron de emitirse. Con posterioridad se muestran las tasas nominales anuales de colocación de las Letras de Liquidez para las especies que no están incluidas en la definición de la tasa de política monetaria."
+      },
+      {
+        "id": 167,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 168,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 169,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 170,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 171,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 172,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 173,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 174,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 175,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 176,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 177,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 178,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 179,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 180,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 181,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 182,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 183,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 184,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 185,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 186,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 187,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 188,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 189,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 190,
+        "detalle": "Corresponden a las tasas nominales anuales de colocación LEBAC para el plazo citado"
+      },
+      {
+        "id": 191,
+        "detalle": "Margen de colocación sobre la tasa de referencia citada para el plazo establecido"
+      },
+      {
+        "id": 192,
+        "detalle": "Margen de colocación sobre la tasa de referencia citada para el plazo establecido"
+      },
+      {
+        "id": 193,
+        "detalle": "Margen de colocación sobre la tasa de referencia citada para el plazo establecido"
+      },
+      {
+        "id": 194,
+        "detalle": "Margen de colocación sobre la tasa de referencia citada para el plazo establecido"
+      },
+      {
+        "id": 195,
+        "detalle": "Margen de colocación sobre la tasa de referencia citada para el plazo establecido"
+      },
+      {
+        "id": 196,
+        "detalle": "Saldo de Letras Fiscales de Liquidez en cartera de entidades financieras expresadas en valor técnico, en línea con la Com. A 8060 y Res. Conjunta secretaria de Hacienda y secretaria de finanzas 40/24."
+      },
+      {
+        "id": 197,
+        "detalle": "Circulacion monetaria total - Efectivo en bancos en pesos-vista remunerada de personas jurídicas +Cuentas corrientes en pesos+ Cajas de ahorro en pesos"
+      },
+      {
+        "id": 198,
+        "detalle": "Otros pasivos del BCRA"
+      },
+      {
+        "id": 199,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 200,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 201,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 202,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 203,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 204,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 205,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 206,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 207,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 208,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 209,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 210,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 211,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 212,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 213,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 214,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 215,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 216,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 217,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 218,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 219,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 220,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 221,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 222,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 223,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 224,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 225,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 226,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 227,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 228,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 229,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 230,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 231,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 232,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 233,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 234,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 235,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 236,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 237,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 238,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 239,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 240,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 241,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 242,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 243,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 244,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 245,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 246,
+        "detalle": "Sumatoria de las reservas internacionales del Banco Central de la República Argentina y de los depósitos en corresponsales del exterior que las entidades financieras debían constituir, hasta el 28 de febrero de 2002 inclusive, para la integración de los requisitos mínimos de liquidez. El saldo de las Reservas Internacionales del último día hábil de cada año calendario incorpora los ajustes que se efectúan al cierre del Balance General, con información hasta el día 31 de diciembre. Por esta razón puede diferir del dato publicado en el comunicado diario correspondiente al último día hábil del año. Excluye las asignaciones de Derechos Especiales de Giro del año 2009."
+      },
+      {
+        "id": 247,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 248,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 249,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 250,
+        "detalle": "Sumatoria de la circulación monetaria (billetes y monedas emitidos por el Banco Central de la República Argentina y puestos en circulación), del Fondo de Liquidez Bancaria (vigente durante el período 28.12.2001 – 09.05.2002) y de los depósitos en pesos de las entidades financieras en el BCRA. Desde enero de 1995 hasta mayo de 2001, se dispuso la unificación de las cuentas corrientes en pesos y a la vista en dólares en una única cuenta corriente en dólares (durante ese período, la base monetaria equivalía exclusivamente a la cuenta circulación monetaria). A partir de junio de 2001, se habilitaron nuevamente las cuentas corrientes en pesos. A partir del 23 de noviembre de 2010 incluye los cheques cancelatorios en moneda nacional."
+      },
+      {
+        "id": 251,
+        "detalle": "Billetes y monedas emitidos por el BCRA y puestos en circulación y cheques cancelatorios en pesos."
+      },
+      {
+        "id": 252,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 253,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 254,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 255,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 256,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 257,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 258,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 259,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 260,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 261,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 262,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 263,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 264,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 265,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 266,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 267,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 268,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 269,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 270,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      },
+      {
+        "id": 271,
+        "detalle": "Presenta información agregada del total de entidades financieras autorizadas por el BCRA y en actividad, es decir, sin revocación de autorización concretada, en linea con la información recibida en la tarea 11 del Sistema SISCEN.Los datos corresponden al saldo al cierre de las operaciones del último día de cada mes. En el caso de no contarse con información contemporánea se repite el último saldo conocido. Para mayor información se sugiere consultar el documento de metodología disponilbe en la web del BCRA"
+      }
+    ]
+  }
+}

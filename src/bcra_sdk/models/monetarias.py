@@ -4,6 +4,51 @@ from .evolucion import Resultset
 
 
 @dataclass
+class Metodologia:
+    """Metodología de una variable monetaria.
+
+    ``detalle`` describe cómo está compuesta la variable.
+    """
+
+    id: int
+    detalle: str
+
+
+@dataclass
+class ResultGetMetodologiasV1:
+    """Respuesta de ``get_metodologias``: metodologías con su paginado.
+
+    ``resultset`` describe el total disponible (`count`) y la ventana
+    devuelta (`offset`/`limit`), y ``metodologias`` contiene las
+    metodologías de las variables.
+    """
+
+    resultset: Resultset
+    metodologias: list[Metodologia]
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ResultGetMetodologiasV1":
+        return cls(
+            resultset=Resultset(**data["metadata"]["resultset"]),
+            metodologias=[Metodologia(**m) for m in data["results"]],
+        )
+
+
+@dataclass
+class ResultGetMetodologiaV1:
+    """Respuesta de ``get_metodologia``: metodología de una variable.
+
+    A diferencia del listado, este endpoint no devuelve `Resultset`.
+    """
+
+    metodologia: Metodologia
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ResultGetMetodologiaV1":
+        return cls(metodologia=Metodologia(**data["results"][0]))
+
+
+@dataclass
 class VariableMonetaria:
     """Variable monetaria del listado principal de `get_monetarias`."""
 

@@ -38,6 +38,14 @@ REQUESTS: list[RequestSpec] = [
         params={"desde": "2025-05-20", "hasta": "2025-05-26", "limit": 10},
     ),
     RequestSpec(
+        path="/estadisticas/v4.0/metodologia",
+        out="monetarias.get_metodologias",
+    ),
+    RequestSpec(
+        path="/estadisticas/v4.0/metodologia/1",
+        out="monetarias.get_metodologia",
+    ),
+    RequestSpec(
         path="/estadisticascambiarias/v1.0/Maestros/Divisas",
         out="estadisticascambiarias.get_divisas",
     ),

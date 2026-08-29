@@ -5,6 +5,8 @@ from ._base import Resource
 from ._dates import _coerce_date
 from .models.monetarias import (
     ResultGetEvolucionVariableV1,
+    ResultGetMetodologiaV1,
+    ResultGetMetodologiasV1,
     ResultGetMonetariasV1,
 )
 
@@ -15,8 +17,9 @@ class Monetarias(Resource):
     """Endpoints de estadísticas monetarias del BCRA.
 
     Expuesto como ``client.monetarias``. Incluye el maestro de variables
-    monetarias (``get_monetarias``) y la evolución de una variable
-    (``get_evolucion_variable``).
+    monetarias (``get_monetarias``), la evolución de una variable
+    (``get_evolucion_variable``) y las metodologías de las variables
+    (``get_metodologias``/``get_metodologia``).
     """
 
     def __init__(self, transport):
@@ -32,6 +35,18 @@ class Monetarias(Resource):
             "4.0",
             path="/estadisticas/v4.0/monetarias/{idVariable}",
             model=ResultGetEvolucionVariableV1,
+        )
+        self._register_version(
+            "get_metodologias",
+            "4.0",
+            path="/estadisticas/v4.0/metodologia",
+            model=ResultGetMetodologiasV1,
+        )
+        self._register_version(
+            "get_metodologia",
+            "4.0",
+            path="/estadisticas/v4.0/metodologia/{idVariable}",
+            model=ResultGetMetodologiaV1,
         )
 
     def get_monetarias(self, *, version: str | None = None) -> ResultGetMonetariasV1:
@@ -184,5 +199,140 @@ class Monetarias(Resource):
             result.resultset.count,
             len(result.series),
             sum(len(s.detalle) for s in result.series),
+        )
+        return result
+
+    def get_metodologias(
+        self,
+        *,
+        offset: int | None = None,
+        limit: int | None = None,
+        version: str | None = None,
+    ) -> ResultGetMetodologiasV1:
+        """Devuelve las metodologías de todas las variables monetarias.
+
+        Args:
+            offset: Cantidad de registros a descartar para el paginado.
+            limit: Cantidad máxima de registros (la API admite hasta 250).
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetMetodologiasV1: metadatos del paginado via
+                `Resultset` y el listado de `Metodologia`.
+        """
+        logger.info(
+            "Consultando metodologías (offset=%s, limit=%s)",
+            offset,
+            limit,
+        )
+        params: dict[str, object] = {}
+        if offset is not None:
+            params["offset"] = offset
+        if limit is not None:
+            params["limit"] = limit
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_metodologias",
+            version=version,
+            params=params,
+            model=ResultGetMetodologiasV1,
+            results_key=None,
+        )
+        logger.debug(
+            "Metodologías obtenidas: count=%d, metodologías=%d",
+            result.resultset.count,
+            len(result.metodologias),
+        )
+        return result
+
+    def get_metodologia(
+        self,
+        idVariable: int,
+        *,
+        version: str | None = None,
+    ) -> ResultGetMetodologiaV1:
+        """Devuelve la metodología de una variable monetaria.
+
+        Args:
+            idVariable: ID de la variable (se obtiene con `get_monetarias`).
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetMetodologiaV1: metodología de la variable
+                (`Metodologia`), sin metadatos de paginado.
+        """
+        logger.info("Consultando metodología de variable %s", idVariable)
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_metodologia",
+            version=version,
+            params=None,
+            path_vars={"idVariable": idVariable},
+            model=ResultGetMetodologiaV1,
+            results_key=None,
+        )
+        logger.debug(
+            "Metodología obtenida: id=%d, detalle=%d chars",
+            result.metodologia.id,
+            len(result.metodologia.detalle),
+        )
+        return result
+
+    async def aget_metodologias(
+        self,
+        *,
+        offset: int | None = None,
+        limit: int | None = None,
+        version: str | None = None,
+    ) -> ResultGetMetodologiasV1:
+        """Versión asíncrona de `get_metodologias`."""
+        logger.info(
+            "Consultando metodologías (offset=%s, limit=%s)",
+            offset,
+            limit,
+        )
+        params: dict[str, object] = {}
+        if offset is not None:
+            params["offset"] = offset
+        if limit is not None:
+            params["limit"] = limit
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_metodologias",
+            version=version,
+            params=params,
+            model=ResultGetMetodologiasV1,
+            results_key=None,
+        )
+        logger.debug(
+            "Metodologías obtenidas: count=%d, metodologías=%d",
+            result.resultset.count,
+            len(result.metodologias),
+        )
+        return result
+
+    async def aget_metodologia(
+        self,
+        idVariable: int,
+        *,
+        version: str | None = None,
+    ) -> ResultGetMetodologiaV1:
+        """Versión asíncrona de `get_metodologia`."""
+        logger.info("Consultando metodología de variable %s", idVariable)
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_metodologia",
+            version=version,
+            params=None,
+            path_vars={"idVariable": idVariable},
+            model=ResultGetMetodologiaV1,
+            results_key=None,
+        )
+        logger.debug(
+            "Metodología obtenida: id=%d, detalle=%d chars",
+            result.metodologia.id,
+            len(result.metodologia.detalle),
         )
         return result

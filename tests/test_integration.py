@@ -60,6 +60,20 @@ def test_integration_get_evolucion_variable():
     assert data.series[0].detalle
 
 
+def test_integration_get_metodologias():
+    with BCRAClient() as bcra:
+        data = bcra.monetarias.get_metodologias(limit=5)
+    assert data.resultset.count >= 1
+    assert data.metodologias
+
+
+def test_integration_get_metodologia():
+    with BCRAClient() as bcra:
+        data = bcra.monetarias.get_metodologia(idVariable=1)
+    assert data.metodologia.id == 1
+    assert data.metodologia.detalle
+
+
 def test_integration_get_deudas_sin_datos():
     with BCRAClient() as bcra, pytest.raises(BCRAHTTPError) as exc_info:
         bcra.deudores.get_deudas(cuit=CUIT_SIN_DATOS)

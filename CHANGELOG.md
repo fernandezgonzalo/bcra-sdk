@@ -22,6 +22,7 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - **Release Drafter**: `.github/release-drafter.yml` + workflow que mantiene un draft de release categorizado por tipo de cambio (Conventional Commits) y autolabela los PRs desde el título
 - Recurso `Monetarias` expuesto como `client.monetarias` con `get_monetarias`/`aget_monetarias` (`GET /estadisticas/v4.0/monetarias`), modelos `VariableMonetaria` y `ResultGetMonetariasV1`, unit tests y golden test con cassette
 - Endpoint `get_evolucion_variable`/`aget_evolucion_variable` (`GET /estadisticas/v4.0/monetarias/{idVariable}`) con filtros `desde`, `hasta`, `offset` y `limit`, modelos `SerieMonetaria` y `PuntoSerie`, unit tests, golden test con cassette y test de integración
+- Endpoints de metodologías `get_metodologias`/`aget_metodologias` (`GET /estadisticas/v4.0/metodologia`, con `offset` y `limit`) y `get_metodologia`/`aget_metodologia` (`GET /estadisticas/v4.0/metodologia/{idVariable}`), modelos `Metodologia`, `ResultGetMetodologiasV1` y `ResultGetMetodologiaV1`, unit tests, golden tests con cassettes y tests de integración
 
 ### Changed
 

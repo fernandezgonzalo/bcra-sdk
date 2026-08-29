@@ -6,6 +6,8 @@ Endpoints de estadísticas monetarias del BCRA.
 |--------|----------|
 | `get_monetarias()` | `GET /estadisticas/v4.0/monetarias` |
 | `get_evolucion_variable(idVariable, desde=None, hasta=None, offset=None, limit=None)` | `GET /estadisticas/v4.0/monetarias/{idVariable}` |
+| `get_metodologias(offset=None, limit=None)` | `GET /estadisticas/v4.0/metodologia` |
+| `get_metodologia(idVariable)` | `GET /estadisticas/v4.0/metodologia/{idVariable}` |
 
 ## `get_monetarias()`
 
@@ -80,3 +82,50 @@ La compresión de la respuesta (`accept-encoding: gzip` o `br`) la negocia
 automáticamente `httpx` según los extras instalados; no requiere configuración.
 El par asíncrono es
 `await bcra.monetarias.aget_evolucion_variable(...)`.
+
+## `get_metodologias()`
+
+Devuelve las metodologías de todas las variables monetarias, con su paginado.
+
+Parámetros opcionales:
+- `offset`: registros a descartar para el paginado (default del servidor: 0).
+- `limit`: registros a retornar, máximo 250 (default del servidor: 250).
+
+Devuelve `ResultGetMetodologiasV1`:
+
+- `resultset: Resultset` (metadatos de paginación)
+- `metodologias: list[Metodologia]`
+    - `Metodologia.id: int`
+    - `Metodologia.detalle: str` (descripción de cómo está compuesta la variable)
+
+```python
+with BCRAClient() as bcra:
+    metodologias = bcra.monetarias.get_metodologias()
+    print(metodologias.resultset.count)
+    for metodologia in metodologias.metodologias:
+        print(metodologia.id)
+```
+
+El par asíncrono es `await bcra.monetarias.aget_metodologias(...)`.
+
+## `get_metodologia()`
+
+Devuelve la metodología de una variable monetaria específica.
+
+Parámetros:
+- `idVariable` (requerido): ID de la variable, obtenible con `get_monetarias()`.
+
+Devuelve `ResultGetMetodologiaV1` (sin metadatos de paginación):
+
+- `metodologia: Metodologia`
+    - `Metodologia.id: int`
+    - `Metodologia.detalle: str`
+
+```python
+with BCRAClient() as bcra:
+    metodologia = bcra.monetarias.get_metodologia(idVariable=1)
+    print(metodologia.metodologia.detalle)
+```
+
+Id inválidos o sin metodología levantan `BCRAHTTPError`. El par asíncrono es
+`await bcra.monetarias.aget_metodologia(idVariable=1)`.
