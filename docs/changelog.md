@@ -5,7 +5,18 @@ Todas las novedades del proyecto se registran en
 (el formato sigue [Keep a Changelog](https://keepachangelog.com/) y los cambios
 [Conventional Commits](https://www.conventionalcommits.org/)).
 
-Última versión publicada: **0.0.8** (2026-08-29).
+Última versión publicada: **0.0.9** (2026-08-29).
+
+## [0.0.9] - 2026-08-29
+
+### Fixed
+
+- Orden de imports y `__all__` en `monetarias` y sus modelos para cumplir con ruff 0.16
+  (isort case-insensitive y `__all__` sorteado), con el pre-commit alineado a la versión
+  de ruff que corre en CI.
+- Workflow de Release Drafter: permisos `contents: write` para crear/actualizar el draft,
+  job `autolabel` limitado a eventos `pull_request` y migración del deprecado
+  `categories[*].labels` al esquema `when: labels`.
 
 ## [0.0.8] - 2026-08-29
 

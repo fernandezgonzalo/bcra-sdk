@@ -7,9 +7,12 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.0.9] - 2026-08-29
+
 ### Fixed
 
 - Orden de imports y `__all__` en `monetarias` y sus modelos para cumplir con ruff 0.16 (isort case-insensitive y RUF022); el pre-commit queda alineado con la versión de ruff que corre en CI
+- Workflow de Release Drafter: permisos `contents: write` para crear y actualizar el draft, job `autolabel` ejecutado solo ante eventos `pull_request` (el autolabeler v7 rechaza otros tipos de evento) y migración del deprecado `categories[*].labels` a `when: labels` en la config
 
 ## [0.0.8] - 2026-08-29
 
