@@ -5,7 +5,32 @@ Todas las novedades del proyecto se registran en
 (el formato sigue [Keep a Changelog](https://keepachangelog.com/) y los cambios
 [Conventional Commits](https://www.conventionalcommits.org/)).
 
-Última versión publicada: **0.0.7** (2026-08-27).
+Última versión publicada: **0.0.8** (2026-08-29).
+
+## [0.0.8] - 2026-08-29
+
+### Added
+
+- Reintentos automáticos ante errores transitorios (`RetryPolicy`, backoff exponencial,
+  respeto de `Retry-After`), configurables vía `BCRAClient(retries=...)`, sync y async.
+- Inputs tipados: fechas (`fecha`, `fechadesde`, `fechahasta`, `desde`, `hasta`) aceptan
+  `datetime.date` además de `str` ISO, con validación y normalización a `YYYY-MM-DD`.
+- Validación de CUIT en `get_deudas`/`aget_deudas`.
+- Golden tests deterministas con cassettes (respuestas reales del BCRA, regrabables con
+  `scripts/record_cassettes.py`) y suite de integración en vivo (marker `integration`).
+- Docstrings públicos (estilo Google, en español) y sección **API Reference** con mkdocstrings.
+- Gates de CI: CHANGELOG (`scripts/check_changelog.py`), job `docs` con `mkdocs --strict`,
+  job `package` (wheel + sdist + `twine check`) y Release Drafter.
+- Recurso `Monetarias` (`client.monetarias`) con `get_monetarias`, `get_evolucion_variable`
+  y `get_metodologias`/`get_metodologia` (con sus pares `aget_*`), incluyendo sus modelos.
+
+### Changed
+
+- `__version__` se deriva de `importlib.metadata` en vez de estar hardcodeada.
+- `BCRAHTTPError` expone `response` y `reason`; se agregaron `BCRAConnectionError` y
+  `BCRATimeoutError`, todas bajo `BCRAError`.
+- Metadata de PyPI completa y CI con job `pre-commit`, `concurrency` y verificación de que
+  el tag coincida con la versión del paquete.
 
 ## [0.0.7] - 2026-08-27
 

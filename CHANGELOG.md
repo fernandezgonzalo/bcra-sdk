@@ -7,6 +7,8 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.0.8] - 2026-08-29
+
 ### Added
 
 - Reintentos automáticos ante errores transitorios: `RetryPolicy` configurable vía `BCRAClient(retries=...)`, backoff exponencial, respeto del header `Retry-After` y retry de timeouts (sync y async)
