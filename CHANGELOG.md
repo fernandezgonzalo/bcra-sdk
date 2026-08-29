@@ -21,6 +21,7 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - Job de CI `package` que construye wheel + sdist y corre `twine check` en cada PR/push, adelantando errores de empaquetado que antes solo se veían en el release
 - **Release Drafter**: `.github/release-drafter.yml` + workflow que mantiene un draft de release categorizado por tipo de cambio (Conventional Commits) y autolabela los PRs desde el título
 - Recurso `Monetarias` expuesto como `client.monetarias` con `get_monetarias`/`aget_monetarias` (`GET /estadisticas/v4.0/monetarias`), modelos `VariableMonetaria` y `ResultGetMonetariasV1`, unit tests y golden test con cassette
+- Endpoint `get_evolucion_variable`/`aget_evolucion_variable` (`GET /estadisticas/v4.0/monetarias/{idVariable}`) con filtros `desde`, `hasta`, `offset` y `limit`, modelos `SerieMonetaria` y `PuntoSerie`, unit tests, golden test con cassette y test de integración
 
 ### Changed
 

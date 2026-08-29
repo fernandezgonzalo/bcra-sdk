@@ -47,6 +47,19 @@ def test_integration_get_monetarias():
     assert data.variables
 
 
+def test_integration_get_evolucion_variable():
+    with BCRAClient() as bcra:
+        data = bcra.monetarias.get_evolucion_variable(
+            idVariable=1,
+            desde="2025-05-20",
+            hasta="2025-05-26",
+            limit=5,
+        )
+    assert data.resultset.count >= 1
+    assert data.series[0].idVariable == 1
+    assert data.series[0].detalle
+
+
 def test_integration_get_deudas_sin_datos():
     with BCRAClient() as bcra, pytest.raises(BCRAHTTPError) as exc_info:
         bcra.deudores.get_deudas(cuit=CUIT_SIN_DATOS)

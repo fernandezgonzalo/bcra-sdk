@@ -98,6 +98,36 @@ def test_get_monetarias_golden(client, monkeypatch):
     assert parsed == raw
 
 
+def test_get_evolucion_variable_golden(client, monkeypatch):
+    cassette = load_cassette("monetarias.get_evolucion_variable")
+    monkeypatch.setattr(
+        client.monetarias._t,
+        "request",
+        MagicMock(return_value=http_response(cassette)),
+    )
+    data = client.monetarias.get_evolucion_variable(
+        idVariable=1,
+        desde="2025-05-20",
+        hasta="2025-05-26",
+        limit=10,
+    )
+    parsed = {
+        "metadata": {"resultset": asdict(data.resultset)},
+        "results": [
+            {
+                "idVariable": s.idVariable,
+                "detalle": [asdict(p) for p in s.detalle],
+            }
+            for s in data.series
+        ],
+    }
+    raw = {
+        "metadata": cassette["json"]["metadata"],
+        "results": cassette["json"]["results"],
+    }
+    assert parsed == raw
+
+
 def test_get_deudas_error_golden(client, monkeypatch):
     cassette = load_cassette("deudores.get_deudas")
     message = cassette["json"]["errorMessages"][0]

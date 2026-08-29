@@ -1,0 +1,46 @@
+{
+  "path": "/estadisticas/v4.0/monetarias/1",
+  "params": {
+    "desde": "2025-05-20",
+    "hasta": "2025-05-26",
+    "limit": 10
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "metadata": {
+      "resultset": {
+        "count": 5,
+        "offset": 0,
+        "limit": 10
+      }
+    },
+    "results": [
+      {
+        "idVariable": 1,
+        "detalle": [
+          {
+            "fecha": "2025-05-26",
+            "valor": 38384.0
+          },
+          {
+            "fecha": "2025-05-23",
+            "valor": 38428.0
+          },
+          {
+            "fecha": "2025-05-22",
+            "valor": 38097.0
+          },
+          {
+            "fecha": "2025-05-21",
+            "valor": 38176.0
+          },
+          {
+            "fecha": "2025-05-20",
+            "valor": 38267.0
+          }
+        ]
+      }
+    ]
+  }
+}

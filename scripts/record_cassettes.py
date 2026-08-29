@@ -33,6 +33,11 @@ REQUESTS: list[RequestSpec] = [
         out="monetarias.get_monetarias",
     ),
     RequestSpec(
+        path="/estadisticas/v4.0/monetarias/1",
+        out="monetarias.get_evolucion_variable",
+        params={"desde": "2025-05-20", "hasta": "2025-05-26", "limit": 10},
+    ),
+    RequestSpec(
         path="/estadisticascambiarias/v1.0/Maestros/Divisas",
         out="estadisticascambiarias.get_divisas",
     ),

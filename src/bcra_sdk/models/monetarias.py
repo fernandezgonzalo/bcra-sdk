@@ -20,6 +20,51 @@ class VariableMonetaria:
 
 
 @dataclass
+class PuntoSerie:
+    """Punto de una serie monetaria: fecha y valor de la variable."""
+
+    fecha: str
+    valor: float
+
+
+@dataclass
+class SerieMonetaria:
+    """Serie histórica de una variable monetaria.
+
+    ``detalle`` contiene los puntos de la serie (fecha y valor) ordenados de
+    más reciente a más antiguo.
+    """
+
+    idVariable: int
+    detalle: list[PuntoSerie]
+
+
+@dataclass
+class ResultGetEvolucionVariableV1:
+    """Respuesta de ``get_evolucion_variable``.
+
+    `resultset` describe el total disponible (`count`) y la ventana devuelta
+    (`offset`/`limit`), y ``series`` contiene la serie de la variable pedida.
+    """
+
+    resultset: Resultset
+    series: list[SerieMonetaria]
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ResultGetEvolucionVariableV1":
+        return cls(
+            resultset=Resultset(**data["metadata"]["resultset"]),
+            series=[
+                SerieMonetaria(
+                    idVariable=s["idVariable"],
+                    detalle=[PuntoSerie(**p) for p in s["detalle"]],
+                )
+                for s in data["results"]
+            ],
+        )
+
+
+@dataclass
 class ResultGetMonetariasV1:
     """Respuesta de ``get_monetarias``: variables monetarias con su paginado.
 
