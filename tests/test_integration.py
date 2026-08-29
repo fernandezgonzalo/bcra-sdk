@@ -40,6 +40,13 @@ def test_integration_get_entidades():
     assert data.entidades
 
 
+def test_integration_get_monetarias():
+    with BCRAClient() as bcra:
+        data = bcra.monetarias.get_monetarias()
+    assert data.resultset.count >= 1
+    assert data.variables
+
+
 def test_integration_get_deudas_sin_datos():
     with BCRAClient() as bcra, pytest.raises(BCRAHTTPError) as exc_info:
         bcra.deudores.get_deudas(cuit=CUIT_SIN_DATOS)

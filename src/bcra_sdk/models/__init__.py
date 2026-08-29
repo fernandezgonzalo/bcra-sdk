@@ -10,6 +10,7 @@ from .deudores import (
 from .divisas import ResultGetDivisasV1
 from .entidades import ResultGetEntidadesV1
 from .evolucion import ResultGetEvolucionMonedaV1
+from .monetarias import ResultGetMonetariasV1, VariableMonetaria
 
 __all__ = [
     "EntidadHistorica",
@@ -22,4 +23,6 @@ __all__ = [
     "ResultGetDivisasV1",
     "ResultGetEntidadesV1",
     "ResultGetEvolucionMonedaV1",
+    "ResultGetMonetariasV1",
+    "VariableMonetaria",
 ]

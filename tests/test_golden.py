@@ -79,6 +79,25 @@ def test_get_entidades_golden(client, monkeypatch):
     assert asdict(data) == {"entidades": cassette["json"]["results"]}
 
 
+def test_get_monetarias_golden(client, monkeypatch):
+    cassette = load_cassette("monetarias.get_monetarias")
+    monkeypatch.setattr(
+        client.monetarias._t,
+        "request",
+        MagicMock(return_value=http_response(cassette)),
+    )
+    data = client.monetarias.get_monetarias()
+    parsed = {
+        "metadata": {"resultset": asdict(data.resultset)},
+        "results": [asdict(v) for v in data.variables],
+    }
+    raw = {
+        "metadata": cassette["json"]["metadata"],
+        "results": cassette["json"]["results"],
+    }
+    assert parsed == raw
+
+
 def test_get_deudas_error_golden(client, monkeypatch):
     cassette = load_cassette("deudores.get_deudas")
     message = cassette["json"]["errorMessages"][0]

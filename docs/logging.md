@@ -8,6 +8,7 @@ logger). Usa loggers con el prefijo `bcra_sdk`:
 - `bcra_sdk.deudores`
 - `bcra_sdk.cheques`
 - `bcra_sdk.estadisticas_cambiarias`
+- `bcra_sdk.monetarias`
 
 Por defecto solo está presente un `NullHandler`, así que la librería no emite logs por
 defecto. Para habilitar el diagnóstico:

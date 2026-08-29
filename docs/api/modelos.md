@@ -43,3 +43,8 @@ classmethod `from_dict` y sus campos replican 1:1 los nombres del JSON de la API
 
 ::: bcra_sdk.models.evolucion.Resultset
 ::: bcra_sdk.models.evolucion.ResultGetEvolucionMonedaV1
+
+## Variables monetarias
+
+::: bcra_sdk.models.monetarias.VariableMonetaria
+::: bcra_sdk.models.monetarias.ResultGetMonetariasV1

@@ -99,7 +99,8 @@ El CI (`.github/workflows/lint.yml`) repite la misma matrix: un job de `test` po
 ## Arquitectura (resumen)
 
 - `BCRAClient` es el único punto de entrada; expone recursos por namespace
-  (`client.deudores`, `client.cheques`, `client.estadisticas_cambiarias`).
+  (`client.deudores`, `client.cheques`, `client.estadisticas_cambiarias`,
+  `client.monetarias`).
 - Cada resource (`Resource`) registra versiones por endpoint (`_register_version`) y las
   resuelve con `_resolve_version` (default: la más reciente; emite `DeprecationWarning`).
 - `Transport` envuelve `httpx` y lanza `BCRAHTTPError` en cualquier 4xx/5xx.

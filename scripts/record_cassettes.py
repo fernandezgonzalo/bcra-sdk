@@ -29,6 +29,10 @@ class RequestSpec:
 
 REQUESTS: list[RequestSpec] = [
     RequestSpec(
+        path="/estadisticas/v4.0/monetarias",
+        out="monetarias.get_monetarias",
+    ),
+    RequestSpec(
         path="/estadisticascambiarias/v1.0/Maestros/Divisas",
         out="estadisticascambiarias.get_divisas",
     ),

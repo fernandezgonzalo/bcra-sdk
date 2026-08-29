@@ -3,8 +3,8 @@
 SDK no oficial para las APIs públicas del Banco Central de la República Argentina (BCRA).
 
 `bcra-sdk` ofrece un único cliente (`BCRAClient`) que organiza los endpoints por dominio
-(`deudores`, `cheques`, `estadisticas_cambiarias`) y estructura cada respuesta en
-dataclasses fuertemente tipadas.
+(`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`) y estructura cada
+respuesta en dataclasses fuertemente tipadas.
 
 ## Características
 
