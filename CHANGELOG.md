@@ -7,6 +7,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+### Fixed
+
+- Orden de imports y `__all__` en `monetarias` y sus modelos para cumplir con ruff 0.16 (isort case-insensitive y RUF022); el pre-commit queda alineado con la versión de ruff que corre en CI
+
 ## [0.0.8] - 2026-08-29
 
 ### Added

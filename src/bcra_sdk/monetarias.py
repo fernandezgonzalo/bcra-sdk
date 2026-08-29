@@ -5,8 +5,8 @@ from ._base import Resource
 from ._dates import _coerce_date
 from .models.monetarias import (
     ResultGetEvolucionVariableV1,
-    ResultGetMetodologiaV1,
     ResultGetMetodologiasV1,
+    ResultGetMetodologiaV1,
     ResultGetMonetariasV1,
 )
 

@@ -13,30 +13,35 @@ template: |
 
 categories:
   - title: '🚀 Features'
-    labels:
-      - 'feat'
-      - 'feature'
-      - 'enhancement'
+    when:
+      labels:
+        - 'feat'
+        - 'feature'
+        - 'enhancement'
   - title: '🐛 Bug Fixes'
-    labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
+    when:
+      labels:
+        - 'fix'
+        - 'bugfix'
+        - 'bug'
   - title: '📝 Documentación'
-    labels:
-      - 'docs'
-      - 'documentation'
+    when:
+      labels:
+        - 'docs'
+        - 'documentation'
   - title: '🧪 Tests'
-    labels:
-      - 'test'
-      - 'tests'
+    when:
+      labels:
+        - 'test'
+        - 'tests'
   - title: '🧱 Mantenimiento'
-    labels:
-      - 'chore'
-      - 'refactor'
-      - 'ci'
-      - 'build'
-      - 'dependencies'
+    when:
+      labels:
+        - 'chore'
+        - 'refactor'
+        - 'ci'
+        - 'build'
+        - 'dependencies'
   - type: 'version-resolver'
     semver-increment: 'major'
     when:

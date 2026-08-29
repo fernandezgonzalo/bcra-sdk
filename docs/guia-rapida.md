@@ -25,13 +25,17 @@ mismo modelo que su versión síncrona.
 ```python
 from bcra_sdk import BCRAClient
 
+
 async def main():
     async with BCRAClient() as bcra:
-        cotizaciones = await bcra.estadisticas_cambiarias.aget_cotizaciones("2024-06-12")
+        cotizaciones = await bcra.estadisticas_cambiarias.aget_cotizaciones(
+            "2024-06-12"
+        )
         for c in cotizaciones.detalle:
             print(c.codigoMoneda, c.tipoCotizacion)
         reporte = await bcra.deudores.aget_deudas(cuit="20111111112")
         print(reporte.denominacion)
+
 
 if __name__ == "__main__":
     import asyncio

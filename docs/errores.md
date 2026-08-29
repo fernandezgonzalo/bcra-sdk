@@ -29,8 +29,8 @@ try:
         bcra.deudores.get_deudas(cuit="20111111112")
 except BCRAHTTPError as err:
     print(err.status_code)  # por ejemplo 404
-    print(err.message)      # body de la respuesta
-    print(err.reason)       # "Not Found"
+    print(err.message)  # body de la respuesta
+    print(err.reason)  # "Not Found"
 ```
 
 ## `BCRAConnectionError` y `BCRATimeoutError`

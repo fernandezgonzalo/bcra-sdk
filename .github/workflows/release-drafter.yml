@@ -7,7 +7,7 @@ on:
     types: [opened, edited, reopened, synchronize]
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
@@ -20,6 +20,7 @@ jobs:
 
   autolabel:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - uses: release-drafter/release-drafter/autolabeler@v7
         with:
