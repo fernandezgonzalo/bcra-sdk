@@ -31,12 +31,12 @@ Documentación completa en [`docs/`](docs/index.md):
 Aún no está publicado en PyPI. Se instala desde el repositorio de GitHub:
 
 ```bash
-uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.8"
+uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 # o con pip
-pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.8"
+pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
-> Reemplaza `v0.0.8` con la versión que desees instalar. Consulta [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases).
+> Reemplaza `v0.0.10` con la versión que desees instalar. Consulta [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases).
 
 ## Uso rápido
 

@@ -11,15 +11,15 @@ El paquete aún no está publicado en PyPI. Se instala directamente desde GitHub
 Con `uv`:
 
 ```bash
-uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.5"
+uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
 Con `pip`:
 
 ```bash
-pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.5"
+pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
-> Reemplazá `v0.0.5` por la versión que quieras instalar. Consultá las
+> Reemplazá `v0.0.10` por la versión que quieras instalar. Consultá las
 > [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases) y el
 > [changelog](changelog.md).
