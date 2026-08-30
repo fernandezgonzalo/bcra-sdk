@@ -9,6 +9,7 @@ from .cheques import Cheques
 from .deudores import Deudores
 from .estadisticascambiarias import EstadisticasCambiarias
 from .monetarias import Monetarias
+from .regimendetransparencia import RegimenDeTransparencia
 
 logger = logging.getLogger("bcra_sdk.client")
 
@@ -21,7 +22,8 @@ class BCRAClient:
     La misma instancia sirve para uso síncrono (``with``) y asíncrono
     (``async with``); cada endpoint ofrece además su par ``aget_*``.
     Los recursos se exponen como atributos organizados por dominio:
-    ``deudores``, ``cheques``, ``estadisticas_cambiarias`` y ``monetarias``.
+    ``deudores``, ``cheques``, ``estadisticas_cambiarias``, ``monetarias``
+    y ``regimen_de_transparencia``.
 
     Example:
         with BCRAClient() as bcra:
@@ -61,6 +63,7 @@ class BCRAClient:
         self.cheques = Cheques(self._transport)
         self.estadisticas_cambiarias = EstadisticasCambiarias(self._transport)
         self.monetarias = Monetarias(self._transport)
+        self.regimen_de_transparencia = RegimenDeTransparencia(self._transport)
         logger.debug("BCRAClient inicializado con base_url=%s", base_url)
 
     def close(self) -> None:

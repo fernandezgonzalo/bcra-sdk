@@ -51,6 +51,7 @@ nav:
       - Cheques: endpoints/cheques.md
       - Estadísticas cambiarias: endpoints/estadisticas-cambiarias.md
       - Estadísticas monetarias: endpoints/monetarias.md
+      - Régimen de Transparencia: endpoints/transparencia.md
   - API Reference:
       - Cliente y configuración: api/cliente.md
       - Recursos: api/recursos.md

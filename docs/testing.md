@@ -45,8 +45,8 @@ respecto del esperado. Revisá el diff de los cassettes antes de commitear.
 ## Suite de integración
 
 Smoke tests en vivo contra `https://api.bcra.gob.ar` (`tests/test_integration.py`):
-divisas, cotizaciones a fecha fija, evolución de moneda, entidades, el 404 de deudores
-con un CUIT sin datos y un cheque no denunciado.
+divisas, cotizaciones a fecha fija, evolución de moneda, entidades, cajas de ahorro,
+el 404 de deudores con un CUIT sin datos y un cheque no denunciado.
 
 ```bash
 uv run pytest -m integration --no-cov

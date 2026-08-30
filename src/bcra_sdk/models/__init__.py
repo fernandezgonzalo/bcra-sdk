@@ -20,12 +20,15 @@ from .monetarias import (
     SerieMonetaria,
     VariableMonetaria,
 )
+from .transparencia import CajaAhorro, ResultGetCajasAhorrosV1
 
 __all__ = [
+    "CajaAhorro",
     "EntidadHistorica",
     "Metodologia",
     "PeriodoHistorica",
     "PuntoSerie",
+    "ResultGetCajasAhorrosV1",
     "ResultGetChequeDenunciadoV1",
     "ResultGetChequesRechazadosV1",
     "ResultGetCotizacionesV1",

@@ -1,0 +1,18 @@
+{
+  "path": "/transparencia/v1.0/CajasAhorros",
+  "params": {
+    "codigoEntidad": 7
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "results": [
+      {
+        "codigoEntidad": 7,
+        "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+        "fechaInformacion": "2020-01-08",
+        "procesoSimplificadoDebidaDiligencia": "SI"
+      }
+    ]
+  }
+}

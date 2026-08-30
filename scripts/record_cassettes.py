@@ -68,6 +68,11 @@ REQUESTS: list[RequestSpec] = [
         out="deudores.get_deudas",
         expected_status=404,
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/CajasAhorros",
+        out="transparencia.get_cajas_ahorros",
+        params={"codigoEntidad": 7},
+    ),
 ]
 
 

@@ -2,7 +2,7 @@
 
 SDK no oficial e impulsado por `httpx` para las APIs públicas del Banco Central de la República Argentina (BCRA).
 
-`BCRAClient` es un único cliente que organiza los endpoints por dominio (`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`)
+`BCRAClient` es un único cliente que organiza los endpoints por dominio (`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`, `regimen_de_transparencia`)
 y estructura las respuestas en dataclasses fuertemente tipadas. Los endpoints están versionados, resuelven por defecto
 la versión más reciente y permiten forzar una versión.
 
@@ -18,7 +18,7 @@ Características:
 Documentación completa en [`docs/`](docs/index.md):
 
 - [Guía rápida](docs/guia-rapida.md)
-- [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias, monetarias
+- [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias, monetarias, régimen de transparencia
 - [API Reference](docs/api/cliente.md): cliente, recursos, modelos y errores
 - [Versionado de endpoints](docs/versionado.md)
 - [Reintentos](docs/retry.md)
@@ -54,6 +54,10 @@ with BCRAClient() as bcra:
     monetarias = bcra.monetarias.get_monetarias()
     for v in monetarias.variables:
         print(v.idVariable, v.descripcion)
+
+    cajas = bcra.regimen_de_transparencia.get_cajas_ahorros(codigoEntidad=11)
+    for caja in cajas.cajas_ahorros:
+        print(caja.descripcionEntidad)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.

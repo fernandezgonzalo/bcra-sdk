@@ -16,9 +16,13 @@
 
 ::: bcra_sdk.monetarias.Monetarias
 
+## Régimen de Transparencia
+
+::: bcra_sdk.regimendetransparencia.RegimenDeTransparencia
+
 ## Base y versionado
 
-La clase base `Resource` es compartida por los cuatro recursos; con ella se
+La clase base `Resource` es compartida por los cinco recursos; con ella se
 resuelven las versiones de cada endpoint y se consultan las disponibles.
 
 ::: bcra_sdk._base.Resource

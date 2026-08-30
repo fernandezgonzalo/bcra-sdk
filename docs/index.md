@@ -3,7 +3,8 @@
 SDK no oficial para las APIs públicas del Banco Central de la República Argentina (BCRA).
 
 `bcra-sdk` ofrece un único cliente (`BCRAClient`) que organiza los endpoints por dominio
-(`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`) y estructura cada
+(`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`, `regimen_de_transparencia`)
+y estructura cada
 respuesta en dataclasses fuertemente tipadas.
 
 ## Características
@@ -25,6 +26,7 @@ respuesta en dataclasses fuertemente tipadas.
     - [Cheques](endpoints/cheques.md)
     - [Estadísticas cambiarias](endpoints/estadisticas-cambiarias.md)
     - [Monetarias](endpoints/monetarias.md)
+    - [Régimen de Transparencia](endpoints/transparencia.md)
 - API Reference
     - [Cliente y configuración](api/cliente.md)
     - [Recursos](api/recursos.md)

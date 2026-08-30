@@ -1,7 +1,8 @@
 # Guía rápida
 
 `BCRAClient` organiza los endpoints por dominio: `deudores`, `cheques`,
-`estadisticas_cambiarias` y `monetarias`. Usá los context managers para gestionar los
+`estadisticas_cambiarias`, `monetarias` y `regimen_de_transparencia`. Usá los
+context managers para gestionar los
 recursos y el pool de conexiones de HTTP.
 
 ## Síncrono
@@ -49,4 +50,5 @@ if __name__ == "__main__":
 - [Endpoints de cheques](endpoints/cheques.md)
 - [Endpoints de estadísticas cambiarias](endpoints/estadisticas-cambiarias.md)
 - [Endpoints de estadísticas monetarias](endpoints/monetarias.md)
+- [Endpoints del Régimen de Transparencia](endpoints/transparencia.md)
 - [Versionado de endpoints](versionado.md)
