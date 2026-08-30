@@ -68,6 +68,13 @@ def test_integration_get_prestamos_prendarios():
     assert data.prestamos_prendarios[0].codigoEntidad == 7
 
 
+def test_integration_get_prestamos_hipotecarios():
+    with BCRAClient() as bcra:
+        data = bcra.regimen_de_transparencia.get_prestamos_hipotecarios(codigoEntidad=7)
+    assert data.prestamos_hipotecarios
+    assert data.prestamos_hipotecarios[0].codigoEntidad == 7
+
+
 def test_integration_get_monetarias():
     with BCRAClient() as bcra:
         data = bcra.monetarias.get_monetarias()

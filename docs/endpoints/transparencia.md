@@ -8,6 +8,7 @@ Endpoints de la API pública (sin autenticación) del Régimen de Transparencia 
 | `get_paquetes_productos(codigoEntidad=None)` | `GET /transparencia/v1.0/PaquetesProductos` |
 | `get_plazos_fijos(codigoEntidad=None)` | `GET /transparencia/v1.0/PlazosFijos` |
 | `get_prestamos_prendarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Prendarios` |
+| `get_prestamos_hipotecarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Hipotecarios` |
 
 ## `get_cajas_ahorros()`
 
@@ -189,6 +190,63 @@ El endpoint acepta además el escape hatch `version=` para forzar una versión
 específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
 asíncrono
 `await bcra.regimen_de_transparencia.aget_prestamos_prendarios(...)`.
+
+Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
+errores internos del servidor (500).
+
+## `get_prestamos_hipotecarios()`
+
+Devuelve los préstamos hipotecarios que ofrece cada entidad en el Régimen de
+Transparencia. La respuesta no incluye metadatos de paginación.
+
+Parámetros:
+- `codigoEntidad` (opcional): código numérico de la entidad financiera para
+  filtrar el listado (los códigos se pueden consultar con `get_entidades` de
+  `bcra.cheques`). Si no se informa, devuelve todas las entidades.
+
+Devuelve `ResultGetPrestamosHipotecariosV1`:
+
+- `prestamos_hipotecarios: list[PrestamoHipotecario]`
+    - `PrestamoHipotecario.codigoEntidad: int` (código de la entidad informante)
+    - `PrestamoHipotecario.descripcionEntidad: str` (nombre oficial o razón social)
+    - `PrestamoHipotecario.fechaInformacion: str` (`YYYY-MM-DD`, fecha de actualización)
+    - `PrestamoHipotecario.nombreCompleto: str` (nombre completo del préstamo)
+    - `PrestamoHipotecario.nombreCorto: str` (nombre corto del préstamo)
+    - `PrestamoHipotecario.denominacion: str` (Pesos, Dólares estadounidenses, UVA)
+    - `PrestamoHipotecario.montoMaximoOtorgable: float` (monto máximo otorgable)
+    - `PrestamoHipotecario.plazoMaximoOtorgable: int` (plazo máximo en meses)
+    - `PrestamoHipotecario.ingresoMinimoMensual: float` (ingreso mínimo mensual solicitado)
+    - `PrestamoHipotecario.antiguedadLaboralMinimaMeses: int` (antigüedad laboral mínima en meses)
+    - `PrestamoHipotecario.edadMaximaSolicitada: int` (edad máxima solicitada)
+    - `PrestamoHipotecario.relacionCuotaIngreso: int` (relación cuota/ingreso en %)
+    - `PrestamoHipotecario.relacionMontoTasacion: int` (relación monto/tasación en %)
+    - `PrestamoHipotecario.destinoFondos: str` (destino de los fondos)
+    - `PrestamoHipotecario.beneficiario: str` (beneficiario del préstamo)
+    - `PrestamoHipotecario.cargoMaximoCancelacionAnticipada: int` (cargo máximo por cancelación anticipada, 0-99,99 %)
+    - `PrestamoHipotecario.tasaEfectivaAnualMaxima: float` (tasa efectiva anual máxima)
+    - `PrestamoHipotecario.tipoTasa: str` (Fija, Variable, Mixta)
+    - `PrestamoHipotecario.costoFinancieroEfectivoTotalMaximo: float` (costo financiero efectivo total máximo)
+    - `PrestamoHipotecario.cuotaInicial: float` (cuota inicial a plazo máximo cada $100.000)
+    - `PrestamoHipotecario.territorioValidez: str` (territorio de validez de la oferta)
+    - `PrestamoHipotecario.masInformacion: str | None` (información adicional, puede ser `None`)
+
+```python
+from bcra_sdk import BCRAClient
+
+with BCRAClient() as bcra:
+    todos = bcra.regimen_de_transparencia.get_prestamos_hipotecarios()
+    for ph in todos.prestamos_hipotecarios:
+        print(ph.codigoEntidad, ph.nombreCorto, ph.tasaEfectivaAnualMaxima)
+
+    filtrados = bcra.regimen_de_transparencia.get_prestamos_hipotecarios(
+        codigoEntidad=7
+    )
+```
+
+El endpoint acepta además el escape hatch `version=` para forzar una versión
+específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
+asíncrono
+`await bcra.regimen_de_transparencia.aget_prestamos_hipotecarios(...)`.
 
 Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
 errores internos del servidor (500).

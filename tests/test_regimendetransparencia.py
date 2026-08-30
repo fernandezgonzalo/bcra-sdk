@@ -890,3 +890,271 @@ def test_aget_prestamos_prendarios_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_prestamos_hipotecarios(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 70,
+                "destinoFondos": "Vivienda propia, única y permanente",
+                "denominacion": "Pesos",
+                "montoMaximoOtorgable": 1000000,
+                "plazoMaximoOtorgable": 120,
+                "ingresoMinimoMensual": 26000,
+                "antiguedadLaboralMinimaMeses": 12,
+                "edadMaximaSolicitada": 76,
+                "relacionCuotaIngreso": 35,
+                "beneficiario": "Todos los beneficiarios",
+                "cargoMaximoCancelacionAnticipada": 3,
+                "tasaEfectivaAnualMaxima": 69.47,
+                "tipoTasa": "Variable",
+                "costoFinancieroEfectivoTotalMaximo": 69.47,
+                "cuotaInicial": 4615.88,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.U.",
+                "fechaInformacion": "2019-07-17",
+                "nombreCompleto": "PRESTAMOHIPOTECARIOTRADICIONALCOMPRADEVIVIENDA",
+                "nombreCorto": "PRESTHIPOTRADICIONAL",
+                "territorioValidez": "0",
+                "masInformacion": None,
+            },
+            {
+                "relacionMontoTasacion": 70,
+                "destinoFondos": "Vivienda propia, única y permanente",
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 5000000,
+                "plazoMaximoOtorgable": 360,
+                "ingresoMinimoMensual": 0,
+                "antiguedadLaboralMinimaMeses": 24,
+                "edadMaximaSolicitada": 64,
+                "relacionCuotaIngreso": 25,
+                "beneficiario": "Empleados públicos",
+                "cargoMaximoCancelacionAnticipada": 3,
+                "tasaEfectivaAnualMaxima": 8.19,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 8.33,
+                "cuotaInicial": 719.3,
+                "codigoEntidad": 93,
+                "descripcionEntidad": "BANCO DE LA PAMPA SOCIEDAD DE ECONOMÍA MIXTA",
+                "fechaInformacion": "2018-05-04",
+                "nombreCompleto": "PRESTAMO HIPOTECARIO UVA",
+                "nombreCorto": "SEGM SUELDOS II",
+                "territorioValidez": "4",
+                "masInformacion": "EL CFT NO INCLUYE SEGURO CONTRA DANOS A LA PROPIEDAD",
+            },
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_hipotecarios()
+
+    mock_request.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Hipotecarios", params=None
+    )
+    assert len(data.prestamos_hipotecarios) == 2
+    prestamo = data.prestamos_hipotecarios[1]
+    assert prestamo.relacionMontoTasacion == 70
+    assert prestamo.destinoFondos == "Vivienda propia, única y permanente"
+    assert prestamo.denominacion == "UVA"
+    assert prestamo.montoMaximoOtorgable == 5000000
+    assert prestamo.plazoMaximoOtorgable == 360
+    assert prestamo.ingresoMinimoMensual == 0
+    assert prestamo.antiguedadLaboralMinimaMeses == 24
+    assert prestamo.edadMaximaSolicitada == 64
+    assert prestamo.relacionCuotaIngreso == 25
+    assert prestamo.beneficiario == "Empleados públicos"
+    assert prestamo.cargoMaximoCancelacionAnticipada == 3
+    assert prestamo.tasaEfectivaAnualMaxima == 8.19
+    assert prestamo.tipoTasa == "Fija"
+    assert prestamo.costoFinancieroEfectivoTotalMaximo == 8.33
+    assert prestamo.cuotaInicial == 719.3
+    assert prestamo.codigoEntidad == 93
+    assert prestamo.descripcionEntidad == "BANCO DE LA PAMPA SOCIEDAD DE ECONOMÍA MIXTA"
+    assert prestamo.fechaInformacion == "2018-05-04"
+    assert prestamo.nombreCompleto == "PRESTAMO HIPOTECARIO UVA"
+    assert prestamo.nombreCorto == "SEGM SUELDOS II"
+    assert prestamo.territorioValidez == "4"
+    assert (
+        prestamo.masInformacion
+        == "EL CFT NO INCLUYE SEGURO CONTRA DANOS A LA PROPIEDAD"
+    )
+    assert data.prestamos_hipotecarios[0].masInformacion is None
+
+
+def test_get_prestamos_hipotecarios_con_codigo_entidad(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 70,
+                "destinoFondos": "Vivienda propia, única y permanente",
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 5000000,
+                "plazoMaximoOtorgable": 360,
+                "ingresoMinimoMensual": 0,
+                "antiguedadLaboralMinimaMeses": 24,
+                "edadMaximaSolicitada": 64,
+                "relacionCuotaIngreso": 25,
+                "beneficiario": "Empleados públicos",
+                "cargoMaximoCancelacionAnticipada": 3,
+                "tasaEfectivaAnualMaxima": 8.19,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 8.33,
+                "cuotaInicial": 719.3,
+                "codigoEntidad": 93,
+                "descripcionEntidad": "BANCO DE LA PAMPA SOCIEDAD DE ECONOMÍA MIXTA",
+                "fechaInformacion": "2018-05-04",
+                "nombreCompleto": "PRESTAMO HIPOTECARIO UVA",
+                "nombreCorto": "SEGM SUELDOS II",
+                "territorioValidez": "4",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_hipotecarios(codigoEntidad=93)
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Hipotecarios",
+        params={"codigoEntidad": 93},
+    )
+    assert data.prestamos_hipotecarios[0].codigoEntidad == 93
+    assert len(data.prestamos_hipotecarios) == 1
+
+
+def test_get_prestamos_hipotecarios_vacio(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.regimen_de_transparencia.get_prestamos_hipotecarios()
+
+    assert data.prestamos_hipotecarios == []
+
+
+def test_get_prestamos_hipotecarios_404(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 404,
+        "errorMessages": ["No se encontraron datos para su consulta."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(404, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_hipotecarios(codigoEntidad=999999)
+    assert exc_info.value.status_code == 404
+    assert "No se encontraron datos para su consulta." in exc_info.value.message
+
+
+def test_get_prestamos_hipotecarios_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Ocurrió un error al procesar la solicitud."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_hipotecarios()
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_prestamos_hipotecarios(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 70,
+                "destinoFondos": "Vivienda propia, única y permanente",
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 5000000,
+                "plazoMaximoOtorgable": 360,
+                "ingresoMinimoMensual": 0,
+                "antiguedadLaboralMinimaMeses": 24,
+                "edadMaximaSolicitada": 64,
+                "relacionCuotaIngreso": 25,
+                "beneficiario": "Empleados públicos",
+                "cargoMaximoCancelacionAnticipada": 3,
+                "tasaEfectivaAnualMaxima": 8.19,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 8.33,
+                "cuotaInicial": 719.3,
+                "codigoEntidad": 93,
+                "descripcionEntidad": "BANCO DE LA PAMPA SOCIEDAD DE ECONOMÍA MIXTA",
+                "fechaInformacion": "2018-05-04",
+                "nombreCompleto": "PRESTAMO HIPOTECARIO UVA",
+                "nombreCorto": "SEGM SUELDOS II",
+                "territorioValidez": "4",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_hipotecarios(
+            codigoEntidad=93
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Hipotecarios",
+        params={"codigoEntidad": 93},
+    )
+    assert data.prestamos_hipotecarios[0].codigoEntidad == 93
+
+
+def test_aget_prestamos_hipotecarios_sin_filtro(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_hipotecarios()
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Hipotecarios", params=None
+    )
+    assert data.prestamos_hipotecarios == []
+
+
+def test_aget_prestamos_hipotecarios_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Ocurrió un error al procesar la solicitud.")
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.regimen_de_transparencia.aget_prestamos_hipotecarios()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
+    assert exc_info.value.status_code == 500

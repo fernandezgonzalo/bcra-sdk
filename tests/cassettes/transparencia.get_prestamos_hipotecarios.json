@@ -1,0 +1,36 @@
+{
+  "path": "/transparencia/v1.0/Prestamos/Hipotecarios",
+  "params": {
+    "codigoEntidad": 7
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "results": [
+      {
+        "relacionMontoTasacion": 70.0,
+        "destinoFondos": "Vivienda propia, única y permanente",
+        "denominacion": "UVA",
+        "montoMaximoOtorgable": 999999999,
+        "plazoMaximoOtorgable": 240,
+        "ingresoMinimoMensual": 310000,
+        "antiguedadLaboralMinimaMeses": 12,
+        "edadMaximaSolicitada": 55,
+        "relacionCuotaIngreso": 25.0,
+        "beneficiario": "Clientes que acrediten sueldos en la entidad",
+        "cargoMaximoCancelacionAnticipada": 4.0,
+        "tasaEfectivaAnualMaxima": 12.0,
+        "tipoTasa": "Fija",
+        "costoFinancieroEfectivoTotalMaximo": 15.0,
+        "cuotaInicial": 12677.0,
+        "codigoEntidad": 7,
+        "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+        "fechaInformacion": "2026-04-09",
+        "nombreCompleto": "PRESTAMOSHIPOTECARIOSUVA",
+        "nombreCorto": "PHUVA",
+        "territorioValidez": "0",
+        "masInformacion": null
+      }
+    ]
+  }
+}

@@ -66,6 +66,12 @@ with BCRAClient() as bcra:
     plazos = bcra.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=11)
     for p in plazos.plazos_fijos:
         print(p.nombreCorto, p.tasaEfectivaAnualMinima)
+
+    hipotecarios = bcra.regimen_de_transparencia.get_prestamos_hipotecarios(
+        codigoEntidad=11
+    )
+    for h in hipotecarios.prestamos_hipotecarios:
+        print(h.nombreCorto, h.tasaEfectivaAnualMaxima)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.
