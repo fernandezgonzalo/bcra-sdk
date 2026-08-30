@@ -1419,3 +1419,234 @@ def test_aget_prestamos_personales_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_tarjetas_credito(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "comisionMaximaAdministracionMantenimiento": 31500,
+                "comisionMaximaRenovacion": 457600,
+                "tasaEfectivaAnualMaximaFinanciacion": 184.5,
+                "tasaEfectivaAnualMaximaAdelantoEfectivo": 184.5,
+                "ingresoMinimoMensual": 999999,
+                "antiguedadLaboralMinimaMeses": 6,
+                "edadMaximaSolicitada": 100,
+                "segmento": "Premium gold",
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-11-17",
+                "nombreCompleto": "AMERICAN EXPRESS PLATINUM",
+                "nombreCorto": "AMEX PLATINUM",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": "EL INGRESO MENSUAL MINIMO ES 2.150.000 PESOS",
+            },
+            {
+                "comisionMaximaAdministracionMantenimiento": 21500,
+                "comisionMaximaRenovacion": 326000,
+                "tasaEfectivaAnualMaximaFinanciacion": 184.5,
+                "tasaEfectivaAnualMaximaAdelantoEfectivo": 184.5,
+                "ingresoMinimoMensual": 900000,
+                "antiguedadLaboralMinimaMeses": 6,
+                "edadMaximaSolicitada": 100,
+                "segmento": "Premium gold",
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-11-17",
+                "nombreCompleto": "VISA GOLD",
+                "nombreCorto": "VISA GOLD",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": "0",
+            },
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_tarjetas_credito()
+
+    mock_request.assert_called_once_with(
+        "GET", "/transparencia/v1.0/TarjetasCredito", params=None
+    )
+    assert len(data.tarjetas_credito) == 2
+    tarjeta = data.tarjetas_credito[0]
+    assert tarjeta.comisionMaximaAdministracionMantenimiento == 31500
+    assert tarjeta.comisionMaximaRenovacion == 457600
+    assert tarjeta.tasaEfectivaAnualMaximaFinanciacion == 184.5
+    assert tarjeta.tasaEfectivaAnualMaximaAdelantoEfectivo == 184.5
+    assert tarjeta.ingresoMinimoMensual == 999999
+    assert tarjeta.antiguedadLaboralMinimaMeses == 6
+    assert tarjeta.edadMaximaSolicitada == 100
+    assert tarjeta.segmento == "Premium gold"
+    assert tarjeta.codigoEntidad == 7
+    assert tarjeta.descripcionEntidad == "BANCO DE GALICIA Y BUENOS AIRES S.A."
+    assert tarjeta.fechaInformacion == "2025-11-17"
+    assert tarjeta.nombreCompleto == "AMERICAN EXPRESS PLATINUM"
+    assert tarjeta.nombreCorto == "AMEX PLATINUM"
+    assert tarjeta.territorioValidez == "Todo el territorio nacional"
+    assert tarjeta.masInformacion == "EL INGRESO MENSUAL MINIMO ES 2.150.000 PESOS"
+    assert data.tarjetas_credito[1].nombreCorto == "VISA GOLD"
+
+
+def test_get_tarjetas_credito_con_codigo_entidad(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "comisionMaximaAdministracionMantenimiento": 7982.7,
+                "comisionMaximaRenovacion": 93444.97,
+                "tasaEfectivaAnualMaximaFinanciacion": 171.27,
+                "tasaEfectivaAnualMaximaAdelantoEfectivo": 171.27,
+                "ingresoMinimoMensual": 900,
+                "antiguedadLaboralMinimaMeses": 3,
+                "edadMaximaSolicitada": 80,
+                "segmento": "Internacional",
+                "codigoEntidad": 341,
+                "descripcionEntidad": "BANCO MASVENTAS S.A.",
+                "fechaInformacion": "2025-10-03",
+                "nombreCompleto": "000DVISA INTERNACIONAL",
+                "nombreCorto": "VISA INT",
+                "territorioValidez": "Provincia de Salta",
+                "masInformacion": "000A",
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=341)
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/TarjetasCredito",
+        params={"codigoEntidad": 341},
+    )
+    assert data.tarjetas_credito[0].codigoEntidad == 341
+    assert len(data.tarjetas_credito) == 1
+
+
+def test_get_tarjetas_credito_vacio(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.regimen_de_transparencia.get_tarjetas_credito()
+
+    assert data.tarjetas_credito == []
+
+
+def test_get_tarjetas_credito_404(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 404,
+        "errorMessages": ["No se encontraron datos para su consulta."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(404, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=999999)
+    assert exc_info.value.status_code == 404
+    assert "No se encontraron datos para su consulta." in exc_info.value.message
+
+
+def test_get_tarjetas_credito_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Ocurrió un error al procesar la solicitud."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_tarjetas_credito()
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_tarjetas_credito(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "comisionMaximaAdministracionMantenimiento": 31500,
+                "comisionMaximaRenovacion": 457600,
+                "tasaEfectivaAnualMaximaFinanciacion": 184.5,
+                "tasaEfectivaAnualMaximaAdelantoEfectivo": 184.5,
+                "ingresoMinimoMensual": 999999,
+                "antiguedadLaboralMinimaMeses": 6,
+                "edadMaximaSolicitada": 100,
+                "segmento": "Premium gold",
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-11-17",
+                "nombreCompleto": "AMERICAN EXPRESS PLATINUM",
+                "nombreCorto": "AMEX PLATINUM",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_tarjetas_credito(
+            codigoEntidad=7
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/TarjetasCredito",
+        params={"codigoEntidad": 7},
+    )
+    assert data.tarjetas_credito[0].codigoEntidad == 7
+    assert data.tarjetas_credito[0].masInformacion is None
+
+
+def test_aget_tarjetas_credito_sin_filtro(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_tarjetas_credito()
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET", "/transparencia/v1.0/TarjetasCredito", params=None
+    )
+    assert data.tarjetas_credito == []
+
+
+def test_aget_tarjetas_credito_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Ocurrió un error al procesar la solicitud.")
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.regimen_de_transparencia.aget_tarjetas_credito()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
+    assert exc_info.value.status_code == 500

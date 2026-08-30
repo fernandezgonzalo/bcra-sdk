@@ -98,6 +98,11 @@ REQUESTS: list[RequestSpec] = [
         out="transparencia.get_prestamos_personales",
         params={"codigoEntidad": 7},
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/TarjetasCredito",
+        out="transparencia.get_tarjetas_credito",
+        params={"codigoEntidad": 7},
+    ),
 ]
 
 

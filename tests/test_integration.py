@@ -82,6 +82,13 @@ def test_integration_get_prestamos_personales():
     assert data.prestamos_personales[0].codigoEntidad == 7
 
 
+def test_integration_get_tarjetas_credito():
+    with BCRAClient() as bcra:
+        data = bcra.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=7)
+    assert data.tarjetas_credito
+    assert data.tarjetas_credito[0].codigoEntidad == 7
+
+
 def test_integration_get_monetarias():
     with BCRAClient() as bcra:
         data = bcra.monetarias.get_monetarias()

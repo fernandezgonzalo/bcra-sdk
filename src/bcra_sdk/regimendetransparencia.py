@@ -8,6 +8,7 @@ from .models.transparencia import (
     ResultGetPrestamosHipotecariosV1,
     ResultGetPrestamosPersonalesV1,
     ResultGetPrestamosPrendariosV1,
+    ResultGetTarjetasCreditoV1,
 )
 
 logger = logging.getLogger("bcra_sdk.regimendetransparencia")
@@ -58,6 +59,12 @@ class RegimenDeTransparencia(Resource):
             "1.0",
             path="/transparencia/v1.0/Prestamos/Personales",
             model=ResultGetPrestamosPersonalesV1,
+        )
+        self._register_version(
+            "get_tarjetas_credito",
+            "1.0",
+            path="/transparencia/v1.0/TarjetasCredito",
+            model=ResultGetTarjetasCreditoV1,
         )
 
     def get_cajas_ahorros(
@@ -397,5 +404,59 @@ class RegimenDeTransparencia(Resource):
         logger.debug(
             "Préstamos hipotecarios obtenidos: total=%d",
             len(result.prestamos_hipotecarios),
+        )
+        return result
+
+    def get_tarjetas_credito(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetTarjetasCreditoV1:
+        """Devuelve las tarjetas de crédito ofrecidas por las entidades.
+
+        Args:
+            codigoEntidad: Código de la entidad para filtrar el listado.
+                Opcional; si no se informa, devuelve todas las entidades.
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetTarjetasCreditoV1: listado de `TarjetaCredito`.
+        """
+        logger.info("Consultando tarjetas de crédito (codigoEntidad=%s)", codigoEntidad)
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_tarjetas_credito",
+            version=version,
+            params=params,
+            model=ResultGetTarjetasCreditoV1,
+        )
+        logger.debug(
+            "Tarjetas de crédito obtenidas: total=%d",
+            len(result.tarjetas_credito),
+        )
+        return result
+
+    async def aget_tarjetas_credito(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetTarjetasCreditoV1:
+        """Versión asíncrona de `get_tarjetas_credito`."""
+        logger.info("Consultando tarjetas de crédito (codigoEntidad=%s)", codigoEntidad)
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_tarjetas_credito",
+            version=version,
+            params=params,
+            model=ResultGetTarjetasCreditoV1,
+        )
+        logger.debug(
+            "Tarjetas de crédito obtenidas: total=%d",
+            len(result.tarjetas_credito),
         )
         return result

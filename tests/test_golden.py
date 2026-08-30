@@ -145,6 +145,17 @@ def test_get_prestamos_personales_golden(client, monkeypatch):
     assert asdict(data) == {"prestamos_personales": cassette["json"]["results"]}
 
 
+def test_get_tarjetas_credito_golden(client, monkeypatch):
+    cassette = load_cassette("transparencia.get_tarjetas_credito")
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=http_response(cassette)),
+    )
+    data = client.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=7)
+    assert asdict(data) == {"tarjetas_credito": cassette["json"]["results"]}
+
+
 def test_get_monetarias_golden(client, monkeypatch):
     cassette = load_cassette("monetarias.get_monetarias")
     monkeypatch.setattr(

@@ -78,6 +78,10 @@ with BCRAClient() as bcra:
     )
     for p in personales.prestamos_personales:
         print(p.nombreCorto, p.tasaEfectivaAnualMaxima)
+
+    tarjetas = bcra.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=11)
+    for t in tarjetas.tarjetas_credito:
+        print(t.nombreCorto, t.segmento, t.tasaEfectivaAnualMaximaFinanciacion)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.

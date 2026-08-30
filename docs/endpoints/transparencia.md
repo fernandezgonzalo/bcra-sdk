@@ -10,6 +10,7 @@ Endpoints de la API pública (sin autenticación) del Régimen de Transparencia 
 | `get_prestamos_prendarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Prendarios` |
 | `get_prestamos_hipotecarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Hipotecarios` |
 | `get_prestamos_personales(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Personales` |
+| `get_tarjetas_credito(codigoEntidad=None)` | `GET /transparencia/v1.0/TarjetasCredito` |
 
 ## `get_cajas_ahorros()`
 
@@ -300,6 +301,54 @@ El endpoint acepta además el escape hatch `version=` para forzar una versión
 específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
 asíncrono
 `await bcra.regimen_de_transparencia.aget_prestamos_hipotecarios(...)`.
+
+Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
+errores internos del servidor (500).
+
+## `get_tarjetas_credito()`
+
+Devuelve las tarjetas de crédito que ofrece cada entidad en el Régimen de
+Transparencia. La respuesta no incluye metadatos de paginación.
+
+Parámetros:
+- `codigoEntidad` (opcional): código numérico de la entidad financiera para
+  filtrar el listado (los códigos se pueden consultar con `get_entidades` de
+  `bcra.cheques`). Si no se informa, devuelve todas las entidades.
+
+Devuelve `ResultGetTarjetasCreditoV1`:
+
+- `tarjetas_credito: list[TarjetaCredito]`
+    - `TarjetaCredito.codigoEntidad: int` (código de la entidad informante)
+    - `TarjetaCredito.descripcionEntidad: str` (nombre oficial o razón social)
+    - `TarjetaCredito.fechaInformacion: str` (`YYYY-MM-DD`, fecha de actualización)
+    - `TarjetaCredito.nombreCompleto: str` (nombre completo de la tarjeta)
+    - `TarjetaCredito.nombreCorto: str` (nombre corto de la tarjeta)
+    - `TarjetaCredito.comisionMaximaAdministracionMantenimiento: float` (comisión máxima mensual por administración y mantenimiento)
+    - `TarjetaCredito.comisionMaximaRenovacion: float` (comisión máxima anual por renovación)
+    - `TarjetaCredito.tasaEfectivaAnualMaximaFinanciacion: float` (TEA máxima de interés por financiación de saldo)
+    - `TarjetaCredito.tasaEfectivaAnualMaximaAdelantoEfectivo: float` (TEA máxima por adelanto en efectivo)
+    - `TarjetaCredito.ingresoMinimoMensual: float` (ingreso mínimo mensual solicitado)
+    - `TarjetaCredito.antiguedadLaboralMinimaMeses: int` (antigüedad laboral mínima en meses)
+    - `TarjetaCredito.edadMaximaSolicitada: int` (edad máxima solicitada)
+    - `TarjetaCredito.segmento: str` (Nacional, Internacional, Premium gold, Premium black, Premium signature)
+    - `TarjetaCredito.territorioValidez: str` (territorio de validez de la oferta)
+    - `TarjetaCredito.masInformacion: str | None` (información adicional, puede ser `None`)
+
+```python
+from bcra_sdk import BCRAClient
+
+with BCRAClient() as bcra:
+    todas = bcra.regimen_de_transparencia.get_tarjetas_credito()
+    for t in todas.tarjetas_credito:
+        print(t.codigoEntidad, t.nombreCorto, t.segmento)
+
+    filtradas = bcra.regimen_de_transparencia.get_tarjetas_credito(codigoEntidad=7)
+```
+
+El endpoint acepta además el escape hatch `version=` para forzar una versión
+específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
+asíncrono
+`await bcra.regimen_de_transparencia.aget_tarjetas_credito(...)`.
 
 Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
 errores internos del servidor (500).
