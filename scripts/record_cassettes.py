@@ -83,6 +83,11 @@ REQUESTS: list[RequestSpec] = [
         out="transparencia.get_plazos_fijos",
         params={"codigoEntidad": 7},
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/Prestamos/Prendarios",
+        out="transparencia.get_prestamos_prendarios",
+        params={"codigoEntidad": 7},
+    ),
 ]
 
 

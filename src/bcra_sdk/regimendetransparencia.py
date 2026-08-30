@@ -5,6 +5,7 @@ from .models.transparencia import (
     ResultGetCajasAhorrosV1,
     ResultGetPaquetesProductosV1,
     ResultGetPlazosFijosV1,
+    ResultGetPrestamosPrendariosV1,
 )
 
 logger = logging.getLogger("bcra_sdk.regimendetransparencia")
@@ -37,6 +38,12 @@ class RegimenDeTransparencia(Resource):
             "1.0",
             path="/transparencia/v1.0/PlazosFijos",
             model=ResultGetPlazosFijosV1,
+        )
+        self._register_version(
+            "get_prestamos_prendarios",
+            "1.0",
+            path="/transparencia/v1.0/Prestamos/Prendarios",
+            model=ResultGetPrestamosPrendariosV1,
         )
 
     def get_cajas_ahorros(
@@ -202,5 +209,63 @@ class RegimenDeTransparencia(Resource):
         logger.debug(
             "Plazos fijos obtenidos: total=%d",
             len(result.plazos_fijos),
+        )
+        return result
+
+    def get_prestamos_prendarios(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPrestamosPrendariosV1:
+        """Devuelve los préstamos prendarios ofrecidos por las entidades.
+
+        Args:
+            codigoEntidad: Código de la entidad para filtrar el listado.
+                Opcional; si no se informa, devuelve todas las entidades.
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetPrestamosPrendariosV1: listado de `PrestamoPrendario`.
+        """
+        logger.info(
+            "Consultando préstamos prendarios (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_prestamos_prendarios",
+            version=version,
+            params=params,
+            model=ResultGetPrestamosPrendariosV1,
+        )
+        logger.debug(
+            "Préstamos prendarios obtenidos: total=%d",
+            len(result.prestamos_prendarios),
+        )
+        return result
+
+    async def aget_prestamos_prendarios(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPrestamosPrendariosV1:
+        """Versión asíncrona de `get_prestamos_prendarios`."""
+        logger.info(
+            "Consultando préstamos prendarios (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_prestamos_prendarios",
+            version=version,
+            params=params,
+            model=ResultGetPrestamosPrendariosV1,
+        )
+        logger.debug(
+            "Préstamos prendarios obtenidos: total=%d",
+            len(result.prestamos_prendarios),
         )
         return result

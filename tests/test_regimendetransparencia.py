@@ -621,3 +621,272 @@ def test_aget_plazos_fijos_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_prestamos_prendarios(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 90,
+                "destinoFondos": "Adquisición automotores 0 km",
+                "montoMinimoOtorgable": 500000,
+                "denominacion": "Pesos",
+                "montoMaximoOtorgable": 39200000,
+                "plazoMaximoOtorgable": 60,
+                "ingresoMinimoMensual": 310000,
+                "antiguedadLaboralMinimaMeses": 3,
+                "edadMaximaSolicitada": 70,
+                "relacionCuotaIngreso": 40,
+                "beneficiario": "Clientes con cuenta en la entidad",
+                "cargoMaximoCancelacionAnticipada": 5,
+                "tasaEfectivaAnualMaxima": 72.86,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 93.32,
+                "cuotaInicial": 1215,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-04-11",
+                "nombreCompleto": "PRESTAMOPRENDARIO",
+                "nombreCorto": "PRENDARIO",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": "ANTIGUEDAD PRENDA 0 A 3 AÑOS",
+            },
+            {
+                "relacionMontoTasacion": 90,
+                "destinoFondos": "Adquisición automotores 0 km",
+                "montoMinimoOtorgable": 500000,
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 39200000,
+                "plazoMaximoOtorgable": 60,
+                "ingresoMinimoMensual": 310000,
+                "antiguedadLaboralMinimaMeses": 3,
+                "edadMaximaSolicitada": 70,
+                "relacionCuotaIngreso": 40,
+                "beneficiario": "Clientes con cuenta en la entidad",
+                "cargoMaximoCancelacionAnticipada": 5,
+                "tasaEfectivaAnualMaxima": 20.75,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 25.57,
+                "cuotaInicial": 965,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-04-11",
+                "nombreCompleto": "PRESTAMOPRENDARIOUVA",
+                "nombreCorto": "PRENDARIOUVA",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": "ANTIGUEDAD PRENDA 0 A 3 AÑOS",
+            },
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_prendarios()
+
+    mock_request.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Prendarios", params=None
+    )
+    assert len(data.prestamos_prendarios) == 2
+    prestamo = data.prestamos_prendarios[1]
+    assert prestamo.relacionMontoTasacion == 90
+    assert prestamo.destinoFondos == "Adquisición automotores 0 km"
+    assert prestamo.montoMinimoOtorgable == 500000
+    assert prestamo.denominacion == "UVA"
+    assert prestamo.montoMaximoOtorgable == 39200000
+    assert prestamo.plazoMaximoOtorgable == 60
+    assert prestamo.ingresoMinimoMensual == 310000
+    assert prestamo.antiguedadLaboralMinimaMeses == 3
+    assert prestamo.edadMaximaSolicitada == 70
+    assert prestamo.relacionCuotaIngreso == 40
+    assert prestamo.beneficiario == "Clientes con cuenta en la entidad"
+    assert prestamo.cargoMaximoCancelacionAnticipada == 5
+    assert prestamo.tasaEfectivaAnualMaxima == 20.75
+    assert prestamo.tipoTasa == "Fija"
+    assert prestamo.costoFinancieroEfectivoTotalMaximo == 25.57
+    assert prestamo.cuotaInicial == 965
+    assert prestamo.codigoEntidad == 7
+    assert prestamo.descripcionEntidad == "BANCO DE GALICIA Y BUENOS AIRES S.A."
+    assert prestamo.fechaInformacion == "2025-04-11"
+    assert prestamo.nombreCompleto == "PRESTAMOPRENDARIOUVA"
+    assert prestamo.nombreCorto == "PRENDARIOUVA"
+    assert prestamo.territorioValidez == "Todo el territorio nacional"
+    assert prestamo.masInformacion == "ANTIGUEDAD PRENDA 0 A 3 AÑOS"
+
+
+def test_get_prestamos_prendarios_con_codigo_entidad(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 70,
+                "destinoFondos": "Adquisición para capital de trabajo",
+                "montoMinimoOtorgable": 15000,
+                "denominacion": "Dólares estadounidenses",
+                "montoMaximoOtorgable": 10266281,
+                "plazoMaximoOtorgable": 60,
+                "ingresoMinimoMensual": 0,
+                "antiguedadLaboralMinimaMeses": 36,
+                "edadMaximaSolicitada": 100,
+                "relacionCuotaIngreso": 25,
+                "beneficiario": "MiPyMEs",
+                "cargoMaximoCancelacionAnticipada": 2,
+                "tasaEfectivaAnualMaxima": 5.04,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 5.79,
+                "cuotaInicial": 1200,
+                "codigoEntidad": 44096,
+                "descripcionEntidad": "JOHN DEERE CREDIT COMPAÑÍA FINANCIERA S.A.",
+                "fechaInformacion": "2025-12-01",
+                "nombreCompleto": "PRENDARIO NUEVO USD FIJA 4,90",
+                "nombreCorto": "5PDNU PN USD 4,90",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_prendarios(codigoEntidad=44096)
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Prendarios",
+        params={"codigoEntidad": 44096},
+    )
+    assert data.prestamos_prendarios[0].codigoEntidad == 44096
+    assert len(data.prestamos_prendarios) == 1
+
+
+def test_get_prestamos_prendarios_vacio(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.regimen_de_transparencia.get_prestamos_prendarios()
+
+    assert data.prestamos_prendarios == []
+
+
+def test_get_prestamos_prendarios_404(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 404,
+        "errorMessages": ["No se encontraron datos para su consulta."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(404, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_prendarios(codigoEntidad=999999)
+    assert exc_info.value.status_code == 404
+    assert "No se encontraron datos para su consulta." in exc_info.value.message
+
+
+def test_get_prestamos_prendarios_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Ocurrió un error al procesar la solicitud."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_prendarios()
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_prestamos_prendarios(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "relacionMontoTasacion": 90,
+                "destinoFondos": "Adquisición automotores 0 km",
+                "montoMinimoOtorgable": 500000,
+                "denominacion": "Pesos",
+                "montoMaximoOtorgable": 39200000,
+                "plazoMaximoOtorgable": 60,
+                "ingresoMinimoMensual": 310000,
+                "antiguedadLaboralMinimaMeses": 3,
+                "edadMaximaSolicitada": 70,
+                "relacionCuotaIngreso": 40,
+                "beneficiario": "Clientes con cuenta en la entidad",
+                "cargoMaximoCancelacionAnticipada": 5,
+                "tasaEfectivaAnualMaxima": 72.86,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 93.32,
+                "cuotaInicial": 1215,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-04-11",
+                "nombreCompleto": "PRESTAMOPRENDARIO",
+                "nombreCorto": "PRENDARIO",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_prendarios(
+            codigoEntidad=7
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Prendarios",
+        params={"codigoEntidad": 7},
+    )
+    assert data.prestamos_prendarios[0].codigoEntidad == 7
+
+
+def test_aget_prestamos_prendarios_sin_filtro(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_prendarios()
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Prendarios", params=None
+    )
+    assert data.prestamos_prendarios == []
+
+
+def test_aget_prestamos_prendarios_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Ocurrió un error al procesar la solicitud.")
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.regimen_de_transparencia.aget_prestamos_prendarios()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
+    assert exc_info.value.status_code == 500

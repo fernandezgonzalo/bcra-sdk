@@ -61,6 +61,13 @@ def test_integration_get_plazos_fijos():
     assert data.plazos_fijos[0].codigoEntidad == 7
 
 
+def test_integration_get_prestamos_prendarios():
+    with BCRAClient() as bcra:
+        data = bcra.regimen_de_transparencia.get_prestamos_prendarios(codigoEntidad=7)
+    assert data.prestamos_prendarios
+    assert data.prestamos_prendarios[0].codigoEntidad == 7
+
+
 def test_integration_get_monetarias():
     with BCRAClient() as bcra:
         data = bcra.monetarias.get_monetarias()

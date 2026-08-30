@@ -7,6 +7,7 @@ Endpoints de la API pública (sin autenticación) del Régimen de Transparencia 
 | `get_cajas_ahorros(codigoEntidad=None)` | `GET /transparencia/v1.0/CajasAhorros` |
 | `get_paquetes_productos(codigoEntidad=None)` | `GET /transparencia/v1.0/PaquetesProductos` |
 | `get_plazos_fijos(codigoEntidad=None)` | `GET /transparencia/v1.0/PlazosFijos` |
+| `get_prestamos_prendarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Prendarios` |
 
 ## `get_cajas_ahorros()`
 
@@ -132,6 +133,62 @@ El endpoint acepta además el escape hatch `version=` para forzar una versión
 específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
 asíncrono
 `await bcra.regimen_de_transparencia.aget_plazos_fijos(...)`.
+
+Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
+errores internos del servidor (500).
+
+## `get_prestamos_prendarios()`
+
+Devuelve los préstamos prendarios que ofrece cada entidad en el Régimen de
+Transparencia. La respuesta no incluye metadatos de paginación.
+
+Parámetros:
+- `codigoEntidad` (opcional): código numérico de la entidad financiera para
+  filtrar el listado (los códigos se pueden consultar con `get_entidades` de
+  `bcra.cheques`). Si no se informa, devuelve todas las entidades.
+
+Devuelve `ResultGetPrestamosPrendariosV1`:
+
+- `prestamos_prendarios: list[PrestamoPrendario]`
+    - `PrestamoPrendario.codigoEntidad: int` (código de la entidad informante)
+    - `PrestamoPrendario.descripcionEntidad: str` (nombre oficial o razón social)
+    - `PrestamoPrendario.fechaInformacion: str` (`YYYY-MM-DD`, fecha de actualización)
+    - `PrestamoPrendario.nombreCompleto: str` (nombre completo del préstamo)
+    - `PrestamoPrendario.nombreCorto: str` (nombre corto del préstamo)
+    - `PrestamoPrendario.denominacion: str` (Pesos, Dólares estadounidenses, UVA)
+    - `PrestamoPrendario.montoMinimoOtorgable: float` (monto mínimo otorgable)
+    - `PrestamoPrendario.montoMaximoOtorgable: float` (monto máximo otorgable)
+    - `PrestamoPrendario.plazoMaximoOtorgable: int` (plazo máximo en meses)
+    - `PrestamoPrendario.ingresoMinimoMensual: float` (ingreso mínimo mensual solicitado)
+    - `PrestamoPrendario.antiguedadLaboralMinimaMeses: int` (antigüedad laboral mínima en meses)
+    - `PrestamoPrendario.edadMaximaSolicitada: int` (edad máxima solicitada)
+    - `PrestamoPrendario.relacionCuotaIngreso: int` (relación cuota/ingreso en %)
+    - `PrestamoPrendario.relacionMontoTasacion: int` (relación monto/tasación en %)
+    - `PrestamoPrendario.destinoFondos: str` (destino de los fondos)
+    - `PrestamoPrendario.beneficiario: str` (beneficiario del préstamo)
+    - `PrestamoPrendario.cargoMaximoCancelacionAnticipada: int` (cargo máximo por cancelación anticipada, 0-99 %)
+    - `PrestamoPrendario.tasaEfectivaAnualMaxima: float` (tasa efectiva anual máxima)
+    - `PrestamoPrendario.tipoTasa: str` (Fija, Variable, Mixta)
+    - `PrestamoPrendario.costoFinancieroEfectivoTotalMaximo: float` (costo financiero efectivo total máximo)
+    - `PrestamoPrendario.cuotaInicial: float` (cuota inicial a plazo máximo cada $10.000)
+    - `PrestamoPrendario.territorioValidez: str` (territorio de validez de la oferta)
+    - `PrestamoPrendario.masInformacion: str | None` (información adicional, puede ser `None`)
+
+```python
+from bcra_sdk import BCRAClient
+
+with BCRAClient() as bcra:
+    todos = bcra.regimen_de_transparencia.get_prestamos_prendarios()
+    for pp in todos.prestamos_prendarios:
+        print(pp.codigoEntidad, pp.nombreCorto, pp.tasaEfectivaAnualMaxima)
+
+    filtrados = bcra.regimen_de_transparencia.get_prestamos_prendarios(codigoEntidad=7)
+```
+
+El endpoint acepta además el escape hatch `version=` para forzar una versión
+específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
+asíncrono
+`await bcra.regimen_de_transparencia.aget_prestamos_prendarios(...)`.
 
 Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
 errores internos del servidor (500).
