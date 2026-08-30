@@ -1,7 +1,10 @@
 import logging
 
 from ._base import Resource
-from .models.transparencia import ResultGetCajasAhorrosV1
+from .models.transparencia import (
+    ResultGetCajasAhorrosV1,
+    ResultGetPaquetesProductosV1,
+)
 
 logger = logging.getLogger("bcra_sdk.regimendetransparencia")
 
@@ -21,6 +24,12 @@ class RegimenDeTransparencia(Resource):
             "1.0",
             path="/transparencia/v1.0/CajasAhorros",
             model=ResultGetCajasAhorrosV1,
+        )
+        self._register_version(
+            "get_paquetes_productos",
+            "1.0",
+            path="/transparencia/v1.0/PaquetesProductos",
+            model=ResultGetPaquetesProductosV1,
         )
 
     def get_cajas_ahorros(
@@ -74,5 +83,63 @@ class RegimenDeTransparencia(Resource):
         logger.debug(
             "Cajas de ahorro obtenidas: total=%d",
             len(result.cajas_ahorros),
+        )
+        return result
+
+    def get_paquetes_productos(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPaquetesProductosV1:
+        """Devuelve los paquetes de productos de las entidades.
+
+        Args:
+            codigoEntidad: Código de la entidad para filtrar el listado.
+                Opcional; si no se informa, devuelve todas las entidades.
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetPaquetesProductosV1: listado de `PaqueteProducto`.
+        """
+        logger.info(
+            "Consultando paquetes de productos (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_paquetes_productos",
+            version=version,
+            params=params,
+            model=ResultGetPaquetesProductosV1,
+        )
+        logger.debug(
+            "Paquetes de productos obtenidos: total=%d",
+            len(result.paquetes_productos),
+        )
+        return result
+
+    async def aget_paquetes_productos(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPaquetesProductosV1:
+        """Versión asíncrona de `get_paquetes_productos`."""
+        logger.info(
+            "Consultando paquetes de productos (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_paquetes_productos",
+            version=version,
+            params=params,
+            model=ResultGetPaquetesProductosV1,
+        )
+        logger.debug(
+            "Paquetes de productos obtenidos: total=%d",
+            len(result.paquetes_productos),
         )
         return result

@@ -58,6 +58,10 @@ with BCRAClient() as bcra:
     cajas = bcra.regimen_de_transparencia.get_cajas_ahorros(codigoEntidad=11)
     for caja in cajas.cajas_ahorros:
         print(caja.descripcionEntidad)
+
+    paquetes = bcra.regimen_de_transparencia.get_paquetes_productos(codigoEntidad=11)
+    for p in paquetes.paquetes_productos:
+        print(p.nombreCorto, p.segmento)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.

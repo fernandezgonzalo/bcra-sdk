@@ -73,6 +73,11 @@ REQUESTS: list[RequestSpec] = [
         out="transparencia.get_cajas_ahorros",
         params={"codigoEntidad": 7},
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/PaquetesProductos",
+        out="transparencia.get_paquetes_productos",
+        params={"codigoEntidad": 14},
+    ),
 ]
 
 

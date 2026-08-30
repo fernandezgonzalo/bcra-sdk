@@ -90,6 +90,17 @@ def test_get_cajas_ahorros_golden(client, monkeypatch):
     assert asdict(data) == {"cajas_ahorros": cassette["json"]["results"]}
 
 
+def test_get_paquetes_productos_golden(client, monkeypatch):
+    cassette = load_cassette("transparencia.get_paquetes_productos")
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=http_response(cassette)),
+    )
+    data = client.regimen_de_transparencia.get_paquetes_productos(codigoEntidad=14)
+    assert asdict(data) == {"paquetes_productos": cassette["json"]["results"]}
+
+
 def test_get_monetarias_golden(client, monkeypatch):
     cassette = load_cassette("monetarias.get_monetarias")
     monkeypatch.setattr(

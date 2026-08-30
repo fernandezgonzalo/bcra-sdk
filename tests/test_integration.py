@@ -47,6 +47,13 @@ def test_integration_get_cajas_ahorros():
     assert data.cajas_ahorros[0].codigoEntidad == 11
 
 
+def test_integration_get_paquetes_productos():
+    with BCRAClient() as bcra:
+        data = bcra.regimen_de_transparencia.get_paquetes_productos(codigoEntidad=14)
+    assert data.paquetes_productos
+    assert data.paquetes_productos[0].codigoEntidad == 14
+
+
 def test_integration_get_monetarias():
     with BCRAClient() as bcra:
         data = bcra.monetarias.get_monetarias()
