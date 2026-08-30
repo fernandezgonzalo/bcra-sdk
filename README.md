@@ -13,6 +13,28 @@ Características:
 - Errores de red, timeout y HTTP unificados bajo `BCRAError`.
 - Inputs tipados: fechas como `str` ISO o `datetime.date`; validación de CUIT.
 
+## Cobertura
+
+El SDK cubre las **5 APIs públicas** que el BCRA ofrece en
+[`api.bcra.gob.ar`](https://www.bcra.gob.ar/apis-banco-central/): Central de
+Deudores, Cheques denunciados, Estadísticas Cambiarias, Estadísticas
+Monetarias y Régimen de Transparencia. Son **19 endpoints, todos con su
+variante asíncrona** `aget_*` (mismo transporte, reintentos y errores).
+
+| API oficial (BCRA) | Resource | Endpoints |
+|---|---|---|
+| Central de Deudores | `bcra.deudores` | `get_deudas`, `get_deudas_historicas`, `get_cheques_rechazados` |
+| Cheques denunciados | `bcra.cheques` | `get_entidades`, `get_cheque_denunciado` |
+| Estadísticas Cambiarias | `bcra.estadisticas_cambiarias` | `get_divisas`, `get_cotizaciones`, `get_evolucion_moneda` |
+| Estadísticas Monetarias | `bcra.monetarias` | `get_monetarias`, `get_evolucion_variable`, `get_metodologias`, `get_metodologia` |
+| Régimen de Transparencia | `bcra.regimen_de_transparencia` | `get_cajas_ahorros`, `get_paquetes_productos`, `get_plazos_fijos`, `get_prestamos_prendarios`, `get_prestamos_hipotecarios`, `get_prestamos_personales`, `get_tarjetas_credito` |
+
+Estadísticas Monetarias usa la versión actual `v4.0` (que incluye Principales
+Variables; `v1.0`–`v3.0` quedaron deprecadas por el BCRA). Cada endpoint
+registra sus versiones disponibles y se resuelve por defecto a la más reciente;
+consultalas con `bcra.<namespace>.versions("<endpoint>")`. La referencia
+completa por namespace está en [`docs/endpoints/`](docs/endpoints/).
+
 ## Documentación
 
 Documentación completa en [`docs/`](docs/index.md):
@@ -84,7 +106,8 @@ with BCRAClient() as bcra:
         print(t.nombreCorto, t.segmento, t.tasaEfectivaAnualMaximaFinanciacion)
 ```
 
-Uso asíncrono: cada endpoint tiene su par `aget_*`.
+Uso asíncrono: todos los endpoints tienen su par `aget_*`. La misma instancia
+sirve para sync (`with`) y async (`async with`).
 
 ```python
 import asyncio
@@ -97,6 +120,16 @@ async def main():
         reporte = await bcra.deudores.aget_deudas(cuit="20111111112")
         for periodo in reporte.periodos:
             print(periodo.periodo)
+
+        cotizaciones = await bcra.estadisticas_cambiarias.aget_cotizaciones(
+            "2024-06-12"
+        )
+        for c in cotizaciones.detalle:
+            print(c.codigoMoneda, c.tipoCotizacion)
+
+        monetarias = await bcra.monetarias.aget_monetarias()
+        for v in monetarias.variables:
+            print(v.idVariable, v.descripcion)
 
 
 asyncio.run(main())
