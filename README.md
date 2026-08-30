@@ -1,5 +1,11 @@
 # BCRA-SDK
 
+[![CI](https://github.com/fernandezgonzalo/bcra-sdk/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandezgonzalo/bcra-sdk/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11–3.15](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13%20%7C%203.14%20%7C%203.15-blue.svg)](pyproject.toml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](#cobertura)
+[![Documentation](https://readthedocs.org/projects/bcra-sdk/badge/?version=latest)](https://bcra-sdk.readthedocs.io/)
+
 SDK no oficial e impulsado por `httpx` para las APIs públicas del Banco Central de la República Argentina (BCRA).
 
 `BCRAClient` es un único cliente que organiza los endpoints por dominio (`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`, `regimen_de_transparencia`)
