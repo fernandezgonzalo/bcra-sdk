@@ -72,6 +72,12 @@ with BCRAClient() as bcra:
     )
     for h in hipotecarios.prestamos_hipotecarios:
         print(h.nombreCorto, h.tasaEfectivaAnualMaxima)
+
+    personales = bcra.regimen_de_transparencia.get_prestamos_personales(
+        codigoEntidad=11
+    )
+    for p in personales.prestamos_personales:
+        print(p.nombreCorto, p.tasaEfectivaAnualMaxima)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.

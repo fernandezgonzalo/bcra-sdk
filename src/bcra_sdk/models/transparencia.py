@@ -159,3 +159,41 @@ class ResultGetPrestamosHipotecariosV1:
     @classmethod
     def from_dict(cls, data: list) -> "ResultGetPrestamosHipotecariosV1":
         return cls(prestamos_hipotecarios=[PrestamoHipotecario(**d) for d in data])
+
+
+@dataclass
+class PrestamoPersonal:
+    """Préstamo personal de una entidad del Régimen de Transparencia."""
+
+    montoMinimoOtorgable: float
+    denominacion: str
+    montoMaximoOtorgable: float
+    plazoMaximoOtorgable: int
+    ingresoMinimoMensual: float
+    antiguedadLaboralMinimaMeses: int
+    edadMaximaSolicitada: int
+    relacionCuotaIngreso: int
+    beneficiario: str
+    cargoMaximoCancelacionAnticipada: int
+    tasaEfectivaAnualMaxima: float
+    tipoTasa: str
+    costoFinancieroEfectivoTotalMaximo: float
+    cuotaInicial: float
+    codigoEntidad: int
+    descripcionEntidad: str
+    fechaInformacion: str
+    nombreCompleto: str
+    nombreCorto: str
+    territorioValidez: str
+    masInformacion: str | None
+
+
+@dataclass
+class ResultGetPrestamosPersonalesV1:
+    """Respuesta de ``get_prestamos_personales``: listado de `PrestamoPersonal`."""
+
+    prestamos_personales: list[PrestamoPersonal]
+
+    @classmethod
+    def from_dict(cls, data: list) -> "ResultGetPrestamosPersonalesV1":
+        return cls(prestamos_personales=[PrestamoPersonal(**d) for d in data])

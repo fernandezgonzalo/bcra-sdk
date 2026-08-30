@@ -1158,3 +1158,264 @@ def test_aget_prestamos_hipotecarios_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_prestamos_personales(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "montoMinimoOtorgable": 500,
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 2000000,
+                "plazoMaximoOtorgable": 24,
+                "ingresoMinimoMensual": 310000,
+                "antiguedadLaboralMinimaMeses": 0,
+                "edadMaximaSolicitada": 80,
+                "relacionCuotaIngreso": 30,
+                "beneficiario": "Todos los beneficiarios",
+                "cargoMaximoCancelacionAnticipada": 4,
+                "tasaEfectivaAnualMaxima": 29.33,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 36.42,
+                "cuotaInicial": 956,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-08-19",
+                "nombreCompleto": "PRESTAMOPERSONALUVA",
+                "nombreCorto": "PPUVA",
+                "territorioValidez": "0",
+                "masInformacion": None,
+            },
+            {
+                "montoMinimoOtorgable": 5000,
+                "denominacion": "Pesos",
+                "montoMaximoOtorgable": 100000,
+                "plazoMaximoOtorgable": 12,
+                "ingresoMinimoMensual": 70000,
+                "antiguedadLaboralMinimaMeses": 12,
+                "edadMaximaSolicitada": 65,
+                "relacionCuotaIngreso": 20,
+                "beneficiario": "Personas humanas Monotributistas",
+                "cargoMaximoCancelacionAnticipada": 0,
+                "tasaEfectivaAnualMaxima": 264,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 267.67,
+                "cuotaInicial": 0,
+                "codigoEntidad": 55236,
+                "descripcionEntidad": "Dourat S.R.L.",
+                "fechaInformacion": "2023-05-29",
+                "nombreCompleto": "MONOTRIBUTOEFECTIVO",
+                "nombreCorto": "MVSE2",
+                "territorioValidez": "2",
+                "masInformacion": None,
+            },
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_personales()
+
+    mock_request.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Personales", params=None
+    )
+    assert len(data.prestamos_personales) == 2
+    prestamo = data.prestamos_personales[0]
+    assert prestamo.montoMinimoOtorgable == 500
+    assert prestamo.denominacion == "UVA"
+    assert prestamo.montoMaximoOtorgable == 2000000
+    assert prestamo.plazoMaximoOtorgable == 24
+    assert prestamo.ingresoMinimoMensual == 310000
+    assert prestamo.antiguedadLaboralMinimaMeses == 0
+    assert prestamo.edadMaximaSolicitada == 80
+    assert prestamo.relacionCuotaIngreso == 30
+    assert prestamo.beneficiario == "Todos los beneficiarios"
+    assert prestamo.cargoMaximoCancelacionAnticipada == 4
+    assert prestamo.tasaEfectivaAnualMaxima == 29.33
+    assert prestamo.tipoTasa == "Fija"
+    assert prestamo.costoFinancieroEfectivoTotalMaximo == 36.42
+    assert prestamo.cuotaInicial == 956
+    assert prestamo.codigoEntidad == 7
+    assert prestamo.descripcionEntidad == "BANCO DE GALICIA Y BUENOS AIRES S.A."
+    assert prestamo.fechaInformacion == "2025-08-19"
+    assert prestamo.nombreCompleto == "PRESTAMOPERSONALUVA"
+    assert prestamo.nombreCorto == "PPUVA"
+    assert prestamo.territorioValidez == "0"
+    assert prestamo.masInformacion is None
+    assert data.prestamos_personales[1].codigoEntidad == 55236
+    assert data.prestamos_personales[1].descripcionEntidad == "Dourat S.R.L."
+
+
+def test_get_prestamos_personales_con_codigo_entidad(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "montoMinimoOtorgable": 5000,
+                "denominacion": "Pesos",
+                "montoMaximoOtorgable": 100000,
+                "plazoMaximoOtorgable": 12,
+                "ingresoMinimoMensual": 70000,
+                "antiguedadLaboralMinimaMeses": 12,
+                "edadMaximaSolicitada": 65,
+                "relacionCuotaIngreso": 20,
+                "beneficiario": "Personas humanas Monotributistas",
+                "cargoMaximoCancelacionAnticipada": 0,
+                "tasaEfectivaAnualMaxima": 264,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 267.67,
+                "cuotaInicial": 0,
+                "codigoEntidad": 55236,
+                "descripcionEntidad": "Dourat S.R.L.",
+                "fechaInformacion": "2023-05-29",
+                "nombreCompleto": "MONOTRIBUTOEFECTIVO",
+                "nombreCorto": "MVSE2",
+                "territorioValidez": "2",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_prestamos_personales(codigoEntidad=55236)
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Personales",
+        params={"codigoEntidad": 55236},
+    )
+    assert data.prestamos_personales[0].codigoEntidad == 55236
+    assert len(data.prestamos_personales) == 1
+
+
+def test_get_prestamos_personales_vacio(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.regimen_de_transparencia.get_prestamos_personales()
+
+    assert data.prestamos_personales == []
+
+
+def test_get_prestamos_personales_404(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 404,
+        "errorMessages": ["No se encontraron datos para su consulta."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(404, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_personales(codigoEntidad=999999)
+    assert exc_info.value.status_code == 404
+    assert "No se encontraron datos para su consulta." in exc_info.value.message
+
+
+def test_get_prestamos_personales_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Ocurrió un error al procesar la solicitud."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_prestamos_personales()
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_prestamos_personales(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "montoMinimoOtorgable": 500,
+                "denominacion": "UVA",
+                "montoMaximoOtorgable": 2000000,
+                "plazoMaximoOtorgable": 24,
+                "ingresoMinimoMensual": 310000,
+                "antiguedadLaboralMinimaMeses": 0,
+                "edadMaximaSolicitada": 80,
+                "relacionCuotaIngreso": 30,
+                "beneficiario": "Todos los beneficiarios",
+                "cargoMaximoCancelacionAnticipada": 4,
+                "tasaEfectivaAnualMaxima": 29.33,
+                "tipoTasa": "Fija",
+                "costoFinancieroEfectivoTotalMaximo": 36.42,
+                "cuotaInicial": 956,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+                "fechaInformacion": "2025-08-19",
+                "nombreCompleto": "PRESTAMOPERSONALUVA",
+                "nombreCorto": "PPUVA",
+                "territorioValidez": "0",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_personales(
+            codigoEntidad=7
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/Prestamos/Personales",
+        params={"codigoEntidad": 7},
+    )
+    assert data.prestamos_personales[0].codigoEntidad == 7
+
+
+def test_aget_prestamos_personales_sin_filtro(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_prestamos_personales()
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET", "/transparencia/v1.0/Prestamos/Personales", params=None
+    )
+    assert data.prestamos_personales == []
+
+
+def test_aget_prestamos_personales_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Ocurrió un error al procesar la solicitud.")
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.regimen_de_transparencia.aget_prestamos_personales()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
+    assert exc_info.value.status_code == 500

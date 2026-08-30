@@ -93,6 +93,11 @@ REQUESTS: list[RequestSpec] = [
         out="transparencia.get_prestamos_hipotecarios",
         params={"codigoEntidad": 7},
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/Prestamos/Personales",
+        out="transparencia.get_prestamos_personales",
+        params={"codigoEntidad": 7},
+    ),
 ]
 
 

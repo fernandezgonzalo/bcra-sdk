@@ -9,6 +9,7 @@ Endpoints de la API pública (sin autenticación) del Régimen de Transparencia 
 | `get_plazos_fijos(codigoEntidad=None)` | `GET /transparencia/v1.0/PlazosFijos` |
 | `get_prestamos_prendarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Prendarios` |
 | `get_prestamos_hipotecarios(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Hipotecarios` |
+| `get_prestamos_personales(codigoEntidad=None)` | `GET /transparencia/v1.0/Prestamos/Personales` |
 
 ## `get_cajas_ahorros()`
 
@@ -138,7 +139,59 @@ asíncrono
 Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
 errores internos del servidor (500).
 
-## `get_prestamos_prendarios()`
+## `get_prestamos_personales()`
+
+Devuelve los préstamos personales que ofrece cada entidad en el Régimen de
+Transparencia. La respuesta no incluye metadatos de paginación.
+
+Parámetros:
+- `codigoEntidad` (opcional): código numérico de la entidad financiera para
+  filtrar el listado (los códigos se pueden consultar con `get_entidades` de
+  `bcra.cheques`). Si no se informa, devuelve todas las entidades.
+
+Devuelve `ResultGetPrestamosPersonalesV1`:
+
+- `prestamos_personales: list[PrestamoPersonal]`
+    - `PrestamoPersonal.codigoEntidad: int` (código de la entidad informante)
+    - `PrestamoPersonal.descripcionEntidad: str` (nombre oficial o razón social)
+    - `PrestamoPersonal.fechaInformacion: str` (`YYYY-MM-DD`, fecha de actualización)
+    - `PrestamoPersonal.nombreCompleto: str` (nombre completo del préstamo)
+    - `PrestamoPersonal.nombreCorto: str` (nombre corto del préstamo)
+    - `PrestamoPersonal.denominacion: str` (Pesos, Dólares estadounidenses, UVA)
+    - `PrestamoPersonal.montoMinimoOtorgable: float` (monto mínimo otorgable)
+    - `PrestamoPersonal.montoMaximoOtorgable: float` (monto máximo otorgable)
+    - `PrestamoPersonal.plazoMaximoOtorgable: int` (plazo máximo en meses)
+    - `PrestamoPersonal.ingresoMinimoMensual: float` (ingreso mínimo mensual solicitado)
+    - `PrestamoPersonal.antiguedadLaboralMinimaMeses: int` (antigüedad laboral mínima en meses)
+    - `PrestamoPersonal.edadMaximaSolicitada: int` (edad máxima solicitada)
+    - `PrestamoPersonal.relacionCuotaIngreso: int` (relación cuota/ingreso en %)
+    - `PrestamoPersonal.beneficiario: str` (beneficiario del préstamo)
+    - `PrestamoPersonal.cargoMaximoCancelacionAnticipada: int` (cargo máximo por cancelación anticipada, 0-99 %)
+    - `PrestamoPersonal.tasaEfectivaAnualMaxima: float` (tasa efectiva anual máxima)
+    - `PrestamoPersonal.tipoTasa: str` (Fija, Variable, Mixta)
+    - `PrestamoPersonal.costoFinancieroEfectivoTotalMaximo: float` (costo financiero efectivo total máximo)
+    - `PrestamoPersonal.cuotaInicial: float` (cuota inicial a plazo máximo cada $10.000)
+    - `PrestamoPersonal.territorioValidez: str` (territorio de validez de la oferta)
+    - `PrestamoPersonal.masInformacion: str | None` (información adicional, puede ser `None`)
+
+```python
+from bcra_sdk import BCRAClient
+
+with BCRAClient() as bcra:
+    todos = bcra.regimen_de_transparencia.get_prestamos_personales()
+    for pp in todos.prestamos_personales:
+        print(pp.codigoEntidad, pp.nombreCorto, pp.tasaEfectivaAnualMaxima)
+
+    filtrados = bcra.regimen_de_transparencia.get_prestamos_personales(codigoEntidad=7)
+```
+
+El endpoint acepta además el escape hatch `version=` para forzar una versión
+específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
+asíncrono
+`await bcra.regimen_de_transparencia.aget_prestamos_personales(...)`.
+
+Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
+errores internos del servidor (500).
 
 Devuelve los préstamos prendarios que ofrece cada entidad en el Régimen de
 Transparencia. La respuesta no incluye metadatos de paginación.

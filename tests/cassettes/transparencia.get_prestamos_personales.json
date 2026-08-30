@@ -1,0 +1,58 @@
+{
+  "path": "/transparencia/v1.0/Prestamos/Personales",
+  "params": {
+    "codigoEntidad": 7
+  },
+  "status_code": 200,
+  "json": {
+    "status": 200,
+    "results": [
+      {
+        "montoMinimoOtorgable": 500,
+        "denominacion": "Pesos",
+        "montoMaximoOtorgable": 24800000,
+        "plazoMaximoOtorgable": 72,
+        "ingresoMinimoMensual": 310000,
+        "antiguedadLaboralMinimaMeses": 0,
+        "edadMaximaSolicitada": 80,
+        "relacionCuotaIngreso": 30.0,
+        "beneficiario": "Todos los beneficiarios",
+        "cargoMaximoCancelacionAnticipada": 4.0,
+        "tasaEfectivaAnualMaxima": 283.0,
+        "tipoTasa": "Fija",
+        "costoFinancieroEfectivoTotalMaximo": 398.0,
+        "cuotaInicial": 1442.0,
+        "codigoEntidad": 7,
+        "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+        "fechaInformacion": "2026-06-12",
+        "nombreCompleto": "PRESTAMOPERSONAL",
+        "nombreCorto": "PP",
+        "territorioValidez": "0",
+        "masInformacion": null
+      },
+      {
+        "montoMinimoOtorgable": 500,
+        "denominacion": "UVA",
+        "montoMaximoOtorgable": 2000000,
+        "plazoMaximoOtorgable": 24,
+        "ingresoMinimoMensual": 310000,
+        "antiguedadLaboralMinimaMeses": 0,
+        "edadMaximaSolicitada": 80,
+        "relacionCuotaIngreso": 30.0,
+        "beneficiario": "Todos los beneficiarios",
+        "cargoMaximoCancelacionAnticipada": 4.0,
+        "tasaEfectivaAnualMaxima": 30.0,
+        "tipoTasa": "Fija",
+        "costoFinancieroEfectivoTotalMaximo": 37.0,
+        "cuotaInicial": 956.0,
+        "codigoEntidad": 7,
+        "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+        "fechaInformacion": "2026-06-12",
+        "nombreCompleto": "PRESTAMOPERSONALUVA",
+        "nombreCorto": "PPUVA",
+        "territorioValidez": "0",
+        "masInformacion": null
+      }
+    ]
+  }
+}

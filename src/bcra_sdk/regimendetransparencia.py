@@ -6,6 +6,7 @@ from .models.transparencia import (
     ResultGetPaquetesProductosV1,
     ResultGetPlazosFijosV1,
     ResultGetPrestamosHipotecariosV1,
+    ResultGetPrestamosPersonalesV1,
     ResultGetPrestamosPrendariosV1,
 )
 
@@ -51,6 +52,12 @@ class RegimenDeTransparencia(Resource):
             "1.0",
             path="/transparencia/v1.0/Prestamos/Hipotecarios",
             model=ResultGetPrestamosHipotecariosV1,
+        )
+        self._register_version(
+            "get_prestamos_personales",
+            "1.0",
+            path="/transparencia/v1.0/Prestamos/Personales",
+            model=ResultGetPrestamosPersonalesV1,
         )
 
     def get_cajas_ahorros(
@@ -274,6 +281,64 @@ class RegimenDeTransparencia(Resource):
         logger.debug(
             "Préstamos prendarios obtenidos: total=%d",
             len(result.prestamos_prendarios),
+        )
+        return result
+
+    def get_prestamos_personales(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPrestamosPersonalesV1:
+        """Devuelve los préstamos personales ofrecidos por las entidades.
+
+        Args:
+            codigoEntidad: Código de la entidad para filtrar el listado.
+                Opcional; si no se informa, devuelve todas las entidades.
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetPrestamosPersonalesV1: listado de `PrestamoPersonal`.
+        """
+        logger.info(
+            "Consultando préstamos personales (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_prestamos_personales",
+            version=version,
+            params=params,
+            model=ResultGetPrestamosPersonalesV1,
+        )
+        logger.debug(
+            "Préstamos personales obtenidos: total=%d",
+            len(result.prestamos_personales),
+        )
+        return result
+
+    async def aget_prestamos_personales(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPrestamosPersonalesV1:
+        """Versión asíncrona de `get_prestamos_personales`."""
+        logger.info(
+            "Consultando préstamos personales (codigoEntidad=%s)", codigoEntidad
+        )
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_prestamos_personales",
+            version=version,
+            params=params,
+            model=ResultGetPrestamosPersonalesV1,
+        )
+        logger.debug(
+            "Préstamos personales obtenidos: total=%d",
+            len(result.prestamos_personales),
         )
         return result
 
