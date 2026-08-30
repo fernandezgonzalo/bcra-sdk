@@ -7,8 +7,6 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
-## [0.0.9] - 2026-08-29
-
 ### Added
 
 - Recurso `RegimenDeTransparencia` expuesto como `client.regimen_de_transparencia` con `get_cajas_ahorros`/`aget_cajas_ahorros` (`GET /transparencia/v1.0/CajasAhorros`) y filtro opcional `codigoEntidad`, modelos `CajaAhorro` y `ResultGetCajasAhorrosV1`, unit tests, golden test con cassette y test de integración
@@ -18,6 +16,8 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 - Endpoint `get_prestamos_hipotecarios`/`aget_prestamos_hipotecarios` (`GET /transparencia/v1.0/Prestamos/Hipotecarios`) con filtro opcional `codigoEntidad`, modelos `PrestamoHipotecario` y `ResultGetPrestamosHipotecariosV1`, unit tests, golden test con cassette y test de integración
 - Endpoint `get_prestamos_personales`/`aget_prestamos_personales` (`GET /transparencia/v1.0/Prestamos/Personales`) con filtro opcional `codigoEntidad`, modelos `PrestamoPersonal` y `ResultGetPrestamosPersonalesV1`, unit tests, golden test con cassette y test de integración
 - Endpoint `get_tarjetas_credito`/`aget_tarjetas_credito` (`GET /transparencia/v1.0/TarjetasCredito`) con filtro opcional `codigoEntidad`, modelos `TarjetaCredito` y `ResultGetTarjetasCreditoV1`, unit tests, golden test con cassette y test de integración
+
+## [0.0.9] - 2026-08-29
 
 ### Fixed
 
