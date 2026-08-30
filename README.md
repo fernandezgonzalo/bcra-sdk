@@ -1,8 +1,8 @@
 # BCRA-SDK
 
-SDK no oficial e inmutado por `httpx` para las APIs públicas del Banco Central de la República Argentina (BCRA).
+SDK no oficial e impulsado por `httpx` para las APIs públicas del Banco Central de la República Argentina (BCRA).
 
-`BCRAClient` es un único cliente que organiza los endpoints por dominio (`deudores`, `cheques`, `estadisticas_cambiarias`)
+`BCRAClient` es un único cliente que organiza los endpoints por dominio (`deudores`, `cheques`, `estadisticas_cambiarias`, `monetarias`)
 y estructura las respuestas en dataclasses fuertemente tipadas. Los endpoints están versionados, resuelven por defecto
 la versión más reciente y permiten forzar una versión.
 
@@ -18,7 +18,7 @@ Características:
 Documentación completa en [`docs/`](docs/index.md):
 
 - [Guía rápida](docs/guia-rapida.md)
-- [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias
+- [Endpoints](docs/index.md#contenido): deudores, cheques, estadísticas cambiarias, monetarias
 - [API Reference](docs/api/cliente.md): cliente, recursos, modelos y errores
 - [Versionado de endpoints](docs/versionado.md)
 - [Reintentos](docs/retry.md)
@@ -31,12 +31,12 @@ Documentación completa en [`docs/`](docs/index.md):
 Aún no está publicado en PyPI. Se instala desde el repositorio de GitHub:
 
 ```bash
-uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.5"
+uv add "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.8"
 # o con pip
-pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.5"
+pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.8"
 ```
 
-> Reemplaza `v0.0.5` con la versión que desees instalar. Consulta [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases).
+> Reemplaza `v0.0.8` con la versión que desees instalar. Consulta [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases).
 
 ## Uso rápido
 
@@ -50,6 +50,10 @@ with BCRAClient() as bcra:
     cotizaciones = bcra.estadisticas_cambiarias.get_cotizaciones("2024-06-12")
     for c in cotizaciones.detalle:
         print(c.codigoMoneda, c.tipoCotizacion)
+
+    monetarias = bcra.monetarias.get_monetarias()
+    for v in monetarias.variables:
+        print(v.idVariable, v.descripcion)
 ```
 
 Uso asíncrono: cada endpoint tiene su par `aget_*`.
