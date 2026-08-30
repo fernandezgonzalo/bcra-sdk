@@ -5,7 +5,16 @@ Todas las novedades del proyecto se registran en
 (el formato sigue [Keep a Changelog](https://keepachangelog.com/) y los cambios
 [Conventional Commits](https://www.conventionalcommits.org/)).
 
-Última versión publicada: **0.0.9** (2026-08-29).
+Última versión publicada: **0.0.10** (2026-08-30).
+
+## [0.0.10] - 2026-08-30
+
+### Added
+
+- Recurso `RegimenDeTransparencia` (`client.regimen_de_transparencia`) con `get_cajas_ahorros`,
+  `get_paquetes_productos`, `get_plazos_fijos`, `get_prestamos_prendarios`,
+  `get_prestamos_hipotecarios`, `get_prestamos_personales` y `get_tarjetas_credito` (con sus
+  pares `aget_*`) y filtro opcional `codigoEntidad`, incluyendo sus modelos.
 
 ## [0.0.9] - 2026-08-29
 
