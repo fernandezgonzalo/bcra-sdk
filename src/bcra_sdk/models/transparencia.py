@@ -51,3 +51,32 @@ class ResultGetPaquetesProductosV1:
     @classmethod
     def from_dict(cls, data: list) -> "ResultGetPaquetesProductosV1":
         return cls(paquetes_productos=[PaqueteProducto(**d) for d in data])
+
+
+@dataclass
+class PlazoFijo:
+    """Plazo fijo comercializado por una entidad del Régimen de Transparencia."""
+
+    codigoEntidad: int
+    descripcionEntidad: str
+    fechaInformacion: str
+    nombreCompleto: str
+    nombreCorto: str
+    denominacion: str | None
+    montoMinimoInvertir: float
+    plazoMinimoInvertirDias: int
+    canalConstitucion: str
+    tasaEfectivaAnualMinima: float
+    territorioValidez: str
+    masInformacion: str | None
+
+
+@dataclass
+class ResultGetPlazosFijosV1:
+    """Respuesta de ``get_plazos_fijos``: listado de `PlazoFijo`."""
+
+    plazos_fijos: list[PlazoFijo]
+
+    @classmethod
+    def from_dict(cls, data: list) -> "ResultGetPlazosFijosV1":
+        return cls(plazos_fijos=[PlazoFijo(**d) for d in data])

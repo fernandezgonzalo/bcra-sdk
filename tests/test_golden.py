@@ -101,6 +101,17 @@ def test_get_paquetes_productos_golden(client, monkeypatch):
     assert asdict(data) == {"paquetes_productos": cassette["json"]["results"]}
 
 
+def test_get_plazos_fijos_golden(client, monkeypatch):
+    cassette = load_cassette("transparencia.get_plazos_fijos")
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=http_response(cassette)),
+    )
+    data = client.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=7)
+    assert asdict(data) == {"plazos_fijos": cassette["json"]["results"]}
+
+
 def test_get_monetarias_golden(client, monkeypatch):
     cassette = load_cassette("monetarias.get_monetarias")
     monkeypatch.setattr(

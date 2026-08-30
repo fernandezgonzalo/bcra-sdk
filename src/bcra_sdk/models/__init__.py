@@ -23,8 +23,10 @@ from .monetarias import (
 from .transparencia import (
     CajaAhorro,
     PaqueteProducto,
+    PlazoFijo,
     ResultGetCajasAhorrosV1,
     ResultGetPaquetesProductosV1,
+    ResultGetPlazosFijosV1,
 )
 
 __all__ = [
@@ -33,6 +35,7 @@ __all__ = [
     "Metodologia",
     "PaqueteProducto",
     "PeriodoHistorica",
+    "PlazoFijo",
     "PuntoSerie",
     "ResultGetCajasAhorrosV1",
     "ResultGetChequeDenunciadoV1",
@@ -48,6 +51,7 @@ __all__ = [
     "ResultGetMetodologiasV1",
     "ResultGetMonetariasV1",
     "ResultGetPaquetesProductosV1",
+    "ResultGetPlazosFijosV1",
     "SerieMonetaria",
     "VariableMonetaria",
 ]

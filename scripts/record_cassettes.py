@@ -78,6 +78,11 @@ REQUESTS: list[RequestSpec] = [
         out="transparencia.get_paquetes_productos",
         params={"codigoEntidad": 14},
     ),
+    RequestSpec(
+        path="/transparencia/v1.0/PlazosFijos",
+        out="transparencia.get_plazos_fijos",
+        params={"codigoEntidad": 7},
+    ),
 ]
 
 

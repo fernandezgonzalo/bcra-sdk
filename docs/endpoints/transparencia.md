@@ -6,6 +6,7 @@ Endpoints de la API pública (sin autenticación) del Régimen de Transparencia 
 |--------|----------|
 | `get_cajas_ahorros(codigoEntidad=None)` | `GET /transparencia/v1.0/CajasAhorros` |
 | `get_paquetes_productos(codigoEntidad=None)` | `GET /transparencia/v1.0/PaquetesProductos` |
+| `get_plazos_fijos(codigoEntidad=None)` | `GET /transparencia/v1.0/PlazosFijos` |
 
 ## `get_cajas_ahorros()`
 
@@ -86,6 +87,51 @@ El endpoint acepta además el escape hatch `version=` para forzar una versión
 específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
 asíncrono
 `await bcra.regimen_de_transparencia.aget_paquetes_productos(...)`.
+
+Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
+errores internos del servidor (500).
+
+## `get_plazos_fijos()`
+
+Devuelve los plazos fijos que comercializa cada entidad en el Régimen de
+Transparencia. La respuesta no incluye metadatos de paginación.
+
+Parámetros:
+- `codigoEntidad` (opcional): código numérico de la entidad financiera para
+  filtrar el listado (los códigos se pueden consultar con `get_entidades` de
+  `bcra.cheques`). Si no se informa, devuelve todas las entidades.
+
+Devuelve `ResultGetPlazosFijosV1`:
+
+- `plazos_fijos: list[PlazoFijo]`
+    - `PlazoFijo.codigoEntidad: int` (código de la entidad informante)
+    - `PlazoFijo.descripcionEntidad: str` (nombre oficial o razón social)
+    - `PlazoFijo.fechaInformacion: str` (`YYYY-MM-DD`, fecha de actualización)
+    - `PlazoFijo.nombreCompleto: str` (nombre completo del tipo de plazo fijo)
+    - `PlazoFijo.nombreCorto: str` (nombre corto del tipo de plazo fijo)
+    - `PlazoFijo.denominacion: str | None` (Pesos, Dólares estadounidenses, Euros, UVAs, UVIs; puede ser `None`)
+    - `PlazoFijo.montoMinimoInvertir: float` (monto mínimo a invertir)
+    - `PlazoFijo.plazoMinimoInvertirDias: int` (plazo mínimo en días: 30, 60, 90, 180, 360)
+    - `PlazoFijo.canalConstitucion: str` (canal de constitución: Home banking, Cajero automático, etc.)
+    - `PlazoFijo.tasaEfectivaAnualMinima: float` (tasa efectiva anual mínima)
+    - `PlazoFijo.territorioValidez: str` (territorio de validez de la oferta)
+    - `PlazoFijo.masInformacion: str | None` (información adicional, puede ser `None`)
+
+```python
+from bcra_sdk import BCRAClient
+
+with BCRAClient() as bcra:
+    todos = bcra.regimen_de_transparencia.get_plazos_fijos()
+    for pf in todos.plazos_fijos:
+        print(pf.codigoEntidad, pf.nombreCorto, pf.tasaEfectivaAnualMinima)
+
+    filtrados = bcra.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=7)
+```
+
+El endpoint acepta además el escape hatch `version=` para forzar una versión
+específica (ver [Versionado de endpoints](../versionado.md)), y tiene su par
+asíncrono
+`await bcra.regimen_de_transparencia.aget_plazos_fijos(...)`.
 
 Un `codigoEntidad` sin datos levanta `BCRAHTTPError` (404), igual que los
 errores internos del servidor (500).

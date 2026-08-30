@@ -54,6 +54,13 @@ def test_integration_get_paquetes_productos():
     assert data.paquetes_productos[0].codigoEntidad == 14
 
 
+def test_integration_get_plazos_fijos():
+    with BCRAClient() as bcra:
+        data = bcra.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=7)
+    assert data.plazos_fijos
+    assert data.plazos_fijos[0].codigoEntidad == 7
+
+
 def test_integration_get_monetarias():
     with BCRAClient() as bcra:
         data = bcra.monetarias.get_monetarias()

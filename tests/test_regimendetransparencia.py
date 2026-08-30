@@ -405,3 +405,219 @@ def test_aget_paquetes_productos_500(client, monkeypatch):
     with pytest.raises(BCRAHTTPError) as exc_info:
         asyncio.run(run())
     assert exc_info.value.status_code == 500
+
+
+def test_get_plazos_fijos(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "denominacion": None,
+                "montoMinimoInvertir": 1000,
+                "plazoMinimoInvertirDias": 1,
+                "canalConstitucion": "Línea telefónica",
+                "tasaEfectivaAnualMinima": 10.47,
+                "codigoEntidad": 7,
+                "descripcionEntidad": "BANCO DE GALICIA Y BUENOS AIRES S.A.U.",
+                "fechaInformacion": "2019-07-16",
+                "nombreCompleto": "PLAZOFIJOTRADICIONAL",
+                "nombreCorto": "PFTRADICIONAL",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            },
+            {
+                "denominacion": "Pesos",
+                "montoMinimoInvertir": 5000,
+                "plazoMinimoInvertirDias": 30,
+                "canalConstitucion": "Home banking",
+                "tasaEfectivaAnualMinima": 15.01,
+                "codigoEntidad": 303,
+                "descripcionEntidad": "BANCO FINANSUR S.A.",
+                "fechaInformacion": "2017-06-08",
+                "nombreCompleto": "PLAZO FIJO",
+                "nombreCorto": "P. FIJO",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": "BONIFICADO",
+            },
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_plazos_fijos()
+
+    mock_request.assert_called_once_with(
+        "GET", "/transparencia/v1.0/PlazosFijos", params=None
+    )
+    assert len(data.plazos_fijos) == 2
+    plazo = data.plazos_fijos[1]
+    assert plazo.codigoEntidad == 303
+    assert plazo.descripcionEntidad == "BANCO FINANSUR S.A."
+    assert plazo.fechaInformacion == "2017-06-08"
+    assert plazo.nombreCompleto == "PLAZO FIJO"
+    assert plazo.nombreCorto == "P. FIJO"
+    assert plazo.denominacion == "Pesos"
+    assert plazo.montoMinimoInvertir == 5000
+    assert plazo.plazoMinimoInvertirDias == 30
+    assert plazo.canalConstitucion == "Home banking"
+    assert plazo.tasaEfectivaAnualMinima == 15.01
+    assert plazo.territorioValidez == "Todo el territorio nacional"
+    assert data.plazos_fijos[0].denominacion is None
+    assert data.plazos_fijos[0].masInformacion is None
+    assert plazo.masInformacion == "BONIFICADO"
+
+
+def test_get_plazos_fijos_con_codigo_entidad(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "denominacion": None,
+                "montoMinimoInvertir": 1000,
+                "plazoMinimoInvertirDias": 1,
+                "canalConstitucion": "Línea telefónica",
+                "tasaEfectivaAnualMinima": 10.47,
+                "codigoEntidad": 303,
+                "descripcionEntidad": "BANCO FINANSUR S.A.",
+                "fechaInformacion": "2019-07-16",
+                "nombreCompleto": "PLAZOFIJOTRADICIONAL",
+                "nombreCorto": "PFTRADICIONAL",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_request = MagicMock(return_value=mock_response)
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    data = client.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=303)
+
+    mock_request.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/PlazosFijos",
+        params={"codigoEntidad": 303},
+    )
+    assert data.plazos_fijos[0].codigoEntidad == 303
+    assert len(data.plazos_fijos) == 1
+
+
+def test_get_plazos_fijos_vacio(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+
+    monkeypatch.setattr(
+        client.regimen_de_transparencia._t,
+        "request",
+        MagicMock(return_value=mock_response),
+    )
+
+    data = client.regimen_de_transparencia.get_plazos_fijos()
+
+    assert data.plazos_fijos == []
+
+
+def test_get_plazos_fijos_404(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 404,
+        "errorMessages": ["No se encontraron datos para su consulta."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(404, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_plazos_fijos(codigoEntidad=999999)
+    assert exc_info.value.status_code == 404
+    assert "No se encontraron datos para su consulta." in exc_info.value.message
+
+
+def test_get_plazos_fijos_500(client, monkeypatch):
+    fake_data: dict[str, Any] = {
+        "status": 500,
+        "errorMessages": ["Ocurrió un error al procesar la solicitud."],
+    }
+
+    def mock_request(*args, **kwargs):
+        raise BCRAHTTPError(500, fake_data["errorMessages"][0])
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "request", mock_request)
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        client.regimen_de_transparencia.get_plazos_fijos()
+    assert exc_info.value.status_code == 500
+
+
+def test_aget_plazos_fijos(client, monkeypatch):
+    fake_data = {
+        "status": 200,
+        "results": [
+            {
+                "denominacion": None,
+                "montoMinimoInvertir": 1000,
+                "plazoMinimoInvertirDias": 1,
+                "canalConstitucion": "Línea telefónica",
+                "tasaEfectivaAnualMinima": 10.47,
+                "codigoEntidad": 303,
+                "descripcionEntidad": "BANCO FINANSUR S.A.",
+                "fechaInformacion": "2019-07-16",
+                "nombreCompleto": "PLAZOFIJOTRADICIONAL",
+                "nombreCorto": "PFTRADICIONAL",
+                "territorioValidez": "Todo el territorio nacional",
+                "masInformacion": None,
+            }
+        ],
+    }
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_plazos_fijos(
+            codigoEntidad=303
+        )
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET",
+        "/transparencia/v1.0/PlazosFijos",
+        params={"codigoEntidad": 303},
+    )
+    assert data.plazos_fijos[0].codigoEntidad == 303
+
+
+def test_aget_plazos_fijos_sin_filtro(client, monkeypatch):
+    fake_data = {"status": 200, "results": []}
+    mock_response = httpx.Response(200, json=fake_data)
+    mock_arequest = AsyncMock(return_value=mock_response)
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        return await client.regimen_de_transparencia.aget_plazos_fijos()
+
+    data = asyncio.run(run())
+
+    mock_arequest.assert_called_once_with(
+        "GET", "/transparencia/v1.0/PlazosFijos", params=None
+    )
+    assert data.plazos_fijos == []
+
+
+def test_aget_plazos_fijos_500(client, monkeypatch):
+    async def mock_arequest(*args, **kwargs):
+        raise BCRAHTTPError(500, "Ocurrió un error al procesar la solicitud.")
+
+    monkeypatch.setattr(client.regimen_de_transparencia._t, "arequest", mock_arequest)
+
+    async def run():
+        await client.regimen_de_transparencia.aget_plazos_fijos()
+
+    with pytest.raises(BCRAHTTPError) as exc_info:
+        asyncio.run(run())
+    assert exc_info.value.status_code == 500

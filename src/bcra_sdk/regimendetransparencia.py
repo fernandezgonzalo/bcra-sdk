@@ -4,6 +4,7 @@ from ._base import Resource
 from .models.transparencia import (
     ResultGetCajasAhorrosV1,
     ResultGetPaquetesProductosV1,
+    ResultGetPlazosFijosV1,
 )
 
 logger = logging.getLogger("bcra_sdk.regimendetransparencia")
@@ -30,6 +31,12 @@ class RegimenDeTransparencia(Resource):
             "1.0",
             path="/transparencia/v1.0/PaquetesProductos",
             model=ResultGetPaquetesProductosV1,
+        )
+        self._register_version(
+            "get_plazos_fijos",
+            "1.0",
+            path="/transparencia/v1.0/PlazosFijos",
+            model=ResultGetPlazosFijosV1,
         )
 
     def get_cajas_ahorros(
@@ -141,5 +148,59 @@ class RegimenDeTransparencia(Resource):
         logger.debug(
             "Paquetes de productos obtenidos: total=%d",
             len(result.paquetes_productos),
+        )
+        return result
+
+    def get_plazos_fijos(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPlazosFijosV1:
+        """Devuelve los plazos fijos ofrecidos por las entidades.
+
+        Args:
+            codigoEntidad: Código de la entidad para filtrar el listado.
+                Opcional; si no se informa, devuelve todas las entidades.
+            version: Versión del endpoint a usar. El default es la más
+                reciente; buscá las disponibles con `Resource.versions`.
+
+        Returns:
+            ResultGetPlazosFijosV1: listado de `PlazoFijo`.
+        """
+        logger.info("Consultando plazos fijos (codigoEntidad=%s)", codigoEntidad)
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = self._fetch(
+            self._t.request,
+            endpoint="get_plazos_fijos",
+            version=version,
+            params=params,
+            model=ResultGetPlazosFijosV1,
+        )
+        logger.debug(
+            "Plazos fijos obtenidos: total=%d",
+            len(result.plazos_fijos),
+        )
+        return result
+
+    async def aget_plazos_fijos(
+        self,
+        codigoEntidad: int | None = None,
+        *,
+        version: str | None = None,
+    ) -> ResultGetPlazosFijosV1:
+        """Versión asíncrona de `get_plazos_fijos`."""
+        logger.info("Consultando plazos fijos (codigoEntidad=%s)", codigoEntidad)
+        params = {"codigoEntidad": codigoEntidad} if codigoEntidad is not None else None
+        result = await self._fetch(
+            self._t.arequest,
+            endpoint="get_plazos_fijos",
+            version=version,
+            params=params,
+            model=ResultGetPlazosFijosV1,
+        )
+        logger.debug(
+            "Plazos fijos obtenidos: total=%d",
+            len(result.plazos_fijos),
         )
         return result
