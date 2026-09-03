@@ -43,7 +43,7 @@ jobs:
         tox-env: [py311, py312, py313, py314, py315]
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v7
       - run: uv tool install tox --with tox-uv
       - run: tox -e ${{ matrix.tox-env }}
 
