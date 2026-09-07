@@ -7,6 +7,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+### Added
+
+- CLI opcional (`bcra`) instalable con el extra `[cli]` (`typer`): subcomandos por namespace (`deudores`, `cheques`, `cambiarias`, `monetarias`, `transparencia`) que cubren los 19 endpoints, salida JSON por defecto o tabla con `--format json|table`, `--version`, autocompletado de shell (`--install-completion`) y errores limpios ante `BCRAError`/`ValueError` con exit code 1; `bcra_sdk.cli` no se importa desde `__init__.py` para que el core siga dependiendo solo de `httpx`. Docs en `docs/cli.md` y README
+
 ## [0.0.10] - 2026-08-30
 
 ### Added

@@ -18,6 +18,7 @@ Características:
 - Reintentos automáticos ante errores transitorios con backoff exponencial (configurables vía `RetryPolicy`).
 - Errores de red, timeout y HTTP unificados bajo `BCRAError`.
 - Inputs tipados: fechas como `str` ISO o `datetime.date`; validación de CUIT.
+- **CLI opcional** (`bcra`) instalable con el extra `[cli]`, con salida JSON o tabla.
 
 ## Cobertura
 
@@ -65,6 +66,16 @@ pip install "bcra-sdk @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.
 ```
 
 > Reemplaza `v0.0.10` con la versión que desees instalar. Consulta [releases](https://github.com/fernandezgonzalo/bcra-sdk/releases).
+
+### Instalación con CLI
+
+El CLI (`bcra`) es opcional: se instala con el extra `[cli]`.
+
+```bash
+pip install "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
+# o con uv
+uv add "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
+```
 
 ## Uso rápido
 
@@ -140,6 +151,40 @@ async def main():
 
 asyncio.run(main())
 ```
+
+## CLI
+
+El CLI expone los mismos endpoints por namespace como subcomandos. Por
+defecto devuelve JSON; con `--format table` muestra una vista tabular.
+
+```bash
+# Deudores
+bcra deudores deudas 20111111112
+bcra deudores deudas-historicas 20234567891
+bcra deudores cheques-rechazados 20111111112
+
+# Cheques
+bcra cheques entidades
+bcra cheques cheque-denunciado 11 752395
+
+# Estadísticas cambiarias
+bcra cambiarias cotizaciones --fecha 2024-06-12
+bcra cambiarias evolucion-moneda USD --desde 2024-01-01 --hasta 2024-06-12
+
+# Estadísticas monetarias
+bcra monetarias monetarias
+bcra monetarias evolucion-variable 16 --desde 2025-01-01
+bcra monetarias metodologias
+bcra monetarias metodologia 1
+
+# Régimen de transparencia
+bcra transparencia cajas-ahorros --entidad 11
+bcra transparencia tarjetas-credito --format table
+```
+
+`bcra --help` lista todos los comandos; cada subcomando tiene su propio
+`--help`. Autocompletado de shell (`--install-completion` / `--show-completion`)
+y `bcra --version` incluidos.
 
 ## Tests
 

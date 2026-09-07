@@ -21,6 +21,7 @@ respuesta en dataclasses fuertemente tipadas.
 
 - [Instalación](instalacion.md)
 - [Guía rápida](guia-rapida.md)
+- [CLI](cli.md)
 - Endpoints
     - [Deudores](endpoints/deudores.md)
     - [Cheques](endpoints/cheques.md)
