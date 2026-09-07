@@ -77,6 +77,8 @@ pip install "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.gi
 uv add "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
+Sin el extra, `bcra` muestra un error claro pidiendo instalar `bcra-sdk[cli]`.
+
 ## Uso rápido
 
 ```python

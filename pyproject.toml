@@ -45,7 +45,7 @@ cli = [
 ]
 
 [project.scripts]
-bcra = "bcra_sdk.cli:app"
+bcra = "bcra_sdk._cli_main:main"
 
 [project.urls]
 Homepage = "https://github.com/fernandezgonzalo/bcra-sdk"

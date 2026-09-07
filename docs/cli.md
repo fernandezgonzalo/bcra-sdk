@@ -7,6 +7,9 @@ dependencias al core del SDK.
 pip install "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
+Si ejecutás `bcra` sin instalar el extra, el comando muestra un error claro
+indicando cómo instalarlo:
+
 ## Comandos
 
 Expone los mismos endpoints que el SDK organizados por namespace:

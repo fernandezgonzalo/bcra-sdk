@@ -34,4 +34,7 @@ uv add "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.
 pip install "bcra-sdk[cli] @ git+https://github.com/fernandezgonzalo/bcra-sdk.git@v0.0.10"
 ```
 
+Sin el extra, el comando `bcra` queda instalado pero muestra un error claro
+al ejecutarlo pidiendo instalar `bcra-sdk[cli]`.
+
 Véase [CLI](cli.md) para la lista de comandos.
